@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:22:33 by hleung            #+#    #+#             */
-/*   Updated: 2023/09/21 14:21:16 by hleung           ###   ########.fr       */
+/*   Updated: 2023/09/21 14:46:34 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,7 @@ typedef struct s_map
 	int		floor_rgb[3];
 	int		ceiling_rgb[3];
 }	t_map;
+
+int	parse_map(t_map *map, char *path);
 
 #endif
