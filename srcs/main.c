@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.h                                            :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/20 14:22:33 by hleung            #+#    #+#             */
-/*   Updated: 2023/09/21 14:21:16 by hleung           ###   ########.fr       */
+/*   Created: 2023/09/21 11:13:52 by hleung            #+#    #+#             */
+/*   Updated: 2023/09/21 14:20:54 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <math.h>
-# include <fcntl.h>
-# include "../libft/libft.h"
-# include "../minilibx-linux/mlx.h"
+#include "../includes/cub3D.h"
 
-typedef struct s_map
+int	main(int argc, char **argv)
 {
-	char	*path_to_NO;
-	char	*path_to_SO;
-	char	*path_to_WE;
-	char	*path_to_EA;
-	int		floor_rgb[3];
-	int		ceiling_rgb[3];
-}	t_map;
+	int	fd;
+	char	*line;
 
-#endif
+	if (argc == 2)
+	{
+		fd = open(argv[1], O_RDONLY);
+		line = get_next_line(fd);
+		while (line)
+		{
+			printf("%s", line);
+			free(line);
+			line = get_next_line(fd);
+		}
+	}
+	ft_putstr("Wrong number of arguments!\n");
+}
