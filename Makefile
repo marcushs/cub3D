@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hleung <hleung@student.42.fr>              +#+  +:+       +#+         #
+#    By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:10:24 by hleung            #+#    #+#              #
-#    Updated: 2023/09/21 14:47:17 by hleung           ###   ########.fr        #
+#    Updated: 2023/09/22 11:43:37 by hleung           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,11 +31,11 @@ RM			=	rm -rf
 
 ${DIR_OBJS}%.o:	${DIR_SRCS}%.c ${HEADERS}/cub3D.h
 				@${CC} ${CFLAGS} -c $< -o $@ -I ${HEADERS}
-				@echo "${GREEN}Compiled source files!${NC}"
 				
 all:		${NAME}
 
 ${NAME}:	${DIR_OBJS} ${OBJS} ${LIBS} ${HEADERS}/cub3D.h
+			@echo "${GREEN}Compiled source files!${NC}"
 			${CC} ${CFLAGS} ${OBJS} ${LIBFLAGS} -o ${NAME}
 			@echo "${GREEN}Cub3D is ready!${NC}"
 

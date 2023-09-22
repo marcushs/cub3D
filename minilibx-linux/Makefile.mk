@@ -10,6 +10,9 @@
 
 ## Please use configure script
 
+GREEN = \033[0;32m
+YELLOW = \033[0;33m
+NC = \033[0m
 
 INC	=%%%%
 
@@ -37,6 +40,7 @@ SRC	= mlx_init.c mlx_new_window.c mlx_pixel_put.c mlx_loop.c \
 OBJ_DIR = obj
 OBJ	= $(addprefix $(OBJ_DIR)/,$(SRC:%.c=%.o))
 CFLAGS	= -O3 -I$(INC)
+CFLAGS	+= -Wno-unused-result
 
 all	: $(NAME)
 
@@ -48,6 +52,7 @@ $(NAME)	: $(OBJ)
 	ar -r $(NAME) $(OBJ)
 	ranlib $(NAME)
 	cp $(NAME) $(NAME_UNAME)
+	@echo "${GREEN}Compiled MiniLibX!${NC}"
 
 check: all
 	@test/run_tests.sh
