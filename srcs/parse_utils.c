@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/21 11:13:52 by hleung            #+#    #+#             */
-/*   Updated: 2023/09/29 21:36:40 by hleung           ###   ########.fr       */
+/*   Created: 2023/09/29 21:56:15 by hleung            #+#    #+#             */
+/*   Updated: 2023/09/29 23:22:17 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-int	main(int argc, char **argv)
+int	is_empty_line(char *line)
 {
-	t_config	config;
+	int	i;
 
-	if (argc == 2)
-	{
-		config_init(&config);
-		parse_config(&config, argv[1]);
-		free_config(&config);
-	}
-	else
-		ft_putstr("Wrong number of arguments!\n");
+	i = 0;
+	while (line[i] && ft_isspace(line[i]))
+		i++;
+	if (!line[i])
+		return (1);
+	return (0);
 }

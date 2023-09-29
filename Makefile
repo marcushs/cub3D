@@ -6,7 +6,7 @@
 #    By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:10:24 by hleung            #+#    #+#              #
-#    Updated: 2023/09/29 11:57:41 by hleung           ###   ########.fr        #
+#    Updated: 2023/09/29 21:56:02 by hleung           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ LIBS		=	./minilibx-linux/libmlx_Linux.a ./libft/libft.a
 LIBFLAGS	=	-L minilibx-linux -lmlx_Linux -L/usr/lib -Iminilibx-linux -lXext -lX11 -lm -lz -L libft -lft
 HEADERS		=	includes
 DIR_SRCS	=	srcs/
-LIST_SRCS	=	main.c parse.c free.c
+LIST_SRCS	=	main.c parse_config.c parse_utils.c free.c init.c
 SRCS		=	${addprefix ${DIR_SRCS}, ${LIST_SRCS}}
 DIR_OBJS	=	.objs/
 LIST_OBJS	=	${LIST_SRCS:.c=.o}

@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/21 11:13:52 by hleung            #+#    #+#             */
-/*   Updated: 2023/09/29 21:36:40 by hleung           ###   ########.fr       */
+/*   Created: 2023/09/29 16:29:49 by hleung            #+#    #+#             */
+/*   Updated: 2023/09/29 21:18:06 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-int	main(int argc, char **argv)
+void	config_init(t_config *config)
 {
-	t_config	config;
-
-	if (argc == 2)
-	{
-		config_init(&config);
-		parse_config(&config, argv[1]);
-		free_config(&config);
-	}
-	else
-		ft_putstr("Wrong number of arguments!\n");
+	config->path_to_NO = NULL;
+	config->path_to_SO = NULL;
+	config->path_to_WE = NULL;
+	config->path_to_EA = NULL;
+	config->map_tmp = NULL;
+	config->map_list = NULL;
 }
