@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 11:13:52 by hleung            #+#    #+#             */
-/*   Updated: 2023/09/21 14:49:29 by hleung           ###   ########.fr       */
+/*   Updated: 2023/09/29 11:58:23 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	main(int argc, char **argv)
 	{
 		if (parse_map(&map, argv[1]) == -1)
 			return (1);
+		//free_all(&map);
 	}
 	else
 		ft_putstr("Wrong number of arguments!\n");

@@ -1,35 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.h                                            :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/20 14:22:33 by hleung            #+#    #+#             */
-/*   Updated: 2023/09/29 12:07:52 by hleung           ###   ########.fr       */
+/*   Created: 2023/09/29 11:42:48 by hleung            #+#    #+#             */
+/*   Updated: 2023/09/29 12:09:05 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <math.h>
-# include <fcntl.h>
-# include "../libft/libft.h"
-# include "../minilibx-linux/mlx.h"
+#include "../includes/cub3D.h"
 
-typedef struct s_map
+void	free_and_null(void **arr)
 {
-	char	*path_to_NO;
-	char	*path_to_SO;
-	char	*path_to_WE;
-	char	*path_to_EA;
-	int		floor_rgb[3];
-	int		ceiling_rgb[3];
-}	t_map;
+	free(*arr);
+	*arr = NULL;
+}
 
-int	parse_map(t_map *map, char *path);
-
-#endif
+void	free_2d_array(char ***arr)
+{
+	
+}
