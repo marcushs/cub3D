@@ -6,11 +6,15 @@
 /*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 11:42:48 by hleung            #+#    #+#             */
-/*   Updated: 2023/09/29 21:16:06 by hleung           ###   ########.fr       */
+/*   Updated: 2023/09/30 16:54:53 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
+
+void	free_set_null(char **arr);
+void	free_2d_char(char ***arr);
+void	free_config(t_config *config);
 
 void	free_set_null(char **arr)
 {
@@ -20,7 +24,7 @@ void	free_set_null(char **arr)
 
 void	free_2d_char(char ***arr)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while ((*arr)[i])

@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:22:33 by hleung            #+#    #+#             */
-/*   Updated: 2023/09/29 23:37:06 by hleung           ###   ########.fr       */
+/*   Updated: 2023/09/30 16:18:00 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,11 @@
 # include "../libft/libft.h"
 # include "../minilibx-linux/mlx.h"
 # define INV_ID "Error:\nInvalid identifier!\n"
-# define NO_PATH "Error:\nNo path specified!\n"
+# define MAP_LAST "Error:\nMap content misplaced or missing element!\n"
+# define NO_PATH "Error:\nNo path or value specified!\n"
+# define MUL_PATH "Error:\nMore than one path specified!\n"
+# define NB_VALUE "Error:\nWrong number of RGB values!\n"
+# define NON_NUM "Error:\nOnly numerical values allowed!\n"
 # define OUT_RANGE "Error:\nValue out of range!\n"
 # define MAP_EMPTY "Error:\nEmpty line in map content!\n"
 # define MALLOC_ERR "Malloc error!\n"
@@ -37,11 +41,24 @@ typedef struct s_config
 	t_list	*map_list;
 }	t_config;
 
+/* init.c */
 void	config_init(t_config *config);
+
+/* parse_config.c */
 void	parse_config(t_config *config, char *path);
+
+/* parse_elements.c */
+int		parse_element(t_config *config, char *line);
+
+/* parse_utils.c*/
 int		is_empty_line(char *line);
-void	free_2d_char(char ***arr);
-void	free_config(t_config *config);
+int		is_map_content(char *str);
+int		count_strs(char **strs);
+int		join_strs(char ***strs, char **tmp);
+
+/* free.c */
 void	free_set_null(char **arr);
+void	free_config(t_config *config);
+void	free_2d_char(char ***arr);
 
 #endif
