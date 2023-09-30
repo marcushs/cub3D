@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 14:36:21 by hleung            #+#    #+#             */
-/*   Updated: 2023/09/30 16:56:22 by hleung           ###   ########.fr       */
+/*   Updated: 2023/09/30 20:45:09 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,27 @@
 void			parse_config(t_config *config, char *path);
 static int		map_loop(t_config *config, int fd);
 static int		elements_loop(t_config *config, int fd);
+static int		is_val_file_ext(char *path);
 
 void	parse_config(t_config *config, char *path)
 {
-	int		fd;
-
-	fd = open(path, O_RDONLY);
-	if (fd == -1)
+	if (!is_val_file_ext(path))
+	{
+		printf(INV_EXT);
+		exit(EXIT_FAILURE);
+	}
+	config->fd = open(path, O_RDONLY);
+	if (config->fd == -1)
 	{
 		printf("%s file not found\n", path);
 		exit(EXIT_FAILURE);
 	}
-	if (elements_loop(config, fd) == -1)
+	if (elements_loop(config, config->fd) == -1)
 	{
 		free_config(config);
 		exit(EXIT_FAILURE);
 	}
-	if (map_loop(config, fd) == -1)
+	if (map_loop(config, config->fd) == -1)
 	{
 		free_config(config);
 		exit(EXIT_FAILURE);
@@ -89,5 +93,13 @@ static int	map_loop(t_config *config, int fd)
 		free(line);
 		line = get_next_line(fd);
 	}
+	return (0);
+}
+
+static int	is_val_file_ext(char *path)
+{
+	path = ft_strchr(path, '.');
+	if (!ft_strcmp(path, ".cub"))
+		return (1);
 	return (0);
 }

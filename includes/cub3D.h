@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:22:33 by hleung            #+#    #+#             */
-/*   Updated: 2023/09/30 16:18:00 by hleung           ###   ########.fr       */
+/*   Updated: 2023/09/30 20:47:06 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "../libft/libft.h"
 # include "../minilibx-linux/mlx.h"
 # define INV_ID "Error:\nInvalid identifier!\n"
+# define INV_EXT "Error:\nInvalid file extension (expected `.cub')!\n"
 # define MAP_LAST "Error:\nMap content misplaced or missing element!\n"
 # define NO_PATH "Error:\nNo path or value specified!\n"
 # define MUL_PATH "Error:\nMore than one path specified!\n"
@@ -31,10 +32,11 @@
 
 typedef struct s_config
 {
-	char	*path_to_NO;
-	char	*path_to_SO;
-	char	*path_to_WE;
-	char	*path_to_EA;
+	int		fd;
+	char	*path_to_no;
+	char	*path_to_so;
+	char	*path_to_we;
+	char	*path_to_ea;
 	int		floor_rgb[3];
 	int		ceiling_rgb[3];
 	char	*map_tmp;

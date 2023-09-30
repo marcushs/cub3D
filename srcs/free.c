@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 11:42:48 by hleung            #+#    #+#             */
-/*   Updated: 2023/09/30 16:54:53 by hleung           ###   ########.fr       */
+/*   Updated: 2023/09/30 20:47:54 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,15 @@ void	free_2d_char(char ***arr)
 
 void	free_config(t_config *config)
 {
-	if (config->path_to_NO)
-		free_set_null(&config->path_to_NO);
-	if (config->path_to_SO)
-		free_set_null(&config->path_to_SO);
-	if (config->path_to_WE)
-		free_set_null(&config->path_to_WE);
-	if (config->path_to_EA)
-		free_set_null(&config->path_to_EA);
+	if (config->path_to_no)
+		free_set_null(&config->path_to_no);
+	if (config->path_to_so)
+		free_set_null(&config->path_to_so);
+	if (config->path_to_we)
+		free_set_null(&config->path_to_we);
+	if (config->path_to_ea)
+		free_set_null(&config->path_to_ea);
 	if (config->map_list)
 		ft_lstclear(&config->map_list, &free);
+	close(config->fd);
 }
