@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 14:36:21 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/02 10:48:01 by hleung           ###   ########.fr       */
+/*   Updated: 2023/10/02 12:55:56 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	parse_config(t_config *config, char *path)
 	if (map_loop(config, config->fd) == -1)
 		free_config_exit(config, EXIT_FAILURE);
 	if (map_list_to_arr(config) == -1)
+		free_config_exit(config, EXIT_FAILURE);
+	if (check_map_chars(config) == -1)
 		free_config_exit(config, EXIT_FAILURE);
 }
 
@@ -76,8 +78,6 @@ static int	map_loop(t_config *config, int fd)
 	line = config->map_tmp;
 	while (line)
 	{
-		// if (is_empty_line(line))
-		// 	return (free(line), ft_putstr(MAP_EMPTY), -1);
 		tmp = ft_strdup(line);
 		if (!tmp)
 			return (free_set_null(&config->map_tmp), \

@@ -6,11 +6,14 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 09:37:54 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/02 10:36:50 by hleung           ###   ########.fr       */
+/*   Updated: 2023/10/02 13:34:16 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
+
+int		trim_empty_lines_after_map(t_config *config);
+int		check_map_chars(t_config *config);
 
 int	trim_empty_lines_after_map(t_config *config)
 {
@@ -33,5 +36,31 @@ int	trim_empty_lines_after_map(t_config *config)
 		to_trim++;
 	}
 	config->map_size = i;
+	return (0);
+}
+
+int	check_map_chars(t_config *config)
+{
+	int	i;
+	int	j;
+	int	chars[256];
+
+	i = -1;
+	while (++i < 256)
+		chars[i] = 0;
+	i = -1;
+	while (config->map[++i])
+	{
+		j = -1;
+		while (config->map[i][++j])
+			chars[(int)config->map[i][j]]++;
+	}
+	if (chars[69] + chars[78] + chars[83] + chars[87] != 1)
+		return (ft_putstr(POV_ERR), -1);
+	i = -1;
+	while (++i < 256)
+		if ((i != 10 && i != 32 && i != 48 && i != 49 && i != 69 && \
+			i != 78 && i != 83 && i != 87) && chars[i])
+			return (ft_putstr(INV_CHAR), -1);
 	return (0);
 }

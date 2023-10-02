@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 16:12:06 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/02 09:29:42 by hleung           ###   ########.fr       */
+/*   Updated: 2023/10/02 10:53:41 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,8 @@ static int	parse_texture_path(t_config *config, char ***strs)
 	}
 	path = ft_substr((*strs)[1], 0, ft_strlen((*strs)[1]) - 1);
 	if (!path)
-		return (free_2d_char(strs, count_strs(*strs)), ft_putstr(MALLOC_ERR), -1);
+		return (free_2d_char(strs, count_strs(*strs)), \
+		ft_putstr(MALLOC_ERR), -1);
 	if (!ft_strcmp((*strs)[0], "NO"))
 		config->path_to_no = path;
 	else if (!ft_strcmp((*strs)[0], "SO"))
@@ -102,7 +103,8 @@ static int	parse_rgb(t_config *config, char ***strs)
 	if (count_strs(*strs) > 2)
 		free_set_null(&tmp);
 	if (!values)
-		return (free_2d_char(strs, count_strs(*strs)), ft_putstr(MALLOC_ERR), -1);
+		return (free_2d_char(strs, count_strs(*strs)), \
+		ft_putstr(MALLOC_ERR), -1);
 	if (count_strs(values) != 3)
 		return (free_2d_char(&values, count_strs(values)), \
 		free_2d_char(strs, count_strs(*strs)), ft_putstr(NB_VALUE), -1);
