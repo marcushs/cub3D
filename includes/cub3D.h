@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:22:33 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/02 09:18:47 by hleung           ###   ########.fr       */
+/*   Updated: 2023/10/02 10:02:50 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,9 @@ int		is_empty_line(char *line);
 int		is_map_content(char *str);
 int		count_strs(char **strs);
 int		join_strs(char ***strs, char **tmp);
+
+/* check_map.c */
+int		trim_empty_lines_after_map(t_config *config);
 
 /* free.c */
 void	free_set_null(char **arr);

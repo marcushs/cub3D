@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 14:36:21 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/02 09:31:42 by hleung           ###   ########.fr       */
+/*   Updated: 2023/10/02 10:13:03 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,5 +124,7 @@ static int	map_list_to_arr(t_config *config)
 	}
 	// ft_lstclear(&config->map_list, &free);
 	// config->map_list = NULL;
+	if (trim_empty_lines_after_map(config) == -1)
+		return (-1);
 	return (0);
 }

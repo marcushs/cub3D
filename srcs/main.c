@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 11:13:52 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/02 09:12:10 by hleung           ###   ########.fr       */
+/*   Updated: 2023/10/02 10:38:27 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,7 @@ int	main(int argc, char **argv)
 void	print_config(t_config *config)
 {
 	t_list	*tmp;
-	int		size;
 
-	size = ft_lstsize(config->map_list);
 	printf("NO: %s\n", config->path_to_no);
 	printf("SO: %s\n", config->path_to_so);
 	printf("WE: %s\n", config->path_to_we);
@@ -58,8 +56,9 @@ void	print_config(t_config *config)
 	}
 	printf("-------------------------\n");
 	/* Print map en tableau 2D */
-	for (int i = 0; i < size; i++)
+	for (int i = 0; i < config->map_size; i++)
 	{
 		printf("%s", config->map[i]);
 	}
+	printf("config->map has %d lines\n", count_strs(config->map));
 }
