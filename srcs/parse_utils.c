@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 21:56:15 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/02 09:26:41 by hleung           ###   ########.fr       */
+/*   Updated: 2023/10/02 15:32:41 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,9 @@ int	join_strs(char ***strs, char **tmp)
 			return (free_2d_char(strs, count_strs((*strs))), \
 			ft_putstr(MALLOC_ERR), -1);
 	}
+	if ((*tmp)[0] == ',')
+		return (free_2d_char(strs, count_strs((*strs))), \
+		free_set_null(tmp), ft_putstr(NB_VALUE), -1);
 	return (0);
 }
 

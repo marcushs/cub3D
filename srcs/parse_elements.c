@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 16:12:06 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/02 10:53:41 by hleung           ###   ########.fr       */
+/*   Updated: 2023/10/02 15:29:39 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,12 +123,13 @@ static int	str_to_rgb_values(t_config *config, char ***values, char *c)
 	while ((*values)[++i])
 	{
 		j = -1;
+		if (!(*values)[i][0] || (*values)[i][0] == '\n')
+			return (free_2d_char(values, count_strs(*values)), \
+				ft_putstr(NB_VALUE), -1);
 		while ((*values)[i][++j])
-		{
 			if (!ft_isdigit((*values)[i][j]) && (*values)[i][j] != '\n')
 				return (free_2d_char(values, count_strs(*values)), \
 				ft_putstr(NON_NUM), -1);
-		}
 		value = ft_atoi((*values)[i]);
 		if (value < 0 || value > 255)
 			return (free_2d_char(values, count_strs(*values)), \
@@ -138,6 +139,5 @@ static int	str_to_rgb_values(t_config *config, char ***values, char *c)
 		else
 			config->ceiling_rgb[i] = value;
 	}
-	free_2d_char(values, count_strs(*values));
-	return (0);
+	return (free_2d_char(values, count_strs(*values)), 0);
 }
