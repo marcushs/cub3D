@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 11:42:48 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/02 09:21:03 by hleung           ###   ########.fr       */
+/*   Updated: 2023/10/02 15:56:08 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,10 @@ void	free_config(t_config *config)
 		close(config->fd);
 }
 
-void	free_config_exit(t_config *config, int status)
+void	free_config_exit_msg(t_config *config, int status, const char *msg)
 {
+	if (msg)
+		printf("%s\n", msg);
 	free_config(config);
 	exit(status);
 }

@@ -6,7 +6,7 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 12:58:58 by tduprez           #+#    #+#             */
-/*   Updated: 2023/10/02 15:33:41 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/02 15:53:27 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ void	parse_map(t_config *config)
 	line_tmp = config->map[0];
 	while (config->map[0][++x] && config->map[0][x] != '\n')
 		if (config->map[0][x] != ' ' && config->map[0][x] != '1')
-			free_config_exit(config, EXIT_FAILURE);
+			free_config_exit_msg(config, EXIT_FAILURE, "A hole was detected");
 	while (y < config->map_size)
 	{
 		if (is_valid_line(config->map[y]) == false)
-			free_config_exit(config, EXIT_FAILURE);
+			free_config_exit_msg(config, EXIT_FAILURE, "A hole was detected");
 		if (check_walls(config->map[y], line_tmp) == false)
-			free_config_exit(config, EXIT_FAILURE);
+			free_config_exit_msg(config, EXIT_FAILURE, "A hole was detected");
 		line_tmp = config->map[y];
 		y++;
 	}
@@ -53,10 +53,14 @@ static bool	check_walls(char *map_line, char *line_tmp)
 		else if (map_line[x] == ' ' && ((x > 0 && map_line[x - 1] == '0') || \
 		(x < (int)ft_strlen(map_line) && map_line[x + 1] == '0')))
 			return (false);
-		else if (map_line[x] == ' ' && line_tmp[x] == '1' && ((x > 0 && line_tmp[x - 1] != '1' && map_line[x - 1] != ' ') || (x < (int)ft_strlen(line_tmp) && line_tmp[x + 1] != '1' && map_line[x + 1] != ' ')))
-			return (printf("TSET\n"), false);
-		else if (map_line[x] == '0' && ((x > 0 && line_tmp[x - 1] == ' ' && map_line[x - 1] != ' ') || \
-		(x < (int)ft_strlen(line_tmp) && line_tmp[x + 1] == ' ' && map_line[x + 1] != ' ')))
+		else if (map_line[x] == ' ' && line_tmp[x] == '1' && \
+		((x > 0 && line_tmp[x - 1] != '1' && map_line[x - 1] != ' ') || \
+		(x < (int)ft_strlen(line_tmp) && line_tmp[x + 1] != '1' && \
+		map_line[x + 1] != ' ')))
+			return (false);
+		else if (map_line[x] == '0' && ((x > 0 && line_tmp[x - 1] == ' ' && \
+		map_line[x - 1] != ' ') || (x < (int)ft_strlen(line_tmp) && \
+		line_tmp[x + 1] == ' ' && map_line[x + 1] != ' ')))
 			return (false);
 		x++;
 	}

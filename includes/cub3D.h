@@ -6,7 +6,7 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:22:33 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/02 14:17:24 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/02 15:50:47 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,6 @@ int		check_map_chars(t_config *config);
 void	free_set_null(char **arr);
 void	free_config(t_config *config);
 void	free_2d_char(char ***arr, int size);
-void	free_config_exit(t_config *config, int status);
+void	free_config_exit_msg(t_config *config, int status, const char* msg);
 
 #endif

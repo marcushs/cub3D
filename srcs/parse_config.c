@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_config.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 14:36:21 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/02 12:55:56 by hleung           ###   ########.fr       */
+/*   Updated: 2023/10/02 15:53:57 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ void	parse_config(t_config *config, char *path)
 		exit(EXIT_FAILURE);
 	}
 	if (elements_loop(config, config->fd) == -1)
-		free_config_exit(config, EXIT_FAILURE);
+		free_config_exit_msg(config, EXIT_FAILURE, NULL);
 	if (map_loop(config, config->fd) == -1)
-		free_config_exit(config, EXIT_FAILURE);
+		free_config_exit_msg(config, EXIT_FAILURE, NULL);
 	if (map_list_to_arr(config) == -1)
-		free_config_exit(config, EXIT_FAILURE);
+		free_config_exit_msg(config, EXIT_FAILURE, NULL);
 	if (check_map_chars(config) == -1)
-		free_config_exit(config, EXIT_FAILURE);
+		free_config_exit_msg(config, EXIT_FAILURE, NULL);
 }
 
 static int	elements_loop(t_config *config, int fd)
