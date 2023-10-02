@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:22:33 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/02 10:02:50 by hleung           ###   ########.fr       */
+/*   Updated: 2023/10/02 10:47:43 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define NB_VALUE "Error:\nWrong number of RGB values!\n"
 # define NON_NUM "Error:\nOnly numerical values allowed!\n"
 # define OUT_RANGE "Error:\nValue out of range!\n"
+# define NO_MAP "Error:\nNo map given!\n"
 # define MAP_EMPTY "Error:\nEmpty line in map content!\n"
 # define MALLOC_ERR "Malloc error!\n"
 

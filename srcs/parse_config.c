@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 14:36:21 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/02 10:13:03 by hleung           ###   ########.fr       */
+/*   Updated: 2023/10/02 10:48:01 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,8 @@ static int	map_list_to_arr(t_config *config)
 	int		i;
 	t_list	*tmp;
 
+	if (!config->map_list)
+		return (ft_putstr(NO_MAP), -1);
 	config->map_size = ft_lstsize(config->map_list);
 	config->map = (char **)malloc(sizeof(char *) * config->map_size);
 	if (!config->map)
@@ -122,8 +124,8 @@ static int	map_list_to_arr(t_config *config)
 		i++;
 		tmp = tmp->next;
 	}
-	// ft_lstclear(&config->map_list, &free);
-	// config->map_list = NULL;
+	ft_lstclear(&config->map_list, &free);
+	config->map_list = NULL;
 	if (trim_empty_lines_after_map(config) == -1)
 		return (-1);
 	return (0);
