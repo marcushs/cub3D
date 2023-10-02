@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 09:37:54 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/02 13:34:16 by hleung           ###   ########.fr       */
+/*   Updated: 2023/10/02 14:29:56 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	check_map_chars(t_config *config)
 	while (++i < 256)
 		chars[i] = 0;
 	i = -1;
-	while (config->map[++i])
+	while (++i < config->map_size)
 	{
 		j = -1;
 		while (config->map[i][++j])

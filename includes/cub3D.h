@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:22:33 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/02 15:15:00 by hleung           ###   ########.fr       */
+/*   Updated: 2023/10/02 14:17:24 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdbool.h>
 # include <math.h>
 # include <fcntl.h>
 # include "../libft/libft.h"
@@ -56,6 +57,9 @@ void	parse_config(t_config *config, char *path);
 
 /* parse_elements.c */
 int		parse_element(t_config *config, char *line);
+
+/* parse_map.c */
+void	parse_map(t_config *config);
 
 /* parse_utils.c*/
 int		is_empty_line(char *line);
