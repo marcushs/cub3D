@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:22:33 by hleung            #+#    #+#             */
-/*   Updated: 2023/09/30 20:47:06 by hleung           ###   ########.fr       */
+/*   Updated: 2023/10/02 09:18:47 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ typedef struct s_config
 	int		ceiling_rgb[3];
 	char	*map_tmp;
 	t_list	*map_list;
+	int		map_size;
+	char	**map;
 }	t_config;
 
 /* init.c */
@@ -61,6 +63,7 @@ int		join_strs(char ***strs, char **tmp);
 /* free.c */
 void	free_set_null(char **arr);
 void	free_config(t_config *config);
-void	free_2d_char(char ***arr);
+void	free_2d_char(char ***arr, int size);
+void	free_config_exit(t_config *config, int status);
 
 #endif

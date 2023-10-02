@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_config.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 14:36:21 by hleung            #+#    #+#             */
-/*   Updated: 2023/09/30 20:45:09 by hleung           ###   ########.fr       */
+/*   Updated: 2023/10/02 09:31:42 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void			parse_config(t_config *config, char *path);
 static int		map_loop(t_config *config, int fd);
 static int		elements_loop(t_config *config, int fd);
 static int		is_val_file_ext(char *path);
+static int		map_list_to_arr(t_config *config);
 
 void	parse_config(t_config *config, char *path)
 {
@@ -31,15 +32,11 @@ void	parse_config(t_config *config, char *path)
 		exit(EXIT_FAILURE);
 	}
 	if (elements_loop(config, config->fd) == -1)
-	{
-		free_config(config);
-		exit(EXIT_FAILURE);
-	}
+		free_config_exit(config, EXIT_FAILURE);
 	if (map_loop(config, config->fd) == -1)
-	{
-		free_config(config);
-		exit(EXIT_FAILURE);
-	}
+		free_config_exit(config, EXIT_FAILURE);
+	if (map_list_to_arr(config) == -1)
+		free_config_exit(config, EXIT_FAILURE);
 }
 
 static int	elements_loop(t_config *config, int fd)
@@ -79,8 +76,8 @@ static int	map_loop(t_config *config, int fd)
 	line = config->map_tmp;
 	while (line)
 	{
-		if (is_empty_line(line))
-			return (ft_putstr(MAP_EMPTY), -1);
+		// if (is_empty_line(line))
+		// 	return (free(line), ft_putstr(MAP_EMPTY), -1);
 		tmp = ft_strdup(line);
 		if (!tmp)
 			return (free_set_null(&config->map_tmp), \
@@ -93,6 +90,8 @@ static int	map_loop(t_config *config, int fd)
 		free(line);
 		line = get_next_line(fd);
 	}
+	close(config->fd);
+	config->fd = -100;
 	return (0);
 }
 
@@ -101,5 +100,29 @@ static int	is_val_file_ext(char *path)
 	path = ft_strchr(path, '.');
 	if (!ft_strcmp(path, ".cub"))
 		return (1);
+	return (0);
+}
+
+static int	map_list_to_arr(t_config *config)
+{
+	int		i;
+	t_list	*tmp;
+
+	config->map_size = ft_lstsize(config->map_list);
+	config->map = (char **)malloc(sizeof(char *) * config->map_size);
+	if (!config->map)
+		return (ft_putstr(MALLOC_ERR), -1);
+	tmp = config->map_list;
+	i = 0;
+	while (i < config->map_size)
+	{
+		config->map[i] = ft_strdup(tmp->content);
+		if (!config->map[i])
+			return (ft_putstr(MALLOC_ERR), -1);
+		i++;
+		tmp = tmp->next;
+	}
+	// ft_lstclear(&config->map_list, &free);
+	// config->map_list = NULL;
 	return (0);
 }

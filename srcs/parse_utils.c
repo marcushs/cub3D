@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 21:56:15 by hleung            #+#    #+#             */
-/*   Updated: 2023/09/30 16:56:13 by hleung           ###   ########.fr       */
+/*   Updated: 2023/10/02 09:26:41 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ int	join_strs(char ***strs, char **tmp)
 	{
 		*tmp = join_line(*tmp, (*strs)[i]);
 		if (!*tmp)
-			return (free_2d_char(strs), ft_putstr(MALLOC_ERR), -1);
+			return (free_2d_char(strs, count_strs((*strs))), \
+			ft_putstr(MALLOC_ERR), -1);
 	}
 	return (0);
 }
