@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 11:13:52 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/02 15:56:38 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/03 10:58:12 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int	main(int argc, char **argv)
 	{
 		config_init(&config);
 		parse_config(&config, argv[1]);
-		parse_map(&config);
 		print_config(&config); //debug function
 		free_config(&config);
 	}
@@ -60,8 +59,5 @@ void	print_config(t_config *config)
 	printf("-------------------------\n");
 	/* Print map en tableau 2D */
 	for (int i = 0; i < config->map_size; i++)
-	{
 		printf("%s", config->map[i]);
-	}
-	printf("config->map has %d lines\n", count_strs(config->map));
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_config.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 14:36:21 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/02 15:53:57 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/03 10:54:50 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	parse_config(t_config *config, char *path)
 		free_config_exit_msg(config, EXIT_FAILURE, NULL);
 	if (check_map_chars(config) == -1)
 		free_config_exit_msg(config, EXIT_FAILURE, NULL);
+	check_map_walls(config);
 }
 
 static int	elements_loop(t_config *config, int fd)

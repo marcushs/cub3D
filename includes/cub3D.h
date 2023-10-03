@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:22:33 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/02 15:50:47 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/03 10:54:37 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # define MAP_EMPTY "Error:\nEmpty line in map content!\n"
 # define INV_CHAR "Error:\nInvalid character in map!\n"
 # define POV_ERR "Error:\nNeed one and only one player in map!\n"
+# define WALL_ERR "Error:\nMap not enclosed by wall!\n"
 # define MALLOC_ERR "Malloc error!\n"
 
 typedef struct s_config
@@ -70,6 +71,7 @@ int		join_strs(char ***strs, char **tmp);
 /* check_map.c */
 int		trim_empty_lines_after_map(t_config *config);
 int		check_map_chars(t_config *config);
+void	check_map_walls(t_config *config);
 
 /* free.c */
 void	free_set_null(char **arr);
