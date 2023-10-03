@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 09:37:54 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/03 10:55:22 by hleung           ###   ########.fr       */
+/*   Updated: 2023/10/03 11:00:44 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	check_map_chars(t_config *config)
 	while (++i < 256)
 		if ((i != 10 && i != 32 && i != 48 && i != 49 && i != 69 && \
 			i != 78 && i != 83 && i != 87) && chars[i])
-				return (ft_putstr(INV_CHAR), -1);
+			return (ft_putstr(INV_CHAR), -1);
 	return (0);
 }
 
