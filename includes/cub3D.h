@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:22:33 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/03 10:54:37 by hleung           ###   ########.fr       */
+/*   Updated: 2023/10/03 18:18:18 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,27 @@ typedef struct s_config
 	char	**map;
 }	t_config;
 
+typedef struct s_data
+{
+	float			pi;
+	unsigned int	x_case;
+	unsigned int	y_case;
+	unsigned int	block_size;
+	unsigned int	width_screen;
+	unsigned int	height_screen;
+}	t_data;
+
+typedef struct s_mlx
+{
+	void	*mlx;
+	void	*mlx_win;
+	void	*img;
+}	t_mlx;
+
 /* init.c */
 void	config_init(t_config *config);
+void	data_init(t_data *data);
+void	t_mlx_init(t_mlx *mlx, t_data *data);
 
 /* parse_config.c */
 void	parse_config(t_config *config, char *path);
@@ -78,5 +97,18 @@ void	free_set_null(char **arr);
 void	free_config(t_config *config);
 void	free_2d_char(char ***arr, int size);
 void	free_config_exit_msg(t_config *config, int status, const char* msg);
+
+/* get_structs_address.c */
+t_data	*	get_data_address(t_data* data);
+t_mlx		*get_mlx_address(t_mlx* mlx);
+t_config	*get_config_address(t_config* config);
+
+/* event.c */
+int	event_key_hook(int keycode, t_data *data);
+int	event_move(int keycode, t_mlx* mlx);
+int	event_close(t_mlx *mlx);
+
+/* raycasting.c */
+void	raycasting(t_config *config);
 
 #endif

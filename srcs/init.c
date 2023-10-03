@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 16:29:49 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/02 09:19:31 by hleung           ###   ########.fr       */
+/*   Updated: 2023/10/03 18:17:33 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,23 @@ void	config_init(t_config *config)
 	config->map_list = NULL;
 	config->map_size = 0;
 	config->map = NULL;
+}
+
+void	data_init(t_data *data)
+{
+	data->pi = 3.14;
+	data->x_case = 20;
+	data->y_case = 15;
+	data->block_size = 64;
+	data->width_screen = data->x_case * data->block_size;
+	data->height_screen = data->y_case * data->block_size;
+	return ;
+}
+
+void	t_mlx_init(t_mlx *mlx, t_data *data)
+{
+	mlx->mlx = mlx_init();
+	mlx->mlx_win = mlx_new_window(mlx->mlx, data->width_screen, data->height_screen, "Cub3D");
+	mlx->img = NULL;
+	return ;
 }
