@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_config.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 14:36:21 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/03 10:54:50 by hleung           ###   ########.fr       */
+/*   Updated: 2023/10/05 09:51:34 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,8 @@ static int	map_loop(t_config *config, int fd)
 static int	is_val_file_ext(char *path)
 {
 	path = ft_strchr(path, '.');
+	if (!path)
+		return (0);
 	if (!ft_strcmp(path, ".cub"))
 		return (1);
 	return (0);
