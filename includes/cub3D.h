@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:22:33 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/03 18:18:18 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/05 17:22:56 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,25 +47,33 @@ typedef struct s_config
 	char	*map_tmp;
 	t_list	*map_list;
 	int		map_size;
+	int		map_row;
 	char	**map;
 }	t_config;
 
-typedef struct s_data
-{
-	float			pi;
-	unsigned int	x_case;
-	unsigned int	y_case;
-	unsigned int	block_size;
-	unsigned int	width_screen;
-	unsigned int	height_screen;
-}	t_data;
 
 typedef struct s_mlx
 {
 	void	*mlx;
 	void	*mlx_win;
-	void	*img;
+	void	*mini_map;
+	void	*player;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
 }	t_mlx;
+
+typedef struct s_data
+{
+	t_config	*config;
+	t_mlx		*mlx;
+	// unsigned int	x_case;
+	// unsigned int	y_case;
+	// unsigned int	block_size;
+	// unsigned int	width_screen;
+	// unsigned int	height_screen;
+}	t_data;
 
 /* init.c */
 void	config_init(t_config *config);
