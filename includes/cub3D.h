@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:22:33 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/05 17:22:56 by hleung           ###   ########.fr       */
+/*   Updated: 2023/10/06 11:50:28 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,18 +51,26 @@ typedef struct s_config
 	char	**map;
 }	t_config;
 
+typedef struct s_player
+{
+	float	x;
+	float	y;
+	float	angle;
+}	t_player;
 
 typedef struct s_mlx
 {
-	void	*mlx;
-	void	*mlx_win;
-	void	*mini_map;
-	void	*player;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
+	void		*mlx;
+	void		*mlx_win;
+	void		*mini_map_img;
+	void		*player_img;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+	t_player	*player;
 }	t_mlx;
+
 
 typedef struct s_data
 {
@@ -76,47 +84,52 @@ typedef struct s_data
 }	t_data;
 
 /* init.c */
-void	config_init(t_config *config);
-void	data_init(t_data *data);
-void	t_mlx_init(t_mlx *mlx, t_data *data);
+void		config_init(t_config *config);
+void		data_init(t_data *data);
+void		t_mlx_init(t_mlx *mlx, t_data *data);
 
 /* parse_config.c */
-void	parse_config(t_config *config, char *path);
+void		parse_config(t_config *config, char *path);
 
 /* parse_elements.c */
-int		parse_element(t_config *config, char *line);
+int			parse_element(t_config *config, char *line);
 
 /* parse_map.c */
-void	parse_map(t_config *config);
+void		parse_map(t_config *config);
 
 /* parse_utils.c*/
-int		is_empty_line(char *line);
-int		is_map_content(char *str);
-int		count_strs(char **strs);
-int		join_strs(char ***strs, char **tmp);
+int			is_empty_line(char *line);
+int			is_map_content(char *str);
+int			count_strs(char **strs);
+int			join_strs(char ***strs, char **tmp);
 
 /* check_map.c */
-int		trim_empty_lines_after_map(t_config *config);
-int		check_map_chars(t_config *config);
-void	check_map_walls(t_config *config);
+int			trim_empty_lines_after_map(t_config *config);
+int			check_map_chars(t_config *config);
+void		check_map_walls(t_config *config);
 
 /* free.c */
-void	free_set_null(char **arr);
-void	free_config(t_config *config);
-void	free_2d_char(char ***arr, int size);
-void	free_config_exit_msg(t_config *config, int status, const char* msg);
+void		free_set_null(char **arr);
+void		free_config(t_config *config);
+void		free_2d_char(char ***arr, int size);
+void		free_config_exit_msg(t_config *config, int status, const char* msg);
 
 /* get_structs_address.c */
-t_data	*	get_data_address(t_data* data);
+t_data		*get_data_address(t_data* data);
 t_mlx		*get_mlx_address(t_mlx* mlx);
 t_config	*get_config_address(t_config* config);
 
 /* event.c */
-int	event_key_hook(int keycode, t_data *data);
-int	event_move(int keycode, t_mlx* mlx);
-int	event_close(t_mlx *mlx);
+int			event_key_hook(int keycode, t_data *data);
+int			event_move(int keycode, t_mlx* mlx);
+int			event_close(t_mlx *mlx);
 
-/* raycasting.c */
-void	raycasting(t_config *config);
+/* render.c */
+void		raycasting(t_config *config);
+void		my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
+void		render_minimap(t_data *data);
+int			map_longest_row(t_data *data);
+void		put_square(t_mlx *mlx, int x, int y, int player);
+void		put_player(t_mlx *mlx, int x, int y);
 
 #endif

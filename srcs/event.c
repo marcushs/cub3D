@@ -31,8 +31,8 @@ int	event_move(int keycode, t_mlx* mlx)
 		free_config_exit_msg(get_config_address(NULL), \
 		EXIT_FAILURE, "Cub3D closed !\n");
 	}
-	else
-		move_player(keycode);
+	// else
+	// 	move_player(keycode);
 	return (1);
 }
 
