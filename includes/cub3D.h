@@ -6,7 +6,7 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:22:33 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/03 18:18:18 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/05 13:34:05 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,17 @@ typedef struct s_mlx
 	void	*mlx;
 	void	*mlx_win;
 	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
 }	t_mlx;
+
+typedef struct s_player
+{
+	int	pos_x;
+	int	pos_y;
+}	t_player;
 
 /* init.c */
 void	config_init(t_config *config);
@@ -102,6 +112,7 @@ void	free_config_exit_msg(t_config *config, int status, const char* msg);
 t_data	*	get_data_address(t_data* data);
 t_mlx		*get_mlx_address(t_mlx* mlx);
 t_config	*get_config_address(t_config* config);
+t_player	*get_player_address(t_player *player);
 
 /* event.c */
 int	event_key_hook(int keycode, t_data *data);
@@ -110,5 +121,9 @@ int	event_close(t_mlx *mlx);
 
 /* raycasting.c */
 void	raycasting(t_config *config);
+void	my_mlx_pixel_put(t_mlx *data, int x, int y, int color);
+void	draw_square(t_mlx *img);
+void	draw_background(t_mlx *img);
+void	draw_map(t_mlx* img);
 
 #endif

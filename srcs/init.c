@@ -6,7 +6,7 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 16:29:49 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/03 18:17:33 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/05 16:17:06 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void	data_init(t_data *data)
 	data->x_case = 20;
 	data->y_case = 15;
 	data->block_size = 64;
-	data->width_screen = data->x_case * data->block_size;
-	data->height_screen = data->y_case * data->block_size;
+	data->width_screen = 1920;
+	data->height_screen = 1920;
 	return ;
 }
 
