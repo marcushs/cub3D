@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:22:33 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/06 11:50:28 by hleung           ###   ########.fr       */
+/*   Updated: 2023/10/11 17:20:38 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,17 @@
 # define POV_ERR "Error:\nNeed one and only one player in map!\n"
 # define WALL_ERR "Error:\nMap not enclosed by wall!\n"
 # define MALLOC_ERR "Malloc error!\n"
+# define XK_w 119
+# define XK_d 100
+# define XK_s 115
+# define XK_a 97
+# define PI 3.1415926535
+
+typedef struct s_coordinate
+{
+	float	x;
+	float	y;
+}	t_coordinate;
 
 typedef struct s_config
 {
@@ -53,8 +64,11 @@ typedef struct s_config
 
 typedef struct s_player
 {
-	float	x;
-	float	y;
+	t_coordinate	*coordinate;
+	t_coordinate	*top_left;
+	t_coordinate	*top_right;
+	t_coordinate	*bottom_left;
+	t_coordinate	*bottom_right;
 	float	angle;
 }	t_player;
 
@@ -71,7 +85,6 @@ typedef struct s_mlx
 	t_player	*player;
 }	t_mlx;
 
-
 typedef struct s_data
 {
 	t_config	*config;
@@ -86,7 +99,9 @@ typedef struct s_data
 /* init.c */
 void		config_init(t_config *config);
 void		data_init(t_data *data);
-void		t_mlx_init(t_mlx *mlx, t_data *data);
+// void		t_mlx_init(t_mlx *mlx, t_data *data);
+// void	t_mlx_init(t_mlx *mlx, t_data *data, t_player *player, t_coordinate *coordinate);
+void	t_mlx_init(t_mlx *mlx, t_data *data, t_player *player, t_coordinate *coordinate, t_coordinate *top_left, t_coordinate *top_right, t_coordinate *bottom_left, t_coordinate *bottom_right);
 
 /* parse_config.c */
 void		parse_config(t_config *config, char *path);
@@ -129,7 +144,12 @@ void		raycasting(t_config *config);
 void		my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
 void		render_minimap(t_data *data);
 int			map_longest_row(t_data *data);
-void		put_square(t_mlx *mlx, int x, int y, int player);
-void		put_player(t_mlx *mlx, int x, int y);
+void		put_square(t_mlx *mlx, float x, float y, int player);
+// void		put_player(t_mlx *mlx, int x, int y);
+
+void		move_player(int keycode, t_data *data);
+void	create_player_position(t_mlx *mlx, t_data *data);
+void	render_player(t_data *data);
+void	init_player_hitbox(t_mlx *mlx);
 
 #endif

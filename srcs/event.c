@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 18:08:44 by tduprez           #+#    #+#             */
-/*   Updated: 2023/10/05 17:48:20 by hleung           ###   ########.fr       */
+/*   Updated: 2023/10/10 13:02:08 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ int	event_move(int keycode, t_mlx* mlx)
 		free_config_exit_msg(get_config_address(NULL), \
 		EXIT_FAILURE, "Cub3D closed !\n");
 	}
-	// else
-	// 	move_player(keycode);
+	else
+		move_player(keycode, get_data_address(NULL));
 	return (1);
 }
 
