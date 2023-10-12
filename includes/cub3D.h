@@ -6,7 +6,7 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:22:33 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/12 13:07:15 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/12 15:35:17 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdbool.h>
+# include <limits.h>
 # include <math.h>
 # include <fcntl.h>
 # include "../libft/libft.h"
@@ -38,8 +39,8 @@
 # define XK_d 100
 # define XK_s 115
 # define XK_a 97
-# define XK_left 63361
-# define XK_right 63363
+# define XK_left 65361
+# define XK_right 65363
 # define PI 3.1415926535
 
 typedef struct s_coordinate

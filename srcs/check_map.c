@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 09:37:54 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/03 11:00:44 by hleung           ###   ########.fr       */
+/*   Updated: 2023/10/12 15:34:56 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,57 @@ int	check_map_chars(t_config *config)
 	return (0);
 }
 
+void	trim_map_first_spaces(t_config *config)
+{
+	int	x;
+	int	y;
+	int	nb_spaces;
+	char	*tmp;
+
+	nb_spaces = INT_MAX;
+	y = 0;
+	while (y < config->map_size)
+	{
+		x = 0;
+		while (config->map[y][x] && config->map[y][x] == ' ')
+			x++;
+		if (x < nb_spaces)
+			nb_spaces = x;
+		y++;
+	}
+	y = 0;
+	while (y < config->map_size)
+	{
+		tmp = ft_substr(config->map[y], nb_spaces, ft_strlen(config->map[y]));
+		free(config->map[y]);
+		config->map[y] = tmp;
+		y++;
+	}
+}
+
+void	trim_map_back_spaces(t_config *config)
+{
+	int		x;
+	int		y;
+	char	*tmp;
+
+	y = 0;
+	while (y < config->map_size)
+	{
+		x = ft_strlen(config->map[y]) - 2;
+		while (config->map[y][x] == ' ' && x > 0)
+			x--;
+		if (x != (int)ft_strlen(config->map[y]) - 2)
+		{
+			tmp = ft_substr(config->map[y], 0, x + 1);
+			tmp = ft_strjoin(tmp, "\n");
+			free(config->map[y]);
+			config->map[y] = tmp;
+		}
+		y++;
+	}
+}
+
 void	check_map_walls(t_config *config)
 {
 	int		x;
@@ -76,6 +127,8 @@ void	check_map_walls(t_config *config)
 
 	x = -1;
 	y = 1;
+	trim_map_first_spaces(config);
+	trim_map_back_spaces(config);
 	line_tmp = config->map[0];
 	while (config->map[0][++x] && config->map[0][x] != '\n')
 		if (config->map[0][x] != ' ' && config->map[0][x] != '1')
