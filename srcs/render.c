@@ -6,7 +6,7 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 18:15:02 by tduprez           #+#    #+#             */
-/*   Updated: 2023/10/12 22:37:52 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/12 23:15:22 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,7 @@ void	render_minimap(t_data *data)
 		while (data->config->map[y][x] && data->config->map[y][x] != '\n')
 		{
 			if ((int)data->player->coordinate->y == y && (int)data->player->coordinate->x == x)
-			{
-	
 				put_square(data->mlx, data->player->coordinate->x, data->player->coordinate->y, 1);
-			}
 			else if (data->config->map[y][x] == '1')
 				put_square(data->mlx, x, y, 0);
 			x++;

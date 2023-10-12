@@ -6,16 +6,23 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 09:37:54 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/12 16:10:35 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/13 00:26:55 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../includes/cub3D.h"
 
 int			check_map_chars(t_config *config);
 void		check_map_walls(t_config *config);
-static bool	check_walls(char *map_line, char *line_tmp);
-static bool	is_valid_line(char *line);
+// static bool	check_walls(char *map_line, char *line_tmp);
+// static bool	is_valid_line(char *line);
+
+int	is_finishable(t_config *config);
+void	player_position_finishable(t_config *config, t_coordinate *coordinate);
+int	ft_diffusion(t_config *config, int y, int x);
+// static bool	is_valid_line(char *line);
+int	check_elements(t_config *config);
 
 int	trim_empty_lines_after_map(t_config *config)
 {
@@ -69,66 +76,161 @@ int	check_map_chars(t_config *config)
 
 void	check_map_walls(t_config *config)
 {
-	int		x;
-	int		y;
-	char	*line_tmp;
+	// int		x;
+	// int		y;
+	// // char	*line_tmp;
 
-	x = -1;
-	y = 1;
+	// x = -1;
+	// y = 1;
 	trim_map_first_spaces(config);
 	trim_map_back_spaces(config);
-	line_tmp = config->map[0];
-	while (config->map[0][++x] && config->map[0][x] != '\n')
-		if (config->map[0][x] != ' ' && config->map[0][x] != '1')
-			free_config_exit_msg(config, EXIT_FAILURE, WALL_ERR);
-	while (y < config->map_size)
-	{
-		if (is_valid_line(config->map[y]) == false)
-			free_config_exit_msg(config, EXIT_FAILURE, WALL_ERR);
-		if (check_walls(config->map[y], line_tmp) == false)
-			free_config_exit_msg(config, EXIT_FAILURE, WALL_ERR);
-		line_tmp = config->map[y];
-		y++;
-	}
+	is_finishable(config);
+	// line_tmp = config->map[0];
+	// while (config->map[0][++x] && config->map[0][x] != '\n')
+	// 	if (config->map[0][x] != ' ' && config->map[0][x] != '1')
+	// 		free_config_exit_msg(config, EXIT_FAILURE, WALL_ERR);
+	// while (y < config->map_size)
+	// {
+	// 	if (is_valid_line(config->map[y]) == false)
+	// 		free_config_exit_msg(config, EXIT_FAILURE, WALL_ERR);
+	// 	if (check_walls(config->map[y], line_tmp) == false)
+	// 		free_config_exit_msg(config, EXIT_FAILURE, WALL_ERR);
+	// 	line_tmp = config->map[y];
+	// 	y++;
+	// }
 	return ;
 }
 
-static bool	check_walls(char *map_line, char *line_tmp)
+// static bool	check_walls(char *map_line, char *line_tmp)
+// {
+// 	int	x;
+
+// 	x = 0;
+// 	while (map_line[x] && map_line[x] != '\n' && line_tmp[x])
+// 	{
+// 		if (line_tmp[x] == ' ' && (map_line[x] != '1' && map_line[x] != ' '))
+// 			return (false);
+// 		else if (line_tmp[x] != ' ' && line_tmp[x] != '1' && map_line[x] == ' ')
+// 			return (false);
+// 		else if (map_line[x] == ' ' && ((x > 0 && map_line[x - 1] == '0') || 
+// 		(x < (int)ft_strlen(map_line) && map_line[x + 1] == '0')))
+// 			return (false);
+// 		else if (map_line[x] == ' ' && line_tmp[x] == '1' && 
+// 		((x > 0 && line_tmp[x - 1] != '1' && map_line[x - 1] != ' ') || 
+// 		(x < (int)ft_strlen(line_tmp) && line_tmp[x + 1] != '1' && 
+// 		map_line[x + 1] != ' ')))
+// 			return (false);
+// 		else if (map_line[x] == '0' && ((x > 0 && line_tmp[x - 1] == ' ' && 
+// 		map_line[x - 1] != ' ') || (x < (int)ft_strlen(line_tmp) && 
+// 		line_tmp[x + 1] == ' ' && map_line[x + 1] != ' ')))
+// 			return (false);
+// 		x++;
+// 	}
+// 	return (true);
+// }
+
+// static bool	is_valid_line(char *line)
+// {
+// 	int	x;
+
+// 	x = 0;
+// 	while (line[x] && line[x] == ' ')
+// 		x++;
+// 	if (line[x] != '1' || line[ft_strlen(line) - 2] != '1')
+// 		return (false);
+// 	return (true);
+// }
+
+int	is_finishable(t_config *config)
+{
+	t_coordinate	coordinate;
+
+	player_position_finishable(config, &coordinate);
+	if (ft_diffusion(config, coordinate.y, coordinate.x) == 0)
+		return (printf("Exit\n"), exit(EXIT_FAILURE), 0);
+	return (0);
+}
+
+int	check_elements(t_config *config)
 {
 	int	x;
+	int	y;
 
 	x = 0;
-	while (map_line[x] && map_line[x] != '\n' && line_tmp[x])
+	while (config->map[x])
 	{
-		if (line_tmp[x] == ' ' && (map_line[x] != '1' && map_line[x] != ' '))
-			return (false);
-		else if (line_tmp[x] != ' ' && line_tmp[x] != '1' && map_line[x] == ' ')
-			return (false);
-		else if (map_line[x] == ' ' && ((x > 0 && map_line[x - 1] == '0') || \
-		(x < (int)ft_strlen(map_line) && map_line[x + 1] == '0')))
-			return (false);
-		else if (map_line[x] == ' ' && line_tmp[x] == '1' && \
-		((x > 0 && line_tmp[x - 1] != '1' && map_line[x - 1] != ' ') || \
-		(x < (int)ft_strlen(line_tmp) && line_tmp[x + 1] != '1' && \
-		map_line[x + 1] != ' ')))
-			return (false);
-		else if (map_line[x] == '0' && ((x > 0 && line_tmp[x - 1] == ' ' && \
-		map_line[x - 1] != ' ') || (x < (int)ft_strlen(line_tmp) && \
-		line_tmp[x + 1] == ' ' && map_line[x + 1] != ' ')))
-			return (false);
+		y = 0;
+		while (config->map[x][y] && config->map[x][y] != '\n')
+		{
+			if (config->map[x][y] == 'C' || config->map[x][y] == 'E')
+				return (1);
+			y++;
+		}
 		x++;
 	}
-	return (true);
+	return (0);
 }
 
-static bool	is_valid_line(char *line)
+int	ft_diffusion(t_config *config, int y, int x)
+{
+	if (y < config->map_size && x < (int)ft_strlen(config->map[y]) && (config->map[y][x] == 0 || config->map[y][x] == '\n'))
+		return (exit(1), 1);
+	if ((y < config->map_size && x < (int)ft_strlen(config->map[y]) && config->map[y][x] != '1' && config->map[y][x] != '*'))
+	{
+		// 		printf("-----------------------------------------------\n\n");
+		// for (int i = 0; i < config->map_size; i++)
+		// {
+		// 	for (int j = 0; j < (int)ft_strlen(config->map[i]); j++)
+		// 	{
+		// 		printf("%c", config->map[i][j]);
+		// 	}
+		// }
+		// printf("-----------------------------------------------\n\n");
+		config->map[y][x] = '*';
+		if (y < config->map_size && x < (int)ft_strlen(config->map[y]) && config->map[y][x + 1] != '1' && config->map[y][x + 1] != '*')
+			ft_diffusion(config, y, x + 1);
+		if (y < config->map_size && x < (int)ft_strlen(config->map[y]) && config->map[y][x - 1] != '1' && config->map[y][x - 1] != '*')
+			ft_diffusion(config, y, x - 1);
+		if (y < config->map_size && x < (int)ft_strlen(config->map[y]) && config->map[y + 1][x] != '1' && config->map[y + 1][x] != '*')
+			ft_diffusion(config, y + 1, x);
+		if (y < config->map_size && x < (int)ft_strlen(config->map[y]) && config->map[y - 1][x] != '1' && config->map[y - 1][x] != '*')
+			ft_diffusion(config, y - 1, x);
+	}
+	// printf("TEST2\n");
+	return (1);
+}
+
+void	player_position_finishable(t_config *config, t_coordinate *coordinate)
+{
+	coordinate->y = 0;
+	coordinate->x = 0;
+
+	while (coordinate->y < config->map_size)
+	{
+		coordinate->x = 0;
+		while (config->map[(int)coordinate->y][(int)coordinate->x])
+		{
+			if (config->map[(int)coordinate->y][(int)coordinate->x] == 'N')
+			{
+				return ;
+			}
+			coordinate->x++;
+		}
+		coordinate->y++;
+	}
+}
+
+void	ft_free(char **str, int nb_lines)
 {
 	int	x;
 
 	x = 0;
-	while (line[x] && line[x] == ' ')
+	while (x < nb_lines + 1)
+	{
+		free(str[x]);
+		str[x] = NULL;
 		x++;
-	if (line[x] != '1' || line[ft_strlen(line) - 2] != '1')
-		return (false);
-	return (true);
+	}
 }
+
+
