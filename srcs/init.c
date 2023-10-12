@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 16:29:49 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/12 11:36:50 by hleung           ###   ########.fr       */
+/*   Updated: 2023/10/12 12:54:29 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,14 @@ void	create_player_position(t_mlx *mlx, t_data *data)
 
 void	init_player_hitbox(t_player *player)
 {
-	player->top_left->x = player->coordinate->x - 0.25;
-	player->top_left->y = player->coordinate->y - 0.25;
-	player->top_right->x = player->coordinate->x + 0.25;
-	player->top_right->y = player->coordinate->y - 0.25;
-	player->bottom_left->x = player->coordinate->x - 0.25;
-	player->bottom_left->y = player->coordinate->y + 0.25;
-	player->bottom_right->x = player->coordinate->x + 0.25;
-	player->bottom_right->y = player->coordinate->y + 0.25;
+	player->top_left->x = player->coordinate->x - 0.15;
+	player->top_left->y = player->coordinate->y - 0.15;
+	player->top_right->x = player->coordinate->x + 0.15;
+	player->top_right->y = player->coordinate->y - 0.15;
+	player->bottom_left->x = player->coordinate->x - 0.15;
+	player->bottom_left->y = player->coordinate->y + 0.15;
+	player->bottom_right->x = player->coordinate->x + 0.15;
+	player->bottom_right->y = player->coordinate->y + 0.15;
 }
 
 void	init_player(t_player *player, t_coordinate *coordinate)
@@ -97,5 +97,6 @@ void	t_mlx_init(t_data *data, t_player *player, t_coordinate *coordinate)
 	data->mlx->player_img = NULL;
 	data->mlx->addr = NULL;
 	init_player(player, coordinate);
+	init_player_hitbox(player);
 	return ;
 }
