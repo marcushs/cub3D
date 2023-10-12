@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 16:29:49 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/11 17:25:53 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/12 11:36:50 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,48 +51,51 @@ void	create_player_position(t_mlx *mlx, t_data *data)
 		{
 			if (data->config->map[y][x] == 'N')
 			{
-				mlx->player->coordinate->y = (float)y + 0.5;
-				mlx->player->coordinate->x = (float)x + 0.5;
+				data->player->coordinate->y = (float)y + 0.5;
+				data->player->coordinate->x = (float)x + 0.5;
 			}
 			x++;
 		}
 		x = 0;
 		y++;
 	}
-	mlx->player->angle = 0;
+	data->player->angle = 0;
 }
 
-void	init_player_hitbox(t_mlx *mlx)
+void	init_player_hitbox(t_player *player)
 {
-	(void)mlx;
-	mlx->player->top_left->x = mlx->player->coordinate->x - 0.25;
-	mlx->player->top_left->y = mlx->player->coordinate->y - 0.25;
-	mlx->player->top_right->x = mlx->player->coordinate->x + 0.25;
-	mlx->player->top_right->y = mlx->player->coordinate->y - 0.25;
-	mlx->player->bottom_left->x = mlx->player->coordinate->x - 0.25;
-	mlx->player->bottom_left->y = mlx->player->coordinate->y + 0.25;
-	mlx->player->bottom_right->x = mlx->player->coordinate->x + 0.25;
-	mlx->player->bottom_right->y = mlx->player->coordinate->y + 0.25;
+	player->top_left->x = player->coordinate->x - 0.25;
+	player->top_left->y = player->coordinate->y - 0.25;
+	player->top_right->x = player->coordinate->x + 0.25;
+	player->top_right->y = player->coordinate->y - 0.25;
+	player->bottom_left->x = player->coordinate->x - 0.25;
+	player->bottom_left->y = player->coordinate->y + 0.25;
+	player->bottom_right->x = player->coordinate->x + 0.25;
+	player->bottom_right->y = player->coordinate->y + 0.25;
 }
 
-void	init_player(t_coordinate *top_left, t_coordinate *top_right, t_coordinate *bottom_left, t_coordinate *bottom_right)
+void	init_player(t_player *player, t_coordinate *coordinate)
 {
-	get_mlx_address(NULL)->player->top_left = top_left;
-	get_mlx_address(NULL)->player->top_right = top_right;
-	get_mlx_address(NULL)->player->bottom_left = bottom_left;
-	get_mlx_address(NULL)->player->bottom_right = bottom_right;
+	static t_coordinate top_left;
+	static t_coordinate top_right;
+	static t_coordinate bottom_left;
+	static t_coordinate bottom_right;
+
+	player->coordinate = coordinate;
+	player->top_left = &top_left;
+	player->top_right = &top_right;
+	player->bottom_left = &bottom_left;
+	player->bottom_right = &bottom_right;
 }
 
-void	t_mlx_init(t_mlx *mlx, t_data *data, t_player *player, t_coordinate *coordinate, t_coordinate *top_left, t_coordinate *top_right, t_coordinate *bottom_left, t_coordinate *bottom_right)
+void	t_mlx_init(t_data *data, t_player *player, t_coordinate *coordinate)
 {
 	(void)data;
-	mlx->mlx = mlx_init();
-	mlx->mlx_win = mlx_new_window(mlx->mlx, 2500, 1500, "Cub3D");
-	mlx->mini_map_img = NULL;
-	mlx->player_img = NULL;
-	mlx->addr = NULL;
-	mlx->player = player;
-	mlx->player->coordinate = coordinate;
-	init_player(top_left, top_right, bottom_left, bottom_right);
+	data->mlx->mlx = mlx_init();
+	data->mlx->mlx_win = mlx_new_window(data->mlx->mlx, 2500, 1500, "Cub3D");
+	data->mlx->mini_map_img = NULL;
+	data->mlx->player_img = NULL;
+	data->mlx->addr = NULL;
+	init_player(player, coordinate);
 	return ;
 }

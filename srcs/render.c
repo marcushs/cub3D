@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 18:15:02 by tduprez           #+#    #+#             */
-/*   Updated: 2023/10/11 17:19:48 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/12 11:37:39 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,7 @@ void	raycasting(t_config *config)
 	t_data			data;
 	t_mlx			mlx;
 	t_player		player;
-	t_coordinate	top_left;
-	t_coordinate	top_right;
-	t_coordinate	bottom_left;
-	t_coordinate	bottom_right;
-	t_coordinate	coordinate;
+	t_coordinate	coordinate;;
 
 	get_config_address(config);
 	get_data_address(&data);
@@ -31,9 +27,10 @@ void	raycasting(t_config *config)
 	(void)config;
 	data.config = config;
 	data.mlx = &mlx;
-	t_mlx_init(&mlx, &data, &player, &coordinate, &top_left, &top_right, &bottom_left, &bottom_right);
+	data.player = &player;
+	t_mlx_init(&data, &player, &coordinate);
 	create_player_position(&mlx, &data);
-	init_player_hitbox(&mlx);
+	init_player_hitbox(&player);
 	mlx_hook(mlx.mlx_win, 17, 0, &event_close, &mlx);
 	mlx_hook(mlx.mlx_win, 2, (1L<<0), &event_move, &mlx);
 	render_minimap(&data);
@@ -55,8 +52,11 @@ void	render_minimap(t_data *data)
 		x = 0;
 		while (data->config->map[y][x] && data->config->map[y][x] != '\n')
 		{
-			if ((int)data->mlx->player->coordinate->y == y && (int)data->mlx->player->coordinate->x == x)
-				put_square(data->mlx, data->mlx->player->coordinate->x, data->mlx->player->coordinate->y, 1);
+			if ((int)data->player->coordinate->y == y && (int)data->player->coordinate->x == x)
+			{
+	
+				put_square(data->mlx, data->player->coordinate->x, data->player->coordinate->y, 1);
+			}
 			else if (data->config->map[y][x] == '1')
 				put_square(data->mlx, x, y, 0);
 			x++;
@@ -70,15 +70,15 @@ void	render_minimap(t_data *data)
 
 void	put_direction_vector(t_data *data)
 {
-	float vector_x = data->mlx->player->coordinate->x;
-	float vector_y = data->mlx->player->coordinate->y;
+	float vector_x = data->player->coordinate->x;
+	float vector_y = data->player->coordinate->y;
 	float step_size = 0.05;
 
 	while (data->config->map[(int)vector_y] && data->config->map[(int)vector_y][(int)vector_x] != '1')
 	{
 		my_mlx_pixel_put(data->mlx, (vector_x + 1) * 16, (vector_y + 1) * 16, 0x00FF0000);
-		vector_x += cos(data->mlx->player->angle) * step_size;
-		vector_y -= sin(data->mlx->player->angle) * step_size;
+		vector_x += cos(data->player->angle) * step_size;
+		vector_y -= sin(data->player->angle) * step_size;
 	}
 }
 
@@ -148,8 +148,8 @@ void	put_square(t_mlx *mlx, float x, float y, int player)
 // 		start_x -= 6;
 // 		start_y++;
 // 	}
-// 	mlx->player->x = start_x;
-// 	mlx->player->y = start_y;
+// 	player->x = start_x;
+// 	player->y = start_y;
 // }
 
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:22:33 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/11 17:20:38 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/12 11:37:04 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,13 +82,13 @@ typedef struct s_mlx
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
-	t_player	*player;
 }	t_mlx;
 
 typedef struct s_data
 {
 	t_config	*config;
 	t_mlx		*mlx;
+	t_player	*player;
 	// unsigned int	x_case;
 	// unsigned int	y_case;
 	// unsigned int	block_size;
@@ -101,7 +101,8 @@ void		config_init(t_config *config);
 void		data_init(t_data *data);
 // void		t_mlx_init(t_mlx *mlx, t_data *data);
 // void	t_mlx_init(t_mlx *mlx, t_data *data, t_player *player, t_coordinate *coordinate);
-void	t_mlx_init(t_mlx *mlx, t_data *data, t_player *player, t_coordinate *coordinate, t_coordinate *top_left, t_coordinate *top_right, t_coordinate *bottom_left, t_coordinate *bottom_right);
+// void	t_mlx_init(t_mlx *mlx, t_data *data, t_player *player, t_coordinate *coordinate, t_coordinate *top_left, t_coordinate *top_right, t_coordinate *bottom_left, t_coordinate *bottom_right);
+void	t_mlx_init(t_data *data, t_player *player, t_coordinate *coordinate);
 
 /* parse_config.c */
 void		parse_config(t_config *config, char *path);
@@ -150,6 +151,6 @@ void		put_square(t_mlx *mlx, float x, float y, int player);
 void		move_player(int keycode, t_data *data);
 void	create_player_position(t_mlx *mlx, t_data *data);
 void	render_player(t_data *data);
-void	init_player_hitbox(t_mlx *mlx);
+void	init_player_hitbox(t_player *player);
 
 #endif
