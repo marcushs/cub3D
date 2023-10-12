@@ -6,7 +6,7 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:22:33 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/12 16:11:27 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/12 20:44:45 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,12 @@
 # define XK_right 65363
 # define PI 3.1415926535
 
+typedef struct s_hitbox_tmp
+{
+	float	x;
+	float	y;
+}	t_hitbox_tmp;
+
 typedef struct s_coordinate
 {
 	float	x;
@@ -68,10 +74,10 @@ typedef struct s_config
 typedef struct s_player
 {
 	t_coordinate	*coordinate;
-	t_coordinate	*top_left;
-	t_coordinate	*top_right;
-	t_coordinate	*bottom_left;
-	t_coordinate	*bottom_right;
+	t_coordinate	*t_left;
+	t_coordinate	*t_right;
+	t_coordinate	*b_left;
+	t_coordinate	*b_right;
 	float	angle;
 }	t_player;
 
@@ -162,6 +168,9 @@ void	move_up(t_data *data);
 void	move_left(t_data *data);
 void	move_right(t_data *data);
 void	move_down(t_data *data);
+
+/* move_hitbox.c */
+bool check_hitbox(char **map, t_player *p, int direction);
 
 void	create_player_position(t_mlx *mlx, t_data *data);
 void	render_player(t_data *data);

@@ -6,7 +6,7 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 16:29:49 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/12 16:13:09 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/12 20:41:01 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,14 @@ void	create_player_position(t_mlx *mlx, t_data *data)
 
 void	init_player_hitbox(t_player *player)
 {
-	player->top_left->x = player->coordinate->x - 0.15;
-	player->top_left->y = player->coordinate->y - 0.15;
-	player->top_right->x = player->coordinate->x + 0.15;
-	player->top_right->y = player->coordinate->y - 0.15;
-	player->bottom_left->x = player->coordinate->x - 0.15;
-	player->bottom_left->y = player->coordinate->y + 0.15;
-	player->bottom_right->x = player->coordinate->x + 0.15;
-	player->bottom_right->y = player->coordinate->y + 0.15;
+	player->t_left->x = player->coordinate->x - 0.15;
+	player->t_left->y = player->coordinate->y - 0.15;
+	player->t_right->x = player->coordinate->x + 0.15;
+	player->t_right->y = player->coordinate->y - 0.15;
+	player->b_left->x = player->coordinate->x - 0.15;
+	player->b_left->y = player->coordinate->y + 0.15;
+	player->b_right->x = player->coordinate->x + 0.15;
+	player->b_right->y = player->coordinate->y + 0.15;
 }
 
 void	init_player(t_player *player, t_coordinate *coordinate)
@@ -72,10 +72,10 @@ void	init_player(t_player *player, t_coordinate *coordinate)
 	static t_coordinate	bottom_right;
 
 	player->coordinate = coordinate;
-	player->top_left = &top_left;
-	player->top_right = &top_right;
-	player->bottom_left = &bottom_left;
-	player->bottom_right = &bottom_right;
+	player->t_left = &top_left;
+	player->t_right = &top_right;
+	player->b_left = &bottom_left;
+	player->b_right = &bottom_right;
 }
 
 void	t_mlx_init(t_data *data, t_player *player, t_coordinate *coordinate)

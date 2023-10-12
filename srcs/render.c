@@ -6,13 +6,14 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 18:15:02 by tduprez           #+#    #+#             */
-/*   Updated: 2023/10/12 14:07:36 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/12 22:37:52 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
 void	put_direction_vector(t_data *data);
+float	get_len_direction_vector(t_data *data);
 
 void	raycasting(t_config *config)
 {
@@ -38,13 +39,29 @@ void	raycasting(t_config *config)
 	mlx_loop(mlx.mlx);
 }
 
+void	put_vector(t_data *data, float angle)
+{
+	float vector_x = data->player->coordinate->x;
+	float vector_y = data->player->coordinate->y;
+	float step_size = 0.01;
+	float len = 0.00;
+
+	while (data->config->map[(int)vector_y] && data->config->map[(int)vector_y][(int)vector_x] != '1' && len < 8.0)
+	{
+		my_mlx_pixel_put(data->mlx, (vector_x + 1) * 15, (vector_y + 1) * 15, 0x00FF0000);
+		vector_x += cos(angle) * step_size;
+		vector_y -= sin(angle) * step_size;
+		len += step_size;
+	}
+}
+
 void	render_minimap(t_data *data)
 {
 	int	x;
 	int	y;
 
 	data->config->map_row = map_longest_row(data);
-	data->mlx->mini_map_img = mlx_new_image(data->mlx->mlx,(data->config->map_row + 1) * 16, (data->config->map_size + 1) * 16);
+	data->mlx->mini_map_img = mlx_new_image(data->mlx->mlx,(data->config->map_row + 1) * 15, (data->config->map_size + 1) * 15);
 	data->mlx->addr = mlx_get_data_addr(data->mlx->mini_map_img, &data->mlx->bits_per_pixel, &data->mlx->line_length, &data->mlx->endian);
 	y = 0;
 	while (y < data->config->map_size)
@@ -63,6 +80,8 @@ void	render_minimap(t_data *data)
 		}
 		y++;
 	}
+	for (float i = -0.8; i < 0.8; i+= 0.05)
+		put_vector(data, data->player->angle + i);
 	put_direction_vector(data);
 	mlx_put_image_to_window(data->mlx->mlx, data->mlx->mlx_win, data->mlx->mini_map_img, 0, 0);
 	mlx_destroy_image(data->mlx->mlx, data->mlx->mini_map_img);
@@ -72,15 +91,54 @@ void	put_direction_vector(t_data *data)
 {
 	float vector_x = data->player->coordinate->x;
 	float vector_y = data->player->coordinate->y;
-	float step_size = 0.05;
+	float step_size = 0.01;
+	float len = 0.00;
 
-	while (data->config->map[(int)vector_y] && data->config->map[(int)vector_y][(int)vector_x] != '1')
+	while (data->config->map[(int)vector_y] && data->config->map[(int)vector_y][(int)vector_x] != '1' && len < 8.0)
 	{
-		my_mlx_pixel_put(data->mlx, (vector_x + 1) * 16, (vector_y + 1) * 16, 0x00FF0000);
+		my_mlx_pixel_put(data->mlx, (vector_x + 1) * 15, (vector_y + 1) * 15, 0x00FF00);
 		vector_x += cos(data->player->angle) * step_size;
 		vector_y -= sin(data->player->angle) * step_size;
+		len += step_size;
 	}
 }
+
+
+// float get_len_direction_vector(t_data *data)
+// {
+// float vector_x = data->player->coordinate->x;
+// float vector_y = data->player->coordinate->y;
+// float step_size = 0.01;
+// float len = 0.0;
+
+// while (data->config->map[(int)vector_y] && data->config->map[(int)vector_y][(int)vector_x] != '1')
+// {
+// 	vector_x += cos(data->player->angle) * step_size;
+// 	vector_y -= sin(data->player->angle) * step_size;
+// 	len += step_size;
+// }
+
+// return len;
+// }
+
+
+
+
+// float	get_len_direction_vector(t_data *data)
+// {
+// 	float vector_x = data->player->coordinate->x;
+// 	float vector_y = data->player->coordinate->y;
+// 	float step_size = 0.01;
+// 	float	len = 0.00;
+
+// 	while (data->config->map[(int)vector_y] && data->config->map[(int)vector_y][(int)vector_x] != '1')
+// 	{
+// 		vector_x += cos(data->player->angle) * step_size;
+// 		vector_y -= sin(data->player->angle) * step_size;
+// 		len+=0.01;
+// 	}
+// 	return (len);
+// }
 
 void	put_square(t_mlx *mlx, float x, float y, int player)
 {
@@ -89,12 +147,10 @@ void	put_square(t_mlx *mlx, float x, float y, int player)
 	float	end_x;
 	float	end_y;
 
-	start_x = (x + 1) * 16 + (player * -3);
-	start_y = (y + 1) * 16 + (player * -3);
-	end_x = start_x + 15 + (player * -7);
-	end_y = start_y + 15 + (player * -7);
-	if (player)
-		printf("%f\n", end_x - start_x);
+	start_x = (x + 1) * 15 + ((player * -0.20) * 15);
+	start_y = (y + 1) * 15 + ((player * -0.20) * 15);
+	end_x = start_x + 14 + (player * -7);
+	end_y = start_y + 14 + (player * -7);
 	while (start_y < end_y)
 	{
 		while (start_x < end_x)
@@ -105,7 +161,7 @@ void	put_square(t_mlx *mlx, float x, float y, int player)
 				my_mlx_pixel_put(mlx, start_x, start_y, 0x00999999);
 			start_x++;
 		}
-		start_x -= 15 - (player * 7);
+		start_x -= 14 - (player * 7);
 		start_y++;
 	}
 }

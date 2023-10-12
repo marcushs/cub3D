@@ -6,7 +6,7 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:48:27 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/12 16:15:15 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/12 20:44:36 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static void	turn_right(t_data *data);
 static void	turn_left(t_data *data);
-static bool	check_hitbox(char **map, t_player *p, int direction);
 
 void	move_player(int keycode, t_data *data)
 {
@@ -35,71 +34,6 @@ void	move_player(int keycode, t_data *data)
 	else if (keycode == XK_right)
 		turn_right(data);
 	render_minimap(data);
-}
-
-static bool	check_hitbox(char **map, t_player *p, int direction)
-{
-	if (direction == XK_w)
-	{
-		if (map[(int)((p->top_left->y - sin(p->angle) / 5) - 0.15)] \
-		[(int)((p->top_left->x + cos(p->angle) / 5) - 0.15)] == '1')
-			return (false);
-		if (map[(int)((p->top_right->y - sin(p->angle) / 5) - 0.15)] \
-		[(int)((p->top_right->x + cos(p->angle) / 5) + 0.15)] == '1')
-			return (false);
-		if (map[(int)((p->bottom_left->y - sin(p->angle) / 5) + 0.15)] \
-		[(int)((p->bottom_left->x + cos(p->angle) / 5) - 0.15)] == '1')
-			return (false);
-		if (map[(int)((p->bottom_right->y - sin(p->angle) / 5) + 0.15)] \
-		[(int)((p->bottom_right->x + cos(p->angle) / 5) + 0.15)] == '1')
-			return (false);
-	}
-	else if (direction == XK_d)
-	{
-		if (map[(int)((p->top_left->y + sin(p->angle) / 5) + 0.15)] \
-		[(int)((p->top_left->x + cos(p->angle) / 5) + 0.15)] == '1')
-			return (false);
-		if (map[(int)((p->top_right->y + sin(p->angle) / 5) + 0.15)] \
-		[(int)((p->top_right->x + cos(p->angle) / 5) + 0.15)] == '1')
-			return (false);
-		if (map[(int)((p->bottom_left->y + sin(p->angle) / 5) + 0.15)] \
-		[(int)((p->bottom_left->x + cos(p->angle) / 5) + 0.15)] == '1')
-			return (false);
-		if (map[(int)((p->bottom_right->y + sin(p->angle) / 5) + 0.15)] \
-		[(int)((p->bottom_right->x + cos(p->angle) / 5) + 0.15)] == '1')
-			return (false);
-	}
-	else if (direction == XK_s)
-	{
-		if (map[(int)((p->top_left->y + sin(p->angle) / 5) - 0.15)] \
-		[(int)((p->top_left->x - cos(p->angle) / 5) - 0.15)] == '1')
-			return (false);
-		if (map[(int)((p->top_right->y + sin(p->angle) / 5) - 0.15)] \
-		[(int)((p->top_right->x - cos(p->angle) / 5) + 0.15)] == '1')
-			return (false);
-		if (map[(int)((p->bottom_left->y + sin(p->angle) / 5) + 0.15)] \
-		[(int)((p->bottom_left->x - cos(p->angle) / 5) - 0.15)] == '1')
-			return (false);
-		if (map[(int)((p->bottom_right->y + sin(p->angle) / 5) + 0.15)] \
-		[(int)((p->bottom_right->x - cos(p->angle) / 5) + 0.15)] == '1')
-			return (false);
-	}
-	else if (direction == XK_a)
-	{
-		if (map[(int)((p->top_left->y - sin(p->angle) / 5) - 0.15)] \
-		[(int)((p->top_left->x - cos(p->angle) / 5) - 0.15)] == '1')
-			return (false);
-		if (map[(int)((p->top_right->y - sin(p->angle) / 5) - 0.15)] \
-		[(int)((p->top_right->x - cos(p->angle) / 5) - 0.15)] == '1')
-			return (false);
-		if (map[(int)((p->bottom_left->y - sin(p->angle) / 5) - 0.15)] \
-		[(int)((p->bottom_left->x - cos(p->angle) / 5) - 0.15)] == '1')
-			return (false);
-		if (map[(int)((p->bottom_right->y - sin(p->angle) / 5) - 0.15)] \
-		[(int)((p->bottom_right->x - cos(p->angle) / 5) - 0.15)] == '1')
-			return (false);
-	}
-	return (true);
 }
 
 static void	turn_left(t_data *data)
