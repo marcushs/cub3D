@@ -6,7 +6,7 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:22:33 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/12 15:35:17 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/12 16:11:27 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,10 @@ int			trim_empty_lines_after_map(t_config *config);
 int			check_map_chars(t_config *config);
 void		check_map_walls(t_config *config);
 
+/* trim_spaces.c */
+void	trim_map_first_spaces(t_config *config);
+void	trim_map_back_spaces(t_config *config);
+
 /* free.c */
 void		free_set_null(char **arr);
 void		free_config(t_config *config);
@@ -149,9 +153,16 @@ void		my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
 void		render_minimap(t_data *data);
 int			map_longest_row(t_data *data);
 void		put_square(t_mlx *mlx, float x, float y, int player);
-// void		put_player(t_mlx *mlx, int x, int y);
 
+/* move.c */
 void		move_player(int keycode, t_data *data);
+
+/* move_direction.c */
+void	move_up(t_data *data);
+void	move_left(t_data *data);
+void	move_right(t_data *data);
+void	move_down(t_data *data);
+
 void	create_player_position(t_mlx *mlx, t_data *data);
 void	render_player(t_data *data);
 void	init_player_hitbox(t_player *player);

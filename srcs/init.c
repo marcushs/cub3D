@@ -6,7 +6,7 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 16:29:49 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/12 13:56:20 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/12 16:13:09 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,6 @@ void	config_init(t_config *config)
 	config->map = NULL;
 }
 
-// void	data_init(t_data *data)
-// {
-// 	// data->pi = 3.14;
-// 	// data->x_case = 20;
-// 	// data->y_case = 15;
-// 	// data->block_size = 64;
-// 	// data->width_screen = data->x_case * data->block_size;
-// 	// data->height_screen = data->y_case * data->block_size;
-// 	return ;
-// }
-
 void	create_player_position(t_mlx *mlx, t_data *data)
 {
 	int	x;
@@ -47,7 +36,8 @@ void	create_player_position(t_mlx *mlx, t_data *data)
 	(void)mlx;
 	while (y < data->config->map_size && data->config->map[y])
 	{
-		while (x < (int)ft_strlen(data->config->map[y]) && data->config->map[y][x] && data->config->map[y][x] != '\n')
+		while (x < (int)ft_strlen(data->config->map[y]) && \
+		data->config->map[y][x] && data->config->map[y][x] != '\n')
 		{
 			if (data->config->map[y][x] == 'N')
 			{
@@ -76,10 +66,10 @@ void	init_player_hitbox(t_player *player)
 
 void	init_player(t_player *player, t_coordinate *coordinate)
 {
-	static t_coordinate top_left;
-	static t_coordinate top_right;
-	static t_coordinate bottom_left;
-	static t_coordinate bottom_right;
+	static t_coordinate	top_left;
+	static t_coordinate	top_right;
+	static t_coordinate	bottom_left;
+	static t_coordinate	bottom_right;
 
 	player->coordinate = coordinate;
 	player->top_left = &top_left;

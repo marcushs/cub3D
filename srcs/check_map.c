@@ -6,13 +6,12 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 09:37:54 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/12 15:34:56 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/12 16:10:35 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-int			trim_empty_lines_after_map(t_config *config);
 int			check_map_chars(t_config *config);
 void		check_map_walls(t_config *config);
 static bool	check_walls(char *map_line, char *line_tmp);
@@ -66,57 +65,6 @@ int	check_map_chars(t_config *config)
 			i != 78 && i != 83 && i != 87) && chars[i])
 			return (ft_putstr(INV_CHAR), -1);
 	return (0);
-}
-
-void	trim_map_first_spaces(t_config *config)
-{
-	int	x;
-	int	y;
-	int	nb_spaces;
-	char	*tmp;
-
-	nb_spaces = INT_MAX;
-	y = 0;
-	while (y < config->map_size)
-	{
-		x = 0;
-		while (config->map[y][x] && config->map[y][x] == ' ')
-			x++;
-		if (x < nb_spaces)
-			nb_spaces = x;
-		y++;
-	}
-	y = 0;
-	while (y < config->map_size)
-	{
-		tmp = ft_substr(config->map[y], nb_spaces, ft_strlen(config->map[y]));
-		free(config->map[y]);
-		config->map[y] = tmp;
-		y++;
-	}
-}
-
-void	trim_map_back_spaces(t_config *config)
-{
-	int		x;
-	int		y;
-	char	*tmp;
-
-	y = 0;
-	while (y < config->map_size)
-	{
-		x = ft_strlen(config->map[y]) - 2;
-		while (config->map[y][x] == ' ' && x > 0)
-			x--;
-		if (x != (int)ft_strlen(config->map[y]) - 2)
-		{
-			tmp = ft_substr(config->map[y], 0, x + 1);
-			tmp = ft_strjoin(tmp, "\n");
-			free(config->map[y]);
-			config->map[y] = tmp;
-		}
-		y++;
-	}
 }
 
 void	check_map_walls(t_config *config)
