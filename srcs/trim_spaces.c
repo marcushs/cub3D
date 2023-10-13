@@ -6,7 +6,7 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 16:10:53 by tduprez           #+#    #+#             */
-/*   Updated: 2023/10/12 16:12:18 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/13 14:43:00 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void	trim_map_first_spaces(t_config *config)
 	while (y < config->map_size)
 	{
 		tmp = ft_substr(config->map[y], nb_spaces, ft_strlen(config->map[y]));
+		if (!tmp)
+			free_config_exit_msg(config, EXIT_FAILURE, MALLOC_ERR);
 		free(config->map[y]);
 		config->map[y] = tmp;
 		y++;
@@ -44,6 +46,7 @@ void	trim_map_back_spaces(t_config *config)
 {
 	int		x;
 	int		y;
+	char	*trim_copy;
 	char	*tmp;
 
 	y = 0;
@@ -54,10 +57,15 @@ void	trim_map_back_spaces(t_config *config)
 			x--;
 		if (x != (int)ft_strlen(config->map[y]) - 2)
 		{
-			tmp = ft_substr(config->map[y], 0, x + 1);
-			tmp = ft_strjoin(tmp, "\n");
+			trim_copy = ft_substr(config->map[y], 0, x + 1);
+			tmp = ft_strdup(trim_copy);
+			free(trim_copy);
+			trim_copy = ft_strjoin(tmp, "\n");
+			free(tmp);
+			if (!trim_copy)
+				free_config_exit_msg(config, EXIT_FAILURE, MALLOC_ERR);
 			free(config->map[y]);
-			config->map[y] = tmp;
+			config->map[y] = trim_copy;
 		}
 		y++;
 	}

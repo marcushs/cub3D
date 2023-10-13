@@ -6,7 +6,7 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 18:15:02 by tduprez           #+#    #+#             */
-/*   Updated: 2023/10/12 23:15:22 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/13 11:58:30 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,9 @@ void	render_minimap(t_data *data)
 		}
 		y++;
 	}
-	for (float i = -0.8; i < 0.8; i+= 0.05)
+	float test = (30.0 / 180.0) * PI;
+	printf("%f\n", test);
+	for (float i = -test; i < test; i += 0.05)
 		put_vector(data, data->player->angle + i);
 	put_direction_vector(data);
 	mlx_put_image_to_window(data->mlx->mlx, data->mlx->mlx_win, data->mlx->mini_map_img, 0, 0);

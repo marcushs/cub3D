@@ -6,7 +6,7 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 09:37:54 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/13 00:26:55 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/13 14:19:54 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,6 @@
 #include "../includes/cub3D.h"
 
 int			check_map_chars(t_config *config);
-void		check_map_walls(t_config *config);
-// static bool	check_walls(char *map_line, char *line_tmp);
-// static bool	is_valid_line(char *line);
-
-int	is_finishable(t_config *config);
-void	player_position_finishable(t_config *config, t_coordinate *coordinate);
-int	ft_diffusion(t_config *config, int y, int x);
-// static bool	is_valid_line(char *line);
-int	check_elements(t_config *config);
 
 int	trim_empty_lines_after_map(t_config *config)
 {
@@ -74,163 +65,50 @@ int	check_map_chars(t_config *config)
 	return (0);
 }
 
-void	check_map_walls(t_config *config)
+void	check_line(char *line)
 {
-	// int		x;
-	// int		y;
-	// // char	*line_tmp;
+	int	i;
 
-	// x = -1;
-	// y = 1;
-	trim_map_first_spaces(config);
-	trim_map_back_spaces(config);
-	is_finishable(config);
-	// line_tmp = config->map[0];
-	// while (config->map[0][++x] && config->map[0][x] != '\n')
-	// 	if (config->map[0][x] != ' ' && config->map[0][x] != '1')
-	// 		free_config_exit_msg(config, EXIT_FAILURE, WALL_ERR);
-	// while (y < config->map_size)
-	// {
-	// 	if (is_valid_line(config->map[y]) == false)
-	// 		free_config_exit_msg(config, EXIT_FAILURE, WALL_ERR);
-	// 	if (check_walls(config->map[y], line_tmp) == false)
-	// 		free_config_exit_msg(config, EXIT_FAILURE, WALL_ERR);
-	// 	line_tmp = config->map[y];
-	// 	y++;
-	// }
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] == '0')
+			exit(1);
+		i++;
+	}
+}
+
+void	check_open_walls(t_config *config, int x, int y)
+{
+	if (config->map[y - 1][x] && (config->map[y - 1][x] == ' ' || config->map[y - 1][x] == '\n'))
+		free_config_exit_msg(config, EXIT_FAILURE, WALL_ERR);
+	if (config->map[y + 1][x] && (config->map[y + 1][x] == ' ' || config->map[y + 1][x] == '\n'))
+		free_config_exit_msg(config, EXIT_FAILURE, WALL_ERR);
+	if (config->map[y][x - 1] && (config->map[y][x - 1] == ' ' || config->map[y][x - 1] == '\n'))
+		free_config_exit_msg(config, EXIT_FAILURE, WALL_ERR);
+	if (config->map[y][x + 1] && (config->map[y][x + 1] == ' ' || config->map[y][x + 1] == '\n'))
+		free_config_exit_msg(config, EXIT_FAILURE, WALL_ERR);
 	return ;
 }
 
-// static bool	check_walls(char *map_line, char *line_tmp)
-// {
-// 	int	x;
-
-// 	x = 0;
-// 	while (map_line[x] && map_line[x] != '\n' && line_tmp[x])
-// 	{
-// 		if (line_tmp[x] == ' ' && (map_line[x] != '1' && map_line[x] != ' '))
-// 			return (false);
-// 		else if (line_tmp[x] != ' ' && line_tmp[x] != '1' && map_line[x] == ' ')
-// 			return (false);
-// 		else if (map_line[x] == ' ' && ((x > 0 && map_line[x - 1] == '0') || 
-// 		(x < (int)ft_strlen(map_line) && map_line[x + 1] == '0')))
-// 			return (false);
-// 		else if (map_line[x] == ' ' && line_tmp[x] == '1' && 
-// 		((x > 0 && line_tmp[x - 1] != '1' && map_line[x - 1] != ' ') || 
-// 		(x < (int)ft_strlen(line_tmp) && line_tmp[x + 1] != '1' && 
-// 		map_line[x + 1] != ' ')))
-// 			return (false);
-// 		else if (map_line[x] == '0' && ((x > 0 && line_tmp[x - 1] == ' ' && 
-// 		map_line[x - 1] != ' ') || (x < (int)ft_strlen(line_tmp) && 
-// 		line_tmp[x + 1] == ' ' && map_line[x + 1] != ' ')))
-// 			return (false);
-// 		x++;
-// 	}
-// 	return (true);
-// }
-
-// static bool	is_valid_line(char *line)
-// {
-// 	int	x;
-
-// 	x = 0;
-// 	while (line[x] && line[x] == ' ')
-// 		x++;
-// 	if (line[x] != '1' || line[ft_strlen(line) - 2] != '1')
-// 		return (false);
-// 	return (true);
-// }
-
-int	is_finishable(t_config *config)
-{
-	t_coordinate	coordinate;
-
-	player_position_finishable(config, &coordinate);
-	if (ft_diffusion(config, coordinate.y, coordinate.x) == 0)
-		return (printf("Exit\n"), exit(EXIT_FAILURE), 0);
-	return (0);
-}
-
-int	check_elements(t_config *config)
+int	check_walls(t_config *config)
 {
 	int	x;
 	int	y;
 
-	x = 0;
-	while (config->map[x])
+	y = 1;
+	check_line(config->map[0]);
+	check_line(config->map[config->map_size - 1]);
+	while (y < config->map_size - 2)
 	{
-		y = 0;
-		while (config->map[x][y] && config->map[x][y] != '\n')
+		x = 0;
+		while (config->map[y][x])
 		{
-			if (config->map[x][y] == 'C' || config->map[x][y] == 'E')
-				return (1);
-			y++;
+			if (config->map[y][x] == '0')
+				check_open_walls(config, x, y);
+			x++;
 		}
-		x++;
+		y++;
 	}
 	return (0);
 }
-
-int	ft_diffusion(t_config *config, int y, int x)
-{
-	if (y < config->map_size && x < (int)ft_strlen(config->map[y]) && (config->map[y][x] == 0 || config->map[y][x] == '\n'))
-		return (exit(1), 1);
-	if ((y < config->map_size && x < (int)ft_strlen(config->map[y]) && config->map[y][x] != '1' && config->map[y][x] != '*'))
-	{
-		// 		printf("-----------------------------------------------\n\n");
-		// for (int i = 0; i < config->map_size; i++)
-		// {
-		// 	for (int j = 0; j < (int)ft_strlen(config->map[i]); j++)
-		// 	{
-		// 		printf("%c", config->map[i][j]);
-		// 	}
-		// }
-		// printf("-----------------------------------------------\n\n");
-		config->map[y][x] = '*';
-		if (y < config->map_size && x < (int)ft_strlen(config->map[y]) && config->map[y][x + 1] != '1' && config->map[y][x + 1] != '*')
-			ft_diffusion(config, y, x + 1);
-		if (y < config->map_size && x < (int)ft_strlen(config->map[y]) && config->map[y][x - 1] != '1' && config->map[y][x - 1] != '*')
-			ft_diffusion(config, y, x - 1);
-		if (y < config->map_size && x < (int)ft_strlen(config->map[y]) && config->map[y + 1][x] != '1' && config->map[y + 1][x] != '*')
-			ft_diffusion(config, y + 1, x);
-		if (y < config->map_size && x < (int)ft_strlen(config->map[y]) && config->map[y - 1][x] != '1' && config->map[y - 1][x] != '*')
-			ft_diffusion(config, y - 1, x);
-	}
-	// printf("TEST2\n");
-	return (1);
-}
-
-void	player_position_finishable(t_config *config, t_coordinate *coordinate)
-{
-	coordinate->y = 0;
-	coordinate->x = 0;
-
-	while (coordinate->y < config->map_size)
-	{
-		coordinate->x = 0;
-		while (config->map[(int)coordinate->y][(int)coordinate->x])
-		{
-			if (config->map[(int)coordinate->y][(int)coordinate->x] == 'N')
-			{
-				return ;
-			}
-			coordinate->x++;
-		}
-		coordinate->y++;
-	}
-}
-
-void	ft_free(char **str, int nb_lines)
-{
-	int	x;
-
-	x = 0;
-	while (x < nb_lines + 1)
-	{
-		free(str[x]);
-		str[x] = NULL;
-		x++;
-	}
-}
-
-

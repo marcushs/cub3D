@@ -6,7 +6,7 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:22:33 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/12 20:44:45 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/13 14:20:14 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ int			join_strs(char ***strs, char **tmp);
 /* check_map.c */
 int			trim_empty_lines_after_map(t_config *config);
 int			check_map_chars(t_config *config);
-void		check_map_walls(t_config *config);
+int			check_walls(t_config *config);
 
 /* trim_spaces.c */
 void	trim_map_first_spaces(t_config *config);
