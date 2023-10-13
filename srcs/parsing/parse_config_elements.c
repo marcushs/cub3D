@@ -1,18 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_elements.c                                   :+:      :+:    :+:   */
+/*   parse_config_elements.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 16:12:06 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/02 15:29:39 by hleung           ###   ########.fr       */
+/*   Updated: 2023/10/13 18:25:31 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3D.h"
+#include "../../includes/cub3D.h"
 
-int			parse_element(t_config *config, char *line);
 static int	elements_conditions(t_config *config, char ***strs);
 static int	parse_texture_path(t_config *config, char ***strs);
 static int	parse_rgb(t_config *config, char ***strs);
@@ -35,7 +34,7 @@ int	parse_element(t_config *config, char *line)
 	return (0);
 }
 
-int	elements_conditions(t_config *config, char ***strs)
+static int	elements_conditions(t_config *config, char ***strs)
 {
 	char	*id;
 

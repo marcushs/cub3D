@@ -6,7 +6,7 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 18:15:02 by tduprez           #+#    #+#             */
-/*   Updated: 2023/10/13 11:58:30 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/13 18:44:42 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,7 @@ void	raycasting(t_config *config)
 	data.config = config;
 	data.mlx = &mlx;
 	data.player = &player;
-	t_mlx_init(&data, &player, &coordinate);
-	create_player_position(&mlx, &data);
-	init_player_hitbox(&player);
+	t_mlx_init(&mlx, &player, &coordinate);
 	mlx_hook(mlx.mlx_win, 17, 0, &event_close, &mlx);
 	mlx_hook(mlx.mlx_win, 2, (1L<<0), &event_move, &mlx);
 	render_minimap(&data);

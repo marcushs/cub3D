@@ -6,7 +6,7 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:22:33 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/13 14:20:14 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/13 18:44:37 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,36 +106,33 @@ typedef struct s_data
 }	t_data;
 
 /* init.c */
-void		config_init(t_config *config);
-void		data_init(t_data *data);
-// void		t_mlx_init(t_mlx *mlx, t_data *data);
-// void	t_mlx_init(t_mlx *mlx, t_data *data, t_player *player, t_coordinate *coordinate);
-// void	t_mlx_init(t_mlx *mlx, t_data *data, t_player *player, t_coordinate *coordinate, t_coordinate *top_left, t_coordinate *top_right, t_coordinate *bottom_left, t_coordinate *bottom_right);
-void	t_mlx_init(t_data *data, t_player *player, t_coordinate *coordinate);
+void		config_init(t_config *config, char *map_path);
+void		t_mlx_init(t_mlx * mlx, t_player *player, t_coordinate *coordinate);
+void		init_player_hitbox(t_player *player);
+
+/* init_utils.c */
+int			is_valid_file_extension(char *path);
 
 /* parse_config.c */
-void		parse_config(t_config *config, char *path);
+void		parse_config(t_config *config);
 
-/* parse_elements.c */
+/* parse_config_utils.c */
+int			is_empty_line(char *line);
+void		set_map_null(t_config *config);
+int			trim_empty_lines_after_map(t_config *config);
+void		trim_map_first_spaces(t_config *config);
+void		trim_map_back_spaces(t_config *config);
+
+/* parse_config_elements.c */
 int			parse_element(t_config *config, char *line);
 
-/* parse_map.c */
-void		parse_map(t_config *config);
-
-/* parse_utils.c*/
-int			is_empty_line(char *line);
+/* parse_config_elements_utils.c*/
 int			is_map_content(char *str);
 int			count_strs(char **strs);
 int			join_strs(char ***strs, char **tmp);
 
-/* check_map.c */
-int			trim_empty_lines_after_map(t_config *config);
-int			check_map_chars(t_config *config);
+/* parse_config_walls */
 int			check_walls(t_config *config);
-
-/* trim_spaces.c */
-void	trim_map_first_spaces(t_config *config);
-void	trim_map_back_spaces(t_config *config);
 
 /* free.c */
 void		free_set_null(char **arr);
@@ -164,16 +161,14 @@ void		put_square(t_mlx *mlx, float x, float y, int player);
 void		move_player(int keycode, t_data *data);
 
 /* move_direction.c */
-void	move_up(t_data *data);
-void	move_left(t_data *data);
-void	move_right(t_data *data);
-void	move_down(t_data *data);
+void		move_up(t_data *data);
+void		move_left(t_data *data);
+void		move_right(t_data *data);
+void		move_down(t_data *data);
 
 /* move_hitbox.c */
 bool check_hitbox(char **map, t_player *p, int direction);
 
-void	create_player_position(t_mlx *mlx, t_data *data);
-void	render_player(t_data *data);
-void	init_player_hitbox(t_player *player);
+// void		render_player(t_data *data);
 
 #endif

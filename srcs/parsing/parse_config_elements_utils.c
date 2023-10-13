@@ -1,33 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_utils.c                                      :+:      :+:    :+:   */
+/*   parse_config_elements_utils.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 21:56:15 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/02 15:32:41 by hleung           ###   ########.fr       */
+/*   Updated: 2023/10/13 18:26:13 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3D.h"
+#include "../../includes/cub3D.h"
 
-int			is_empty_line(char *line);
-int			count_strs(char **strs);
-int			join_strs(char ***strs, char **tmp);
-int			is_map_content(char *str);
 static char	*join_line(char *s1, char *s2);
 
-int	is_empty_line(char *line)
+int	is_map_content(char *str)
 {
-	int	i;
+	int		i;
+	char	c;
 
 	i = 0;
-	while (line[i] && ft_isspace(line[i]))
+	while (str[i] && ft_isspace(str[i]))
 		i++;
-	if (!line[i])
-		return (1);
-	return (0);
+	if (str[i] && str[i + 1] && str[i] == 'W' && str[i + 1] == 'E')
+	{
+		i = 0;
+		while (str[i] && ft_isspace(str[i]))
+			i++;
+		return (0);
+	}
+	i = 0;
+	while (str[i])
+	{
+		c = str[i];
+		if (c == ' ' || c == '0' || c == '1' || c == 'N' || c == 'S' \
+		|| c == 'W' || c == 'E' || c == '\n')
+			i++;
+		else
+			return (0);
+	}
+	return (1);
 }
 
 int	count_strs(char **strs)
@@ -56,34 +68,6 @@ int	join_strs(char ***strs, char **tmp)
 		return (free_2d_char(strs, count_strs((*strs))), \
 		free_set_null(tmp), ft_putstr(NB_VALUE), -1);
 	return (0);
-}
-
-int	is_map_content(char *str)
-{
-	int		i;
-	char	c;
-
-	i = 0;
-	while (str[i] && ft_isspace(str[i]))
-		i++;
-	if (str[i] && str[i + 1] && str[i] == 'W' && str[i + 1] == 'E')
-	{
-		i = 0;
-		while (str[i] && ft_isspace(str[i]))
-			i++;
-		return (0);
-	}
-	i = 0;
-	while (str[i])
-	{
-		c = str[i];
-		if (c == ' ' || c == '0' || c == '1' || c == 'N' || c == 'S' \
-		|| c == 'W' || c == 'E' || c == '\n')
-			i++;
-		else
-			return (0);
-	}
-	return (1);
 }
 
 static char	*join_line(char *s1, char *s2)
