@@ -6,7 +6,7 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:22:33 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/13 18:44:37 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/14 14:06:25 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,6 @@
 # define XK_left 65361
 # define XK_right 65363
 # define PI 3.1415926535
-
-typedef struct s_hitbox_tmp
-{
-	float	x;
-	float	y;
-}	t_hitbox_tmp;
 
 typedef struct s_coordinate
 {
@@ -98,20 +92,14 @@ typedef struct s_data
 	t_config	*config;
 	t_mlx		*mlx;
 	t_player	*player;
-	// unsigned int	x_case;
-	// unsigned int	y_case;
-	// unsigned int	block_size;
-	// unsigned int	width_screen;
-	// unsigned int	height_screen;
 }	t_data;
 
-/* init.c */
-void		config_init(t_config *config, char *map_path);
-void		t_mlx_init(t_mlx * mlx, t_player *player, t_coordinate *coordinate);
-void		init_player_hitbox(t_player *player);
+/* init_config.c */
+void		init_config(t_config *config, char *map_path);
 
-/* init_utils.c */
-int			is_valid_file_extension(char *path);
+/* init_data.c */
+void		init_data(t_data *data, t_config *config);
+void		init_player_hitbox(t_player *player);
 
 /* parse_config.c */
 void		parse_config(t_config *config);
@@ -134,6 +122,21 @@ int			join_strs(char ***strs, char **tmp);
 /* parse_config_walls */
 int			check_walls(t_config *config);
 
+/* render.c */
+void		render(t_config *config);
+void 		render_minimap(t_data *data, t_mlx *mlx, t_config *config, t_coordinate* coordinate);
+
+/* put_to_mlx.c */
+void		put_square(t_mlx *mlx, float x, float y, int player);
+void		put_vectors(t_data *data);
+
+/* move.c */
+void		move_player(int keycode, t_data *data);
+
+/* event.c */
+int			event_move(int keycode, t_mlx* mlx);
+int			event_close(t_mlx *mlx);
+
 /* free.c */
 void		free_set_null(char **arr);
 void		free_config(t_config *config);
@@ -144,31 +147,5 @@ void		free_config_exit_msg(t_config *config, int status, const char* msg);
 t_data		*get_data_address(t_data* data);
 t_mlx		*get_mlx_address(t_mlx* mlx);
 t_config	*get_config_address(t_config* config);
-
-/* event.c */
-int			event_key_hook(int keycode, t_data *data);
-int			event_move(int keycode, t_mlx* mlx);
-int			event_close(t_mlx *mlx);
-
-/* render.c */
-void		raycasting(t_config *config);
-void		my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
-void		render_minimap(t_data *data);
-int			map_longest_row(t_data *data);
-void		put_square(t_mlx *mlx, float x, float y, int player);
-
-/* move.c */
-void		move_player(int keycode, t_data *data);
-
-/* move_direction.c */
-void		move_up(t_data *data);
-void		move_left(t_data *data);
-void		move_right(t_data *data);
-void		move_down(t_data *data);
-
-/* move_hitbox.c */
-bool check_hitbox(char **map, t_player *p, int direction);
-
-// void		render_player(t_data *data);
 
 #endif

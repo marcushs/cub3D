@@ -6,7 +6,7 @@
 #    By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:10:24 by hleung            #+#    #+#              #
-#    Updated: 2023/10/13 18:41:38 by tduprez          ###   ########lyon.fr    #
+#    Updated: 2023/10/14 14:06:01 by tduprez          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,20 +23,19 @@ LIBFLAGS	=	-L minilibx-linux -lmlx_Linux -L/usr/lib -Iminilibx-linux -lXext -lX1
 HEADERS		=	includes
 DIR_SRCS	=	srcs/
 LIST_SRCS	=	main.c \
-				init/init.c \
-				init/init_utils.c \
+				init/init_config.c \
+				init/init_data.c \
 				parsing/parse_config.c \
 				parsing/parse_config_elements_utils.c \
 				parsing/parse_config_elements.c \
 				parsing/parse_config_walls.c \
 				parsing/parse_config_utils.c \
-				free.c \
-				render.c \
-				get_structs_address.c \
-				event.c \
-				move.c \
-				move_direction.c \
-				move_hitbox.c
+				render/render.c \
+				render/event.c \
+				render/move.c \
+				render/put_to_mlx.c \
+				other/free.c \
+				other/get_structs_address.c
 SRCS		=	${addprefix ${DIR_SRCS}, ${LIST_SRCS}}
 DIR_OBJS	=	.objs/
 LIST_OBJS	=	${LIST_SRCS:.c=.o}
@@ -57,6 +56,8 @@ ${DIR_OBJS}:
 			@mkdir -p ${DIR_OBJS}
 			@mkdir -p ${DIR_OBJS}/init
 			@mkdir -p ${DIR_OBJS}/parsing
+			@mkdir -p ${DIR_OBJS}/render
+			@mkdir -p ${DIR_OBJS}/other
 
 ${LIBS}:	force
 			@${MAKE} ${NO_PRI_DIR} -sC ./libft

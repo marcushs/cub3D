@@ -6,7 +6,7 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 11:13:52 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/13 16:35:48 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/14 13:09:26 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@ int	main(int argc, char **argv)
 
 	if (argc == 2)
 	{
-		config_init(&config, argv[1]);
+		init_config(&config, argv[1]);
+		get_config_address(&config);
 		parse_config(&config);
-		raycasting(&config);
+		render(&config);
 		print_config(&config); //debug function
 		free_config(&config);
 	}
