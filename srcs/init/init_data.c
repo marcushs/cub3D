@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 12:51:27 by tduprez           #+#    #+#             */
-/*   Updated: 2023/10/14 13:11:57 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/15 19:18:32 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	init_data(t_data *data, t_config *config)
 	data->config = config;
 	data->mlx = &mlx;
 	data->player = &player;
+	data->rays = NULL;
 	init_t_mlx(&mlx);
 	init_player(&player, &coordinate);
 	init_player_position(data);
@@ -36,9 +37,10 @@ void	init_data(t_data *data, t_config *config)
 static void	init_t_mlx(t_mlx *mlx)
 {
 	mlx->mlx = mlx_init();
-	mlx->mlx_win = mlx_new_window(mlx->mlx, 2500, 1500, "Cub3D");
+	mlx->mlx_win = mlx_new_window(mlx->mlx, 1900, 950, "Cub3D");
 	mlx->mini_map_img = NULL;
 	mlx->player_img = NULL;
+	mlx->world_img = NULL;
 	mlx->addr = NULL;
 	return ;
 }

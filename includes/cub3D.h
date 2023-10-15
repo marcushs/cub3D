@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:22:33 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/14 14:06:25 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/15 19:15:43 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,13 @@ typedef struct s_coordinate
 	float	y;
 }	t_coordinate;
 
+typedef struct s_ray
+{
+	float dis_x;
+	float dis_y;
+	float ray_len;
+}	t_ray;
+
 typedef struct s_config
 {
 	int		fd;
@@ -81,6 +88,7 @@ typedef struct s_mlx
 	void		*mlx_win;
 	void		*mini_map_img;
 	void		*player_img;
+	void		*world_img;
 	char		*addr;
 	int			bits_per_pixel;
 	int			line_length;
@@ -92,6 +100,7 @@ typedef struct s_data
 	t_config	*config;
 	t_mlx		*mlx;
 	t_player	*player;
+	t_ray		*rays;
 }	t_data;
 
 /* init_config.c */
@@ -129,6 +138,7 @@ void 		render_minimap(t_data *data, t_mlx *mlx, t_config *config, t_coordinate* 
 /* put_to_mlx.c */
 void		put_square(t_mlx *mlx, float x, float y, int player);
 void		put_vectors(t_data *data);
+void		put_pixel(t_mlx *mlx, int x, int y, int color);
 
 /* move.c */
 void		move_player(int keycode, t_data *data);
@@ -147,5 +157,8 @@ void		free_config_exit_msg(t_config *config, int status, const char* msg);
 t_data		*get_data_address(t_data* data);
 t_mlx		*get_mlx_address(t_mlx* mlx);
 t_config	*get_config_address(t_config* config);
+
+/* render_3d.c */
+void	draw_3d_walls(t_data *data);
 
 #endif

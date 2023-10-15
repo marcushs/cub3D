@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   put_to_mlx.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 13:25:36 by tduprez           #+#    #+#             */
-/*   Updated: 2023/10/14 13:33:39 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/15 19:40:06 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
 static void put_one_vector(t_data *data, float angle, int color);
-static void put_pixel(t_mlx *mlx, int x, int y, int color);
+void put_pixel(t_mlx *mlx, int x, int y, int color);
 
 void put_square(t_mlx *mlx, float x, float y, int player)
 {
@@ -45,8 +45,17 @@ void put_vectors(t_data *data)
 {
 	float range;
 	float i;
+	int	count;
 
 	range = (30.0 / 180.0) * PI;
+	i = -range;
+	count = 0;
+	while (i < range)
+	{
+		i += 0.05;
+		count++;
+	}
+	data->rays = (t_ray *)malloc(sizeof(t_ray) * count); //need protection
 	i = -range;
 	while (i < range)
 	{
@@ -70,10 +79,14 @@ static void put_one_vector(t_data *data, float angle, int color)
 		vector_y -= sin(angle) * step_size;
 		len += step_size;
 	}
+	// dis_x = fabsf(vector_x - data->player->coordinate->x);
+	// dis_y = fabsf(vector_y - data->player->coordinate->y);
+	// ray_dis = sqrtf(powf(dis_x, 2) + powf(dis_y, 2));
+	// float lineH = (15 * 15 * 950)/ray_dis; if (lineH > 950){lineH = 950;}
 	return;
 }
 
-static void put_pixel(t_mlx *mlx, int x, int y, int color)
+void put_pixel(t_mlx *mlx, int x, int y, int color)
 {
 	char *dst;
 
