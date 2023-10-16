@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 12:51:27 by tduprez           #+#    #+#             */
-/*   Updated: 2023/10/15 19:18:32 by hleung           ###   ########.fr       */
+/*   Updated: 2023/10/16 09:40:11 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3D.h"
+#include "../../includes/cub3D.h"
 
 static void	init_t_mlx(t_mlx *mlx);
 static void	init_player(t_player *player, t_coordinate *coordinate);
@@ -27,6 +27,8 @@ void	init_data(t_data *data, t_config *config)
 	data->mlx = &mlx;
 	data->player = &player;
 	data->rays = NULL;
+	data->r_idx = 0;
+	data->r_count = 0;
 	init_t_mlx(&mlx);
 	init_player(&player, &coordinate);
 	init_player_position(data);

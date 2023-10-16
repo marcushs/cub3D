@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:22:33 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/15 19:15:43 by hleung           ###   ########.fr       */
+/*   Updated: 2023/10/16 16:51:26 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,19 @@ typedef struct s_coordinate
 
 typedef struct s_ray
 {
-	float dis_x;
-	float dis_y;
-	float ray_len;
+	float	start_x;
+	float	start_y;
+	float	dir_x;
+	float	dir_y;
+	float	sf_x;
+	float	sf_y;
+	int		step_x;
+	int		step_y;
+	float	len_x;
+	float	len_y;
+	float	dis_x;
+	float	dis_y;
+	float	ray_len;
 }	t_ray;
 
 typedef struct s_config
@@ -101,6 +111,8 @@ typedef struct s_data
 	t_mlx		*mlx;
 	t_player	*player;
 	t_ray		*rays;
+	int			r_idx;
+	int			r_count;
 }	t_data;
 
 /* init_config.c */
@@ -138,6 +150,7 @@ void 		render_minimap(t_data *data, t_mlx *mlx, t_config *config, t_coordinate* 
 /* put_to_mlx.c */
 void		put_square(t_mlx *mlx, float x, float y, int player);
 void		put_vectors(t_data *data);
+void put_one_vector(t_data *data, float angle, int color);
 void		put_pixel(t_mlx *mlx, int x, int y, int color);
 
 /* move.c */
@@ -160,5 +173,6 @@ t_config	*get_config_address(t_config* config);
 
 /* render_3d.c */
 void	draw_3d_walls(t_data *data);
+void	dda(t_data *data);
 
 #endif

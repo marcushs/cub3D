@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+         #
+#    By: hleung <hleung@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:10:24 by hleung            #+#    #+#              #
-#    Updated: 2023/10/15 11:44:18 by hleung           ###   ########.fr        #
+#    Updated: 2023/10/16 11:25:12 by hleung           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ LIST_SRCS	=	main.c \
 				render/render_3d.c \
 				render/event.c \
 				render/move.c \
+				render/dda.c \
 				render/put_to_mlx.c \
 				other/free.c \
 				other/get_structs_address.c

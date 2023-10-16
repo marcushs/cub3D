@@ -3,17 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   put_to_mlx.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 13:25:36 by tduprez           #+#    #+#             */
-/*   Updated: 2023/10/15 19:40:06 by hleung           ###   ########.fr       */
+/*   Updated: 2023/10/16 11:27:04 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3D.h"
+#include "../../includes/cub3D.h"
 
-static void put_one_vector(t_data *data, float angle, int color);
+void put_one_vector(t_data *data, float angle, int color);
 void put_pixel(t_mlx *mlx, int x, int y, int color);
+void	set_rays_dist(t_data *data, float vx, float vy);
 
 void put_square(t_mlx *mlx, float x, float y, int player)
 {
@@ -45,17 +46,16 @@ void put_vectors(t_data *data)
 {
 	float range;
 	float i;
-	int	count;
 
 	range = (30.0 / 180.0) * PI;
 	i = -range;
-	count = 0;
+	data->r_count = 0;
 	while (i < range)
 	{
 		i += 0.05;
-		count++;
+		data->r_count++;
 	}
-	data->rays = (t_ray *)malloc(sizeof(t_ray) * count); //need protection
+	data->rays = (t_ray *)malloc(sizeof(t_ray) * data->r_count); //need protection
 	i = -range;
 	while (i < range)
 	{
@@ -65,7 +65,7 @@ void put_vectors(t_data *data)
 	put_one_vector(data, data->player->angle, 0x00FF00);
 }
 
-static void put_one_vector(t_data *data, float angle, int color)
+void put_one_vector(t_data *data, float angle, int color)
 {
 	float vector_x = data->player->coordinate->x;
 	float vector_y = data->player->coordinate->y;
@@ -79,9 +79,8 @@ static void put_one_vector(t_data *data, float angle, int color)
 		vector_y -= sin(angle) * step_size;
 		len += step_size;
 	}
-	// dis_x = fabsf(vector_x - data->player->coordinate->x);
-	// dis_y = fabsf(vector_y - data->player->coordinate->y);
-	// ray_dis = sqrtf(powf(dis_x, 2) + powf(dis_y, 2));
+	// if (color == 0x00FF0000)
+	// 	set_rays_dist(data, vector_x, vector_y);
 	// float lineH = (15 * 15 * 950)/ray_dis; if (lineH > 950){lineH = 950;}
 	return;
 }
@@ -93,4 +92,21 @@ void put_pixel(t_mlx *mlx, int x, int y, int color)
 	dst = mlx->addr + (y * mlx->line_length + x * (mlx->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
 	return;
+}
+
+void	set_rays_dist(t_data *data, float vx, float vy)
+{
+	static t_ray	ray;
+	
+	printf("vx is %f\n", vx);
+	printf("vy is %f\n", vy);
+	printf("players x %f\n", data->player->coordinate->x);
+	printf("players y %f\n", data->player->coordinate->y);
+	ray.dis_x = fabsf(vx - data->player->coordinate->x);
+	ray.dis_y = fabsf(vy - data->player->coordinate->x);
+	ray.ray_len = sqrtf(powf(ray.dis_x, 2) + powf(ray.dis_y, 2));
+	data->rays[data->r_idx] = ray;
+	data->r_idx++;
+	if (data->r_idx == data->r_count)
+		data->r_idx = 0;
 }
