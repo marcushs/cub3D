@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   put_to_mlx.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 13:25:36 by tduprez           #+#    #+#             */
-/*   Updated: 2023/10/16 11:27:04 by hleung           ###   ########.fr       */
+/*   Updated: 2023/10/16 20:55:34 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,19 +94,19 @@ void put_pixel(t_mlx *mlx, int x, int y, int color)
 	return;
 }
 
-void	set_rays_dist(t_data *data, float vx, float vy)
-{
-	static t_ray	ray;
+// void	set_rays_dist(t_data *data, float vx, float vy)
+// {
+// 	static t_ray	ray;
 	
-	printf("vx is %f\n", vx);
-	printf("vy is %f\n", vy);
-	printf("players x %f\n", data->player->coordinate->x);
-	printf("players y %f\n", data->player->coordinate->y);
-	ray.dis_x = fabsf(vx - data->player->coordinate->x);
-	ray.dis_y = fabsf(vy - data->player->coordinate->x);
-	ray.ray_len = sqrtf(powf(ray.dis_x, 2) + powf(ray.dis_y, 2));
-	data->rays[data->r_idx] = ray;
-	data->r_idx++;
-	if (data->r_idx == data->r_count)
-		data->r_idx = 0;
-}
+// 	printf("vx is %f\n", vx);
+// 	printf("vy is %f\n", vy);
+// 	printf("players x %f\n", data->player->coordinate->x);
+// 	printf("players y %f\n", data->player->coordinate->y);
+// 	ray.dis_x = fabsf(vx - data->player->coordinate->x);
+// 	ray.dis_y = fabsf(vy - data->player->coordinate->x);
+// 	ray.ray_len = sqrtf(powf(ray.dis_x, 2) + powf(ray.dis_y, 2));
+// 	data->rays[data->r_idx] = ray;
+// 	data->r_idx++;
+// 	if (data->r_idx == data->r_count)
+// 		data->r_idx = 0;
+// }

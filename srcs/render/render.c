@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 18:15:02 by tduprez           #+#    #+#             */
-/*   Updated: 2023/10/16 15:47:27 by hleung           ###   ########.fr       */
+/*   Updated: 2023/10/16 21:15:17 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,7 @@ void render_minimap(t_data *data, t_mlx *mlx, t_config *config, t_coordinate* co
 		while (config->map[y][x] && config->map[y][x] != '\n')
 		{
 			if ((int)coordinate->y == y && (int)coordinate->x == x)
-			{
-				printf("render minimap int player x is %d\n", (int)coordinate->x);
-				printf("render minimap int player y is %d\n", (int)coordinate->y);
 				put_square(mlx, coordinate->x, coordinate->y, 1);
-			}
 			else if (config->map[y][x] == '1')
 				put_square(mlx, x, y, 0);
 			x++;

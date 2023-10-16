@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:22:33 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/16 16:51:26 by hleung           ###   ########.fr       */
+/*   Updated: 2023/10/16 20:15:08 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,19 +51,13 @@ typedef struct s_coordinate
 
 typedef struct s_ray
 {
-	float	start_x;
-	float	start_y;
-	float	dir_x;
-	float	dir_y;
-	float	sf_x;
-	float	sf_y;
-	int		step_x;
-	int		step_y;
-	float	len_x;
-	float	len_y;
-	float	dis_x;
-	float	dis_y;
-	float	ray_len;
+	t_coordinate	start;
+	t_coordinate	dir;
+	t_coordinate	unit_step;
+	t_coordinate	ray_len_1d;
+	int				step_x;
+	int				step_y;
+	float			ray_len;
 }	t_ray;
 
 typedef struct s_config
