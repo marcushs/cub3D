@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 18:15:02 by tduprez           #+#    #+#             */
-/*   Updated: 2023/10/16 21:15:17 by hleung           ###   ########.fr       */
+/*   Updated: 2023/10/17 12:47:50 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ void render_minimap(t_data *data, t_mlx *mlx, t_config *config, t_coordinate* co
 		}
 		y++;
 	}
-	put_one_vector(data, data->player->angle, 0x00FF00);
 	dda(data);
+	put_one_vector(data, data->player->angle, 0x00FF00);
 	// printf("player->coordinate->x %f\n", data->player->coordinate->x);
 	// printf("player->coordinate->y %f\n", data->player->coordinate->y);
 	//put_vectors(data);

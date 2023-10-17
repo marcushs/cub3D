@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 12:51:27 by tduprez           #+#    #+#             */
-/*   Updated: 2023/10/16 21:16:48 by hleung           ###   ########.fr       */
+/*   Updated: 2023/10/17 16:02:49 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ static void	init_player_position(t_data *data)
 		x = 0;
 		y++;
 	}
-	data->player->angle = 0;
+	data->player->angle = 2.5;
 	return ;
 }
 
