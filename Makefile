@@ -6,7 +6,7 @@
 #    By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:10:24 by hleung            #+#    #+#              #
-#    Updated: 2023/10/14 14:06:01 by tduprez          ###   ########lyon.fr    #
+#    Updated: 2023/10/18 14:15:46 by tduprez          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ LIST_SRCS	=	main.c \
 				parsing/parse_config_elements_utils.c \
 				parsing/parse_config_elements.c \
 				parsing/parse_config_walls.c \
+				parsing/parse_config_double_map.c \
 				parsing/parse_config_utils.c \
 				render/render.c \
 				render/event.c \

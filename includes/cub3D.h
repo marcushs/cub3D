@@ -6,7 +6,7 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:22:33 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/14 14:06:25 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/18 14:16:17 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,9 @@ int			join_strs(char ***strs, char **tmp);
 
 /* parse_config_walls */
 int			check_walls(t_config *config);
+
+/* parse_config_double_map.c */
+void	check_double_map(t_config *config);
 
 /* render.c */
 void		render(t_config *config);
