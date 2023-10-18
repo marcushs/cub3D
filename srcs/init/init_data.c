@@ -6,7 +6,7 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 12:51:27 by tduprez           #+#    #+#             */
-/*   Updated: 2023/10/14 13:11:57 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/18 15:31:36 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,9 @@ static void	init_t_mlx(t_mlx *mlx)
 	mlx->mlx = mlx_init();
 	mlx->mlx_win = mlx_new_window(mlx->mlx, 2500, 1500, "Cub3D");
 	mlx->mini_map_img = NULL;
+	mlx->mini_map_addr = NULL;
 	mlx->player_img = NULL;
-	mlx->addr = NULL;
+	mlx->player_addr = NULL;
 	return ;
 }
 

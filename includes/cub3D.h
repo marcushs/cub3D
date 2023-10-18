@@ -6,7 +6,7 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:22:33 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/18 14:16:17 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/18 15:41:47 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,9 @@ typedef struct s_mlx
 	void		*mlx;
 	void		*mlx_win;
 	void		*mini_map_img;
+	char		*mini_map_addr;
 	void		*player_img;
-	char		*addr;
+	char		*player_addr;
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
@@ -123,11 +124,12 @@ int			join_strs(char ***strs, char **tmp);
 int			check_walls(t_config *config);
 
 /* parse_config_double_map.c */
-void	check_double_map(t_config *config);
+void		check_double_map(t_config *config);
 
 /* render.c */
 void		render(t_config *config);
 void 		render_minimap(t_data *data, t_mlx *mlx, t_config *config, t_coordinate* coordinate);
+void render_player(t_data *data, t_mlx *mlx, t_config *config, t_coordinate* coordinate);
 
 /* put_to_mlx.c */
 void		put_square(t_mlx *mlx, float x, float y, int player);
