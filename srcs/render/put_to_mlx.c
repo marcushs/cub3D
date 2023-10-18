@@ -6,7 +6,7 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 13:25:36 by tduprez           #+#    #+#             */
-/*   Updated: 2023/10/18 15:37:16 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/18 17:14:07 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,3 +81,4 @@ static void put_pixel(t_mlx *mlx, int x, int y, int color)
 	*(unsigned int *)dst = color;
 	return;
 }
+

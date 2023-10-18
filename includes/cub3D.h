@@ -6,7 +6,7 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:22:33 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/18 15:41:47 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/18 17:28:49 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,8 +128,8 @@ void		check_double_map(t_config *config);
 
 /* render.c */
 void		render(t_config *config);
-void 		render_minimap(t_data *data, t_mlx *mlx, t_config *config, t_coordinate* coordinate);
-void render_player(t_data *data, t_mlx *mlx, t_config *config, t_coordinate* coordinate);
+void		render_minimap(t_data *data, t_mlx *mlx, t_config *config);
+void		render_player(t_data *data, t_mlx *mlx, t_config *config, t_coordinate* c);
 
 /* put_to_mlx.c */
 void		put_square(t_mlx *mlx, float x, float y, int player);
