@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:22:33 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/17 11:01:31 by hleung           ###   ########.fr       */
+/*   Updated: 2023/10/18 10:27:17 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,7 @@ typedef struct s_coordinate
 
 typedef struct s_ray
 {
-	t_coordinate	start;
-	t_coordinate	dir;
-	t_coordinate	unit_step;
-	t_coordinate	ray_len_1d;
-	int				step_x;
-	int				step_y;
-	float			ray_len;
-	int				hit_axis;
+	float perpWallDist;
 }	t_ray;
 
 typedef struct s_config
