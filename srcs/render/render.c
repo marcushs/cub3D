@@ -6,7 +6,7 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 18:15:02 by tduprez           #+#    #+#             */
-/*   Updated: 2023/10/18 17:29:05 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/18 23:02:57 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void render_minimap(t_data *data, t_mlx *mlx, t_config *config)
 		}
 		y++;
 	}
-	return;
+	return ;
 }
 
 void render_player(t_data *data, t_mlx *mlx, t_config *config, t_coordinate* c)

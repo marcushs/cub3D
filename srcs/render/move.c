@@ -6,7 +6,7 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:48:27 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/18 15:41:21 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/18 22:38:20 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,23 +65,23 @@ static void	change_hitbox_moves(t_coordinate *moves, t_player *player, int direc
 {
 	if (direction == XK_w)
 	{
-		moves->x = cos(player->angle) / 5;
-		moves->y -= sin(player->angle) / 5;
+		moves->y = sin(player->angle) * 0.25;
+		moves->x -= cos(player->angle) * 0.25;
 	}
 	else if (direction == XK_s)
 	{
-		moves->x -= cos(player->angle) / 5;
-		moves->y = sin(player->angle) / 5;
+		moves->y -= sin(player->angle) * 0.25;
+		moves->x = cos(player->angle) * 0.25;
 	}
 	else if (direction == XK_a)
 	{
-		moves->x -= sin(player->angle) / 5;
-		moves->y -= cos(player->angle) / 5;
+		moves->y -= cos(player->angle) * 0.25;
+		moves->x = sin(player->angle) * 0.25;
 	}
 	else if (direction == XK_d)
 	{
-		moves->x = sin(player->angle) / 5;
-		moves->y = cos(player->angle) / 5;
+		moves->y = cos(player->angle) * 0.25;
+		moves->x -= sin(player->angle) * 0.25;
 	}
 	return ;
 }
@@ -91,26 +91,26 @@ static void	move_player_direction(int keycode, t_data *data)
 {
 	if (keycode == XK_w)
 	{
-		data->player->coordinate->y -= sin(data->player->angle) / 5;
-		data->player->coordinate->x += cos(data->player->angle) / 5;
+		data->player->coordinate->y += sin(data->player->angle) * 0.25;
+		data->player->coordinate->x -= cos(data->player->angle) * 0.25;
 		init_player_hitbox(data->player);
 	}
 	else if (keycode == XK_s)
 	{
-		data->player->coordinate->y += sin(data->player->angle) / 5;
-		data->player->coordinate->x -= cos(data->player->angle) / 5;
+		data->player->coordinate->y -= sin(data->player->angle) * 0.25;
+		data->player->coordinate->x += cos(data->player->angle) * 0.25;
 		init_player_hitbox(data->player);
 	}
 	else if (keycode == XK_a)
 	{
-		data->player->coordinate->y -= cos(data->player->angle) / 5;
-		data->player->coordinate->x -= sin(data->player->angle) / 5;
+		data->player->coordinate->y -= cos(data->player->angle) * 0.25;
+		data->player->coordinate->x += sin(data->player->angle) * 0.25;
 		init_player_hitbox(data->player);
 	}
 	else if (keycode == XK_d)
 	{
-		data->player->coordinate->y += cos(data->player->angle) / 5;
-		data->player->coordinate->x += sin(data->player->angle) / 5;
+		data->player->coordinate->y += cos(data->player->angle) * 0.25;
+		data->player->coordinate->x -= sin(data->player->angle) * 0.25;
 		init_player_hitbox(data->player);
 	}
 	return ;

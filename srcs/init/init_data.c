@@ -6,7 +6,7 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 12:51:27 by tduprez           #+#    #+#             */
-/*   Updated: 2023/10/18 15:31:36 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/18 22:41:39 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,16 @@ static void	init_player_position(t_data *data)
 		while (x < (int)ft_strlen(data->config->map[y]) && \
 		data->config->map[y][x] && data->config->map[y][x] != '\n')
 		{
-			if (data->config->map[y][x] == 'N')
+			if (data->config->map[y][x] == 'N' || data->config->map[y][x] == 'W' || data->config->map[y][x] == 'S' || data->config->map[y][x] == 'E')
 			{
+				if (data->config->map[y][x] == 'N')
+					data->player->angle = -M_PI_2;
+				else if (data->config->map[y][x] == 'E')
+					data->player->angle = M_PI;
+				else if (data->config->map[y][x] == 'S')
+					data->player->angle = M_PI_2;
+				else
+					data->player->angle = 0;
 				data->player->coordinate->y = (float)y + 0.5;
 				data->player->coordinate->x = (float)x + 0.5;
 			}
@@ -81,7 +89,7 @@ static void	init_player_position(t_data *data)
 		x = 0;
 		y++;
 	}
-	data->player->angle = 0;
+	// data->player->angle = 0;
 	return ;
 }
 

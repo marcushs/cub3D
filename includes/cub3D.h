@@ -6,7 +6,7 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:22:33 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/18 17:28:49 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/18 23:05:57 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@
 # define XK_left 65361
 # define XK_right 65363
 # define PI 3.1415926535
+// # define M_PI	3.14159265358979323846
+// # define M_PI_2	1.57079632679489661923
 
 typedef struct s_coordinate
 {
