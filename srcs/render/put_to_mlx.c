@@ -6,14 +6,13 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 13:25:36 by tduprez           #+#    #+#             */
-/*   Updated: 2023/10/19 23:34:18 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/19 23:40:52 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
 static void put_one_vector(t_data *data, float angle, int color);
-static void put_pixel(t_mlx *mlx, int x, int y, int color);
 
 void put_square(t_mlx *mlx, float x, float y, int player)
 {
@@ -90,7 +89,30 @@ void put_one_vector(t_data *data, float angle, int color)
 	return;
 }
 
-static void put_pixel(t_mlx *mlx, int x, int y, int color)
+
+void	ft_put_img_to_img(t_image *img1, t_image *img2, int x, int y)
+{
+	int		*start;
+	int		i;
+	int		j;
+
+	i = 0;
+	while (i < img1->height - y && i < img2->height)
+	{
+		j = 0;
+		start = ((int *)img1->img_addr) + (img1->width * (y + i) + x);
+		while (j < (img1->width - x) && j < img2->width)
+		{
+			start[j] = ((int *)img2->img_addr)[i * img2->width + j];
+			j++;
+		}
+		i++;
+	}
+	return ;
+}
+
+
+void put_pixel(t_image *image, int x, int y, int color)
 {
 	char *dst;
 

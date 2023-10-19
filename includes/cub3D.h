@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:22:33 by hleung            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/10/19 22:07:38 by tduprez          ###   ########lyon.fr   */
-=======
-/*   Updated: 2023/10/16 20:15:08 by hleung           ###   ########.fr       */
->>>>>>> marcus_raycast
+/*   Updated: 2023/10/19 23:36:24 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +55,6 @@ typedef struct s_coordinate
 	float	y;
 }	t_coordinate;
 
-<<<<<<< HEAD
-typedef struct s_texture
-=======
 typedef struct s_ray
 {
 	t_coordinate	start;
@@ -73,8 +66,7 @@ typedef struct s_ray
 	float			ray_len;
 }	t_ray;
 
-typedef struct s_config
->>>>>>> marcus_raycast
+typedef struct s_texture
 {
 	char	*path_to_no;
 	char	*path_to_so;
@@ -179,13 +171,8 @@ void		init_image_data(t_mlx *mlx, t_config *config);
 /* put_to_mlx.c */
 void		put_square(t_mlx *mlx, float x, float y, int player);
 void		put_vectors(t_data *data);
-<<<<<<< HEAD
 void		ft_put_img_to_img(t_image *img1, t_image *img2, int x, int y);
 void		put_pixel(t_image *image, int x, int y, int color);
-=======
-void put_one_vector(t_data *data, float angle, int color);
-void		put_pixel(t_mlx *mlx, int x, int y, int color);
->>>>>>> marcus_raycast
 
 /* move.c */
 void		move_player(int keycode, t_data *data);

@@ -6,7 +6,7 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 18:15:02 by tduprez           #+#    #+#             */
-/*   Updated: 2023/10/19 23:34:09 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/19 23:43:03 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	render(t_config *config)
 	init_image_data(data.mlx, config);
 	render_minimap(&data);
 	render_player(data.mlx->player);
+	dda(&data);
 	put_window_image_to_window(data.mlx, data.player->coordinate->x, \
 	data.player->coordinate->y);
 	mlx_loop(data.mlx->mlx);
@@ -54,22 +55,6 @@ void render_minimap(t_data *data)
 		}
 		y++;
 	}
-<<<<<<< HEAD
-=======
-	put_one_vector(data, data->player->angle, 0x00FF00);
-	dda(data);
-	// printf("player->coordinate->x %f\n", data->player->coordinate->x);
-	// printf("player->coordinate->y %f\n", data->player->coordinate->y);
-	//put_vectors(data);
-	// for (int i = 0; i < data->r_count; i++)
-	// {
-	// 	// printf("data->rays[%d]->dis_x = %f\n", i, data->rays[i].dis_x);
-	// 	printf("data->rays[%d]->dis_y = %f\n", i, data->rays[i].dis_y);
-	
-	// }
-	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->mini_map_img, 0, 0);
-	mlx_destroy_image(mlx->mlx, mlx->mini_map_img);
->>>>>>> marcus_raycast
 	return;
 }
 
