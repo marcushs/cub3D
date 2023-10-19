@@ -3,19 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   render_3d.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 11:40:07 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/15 19:00:16 by hleung           ###   ########.fr       */
+/*   Updated: 2023/10/19 10:19:02 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
-// void	draw_lines(t_data *data, float lineH)
-// {
-// 	for(int	i = 0; i < lineH; i++)
-// 	{
-// 		put_pixel(data->mlx, );
-// 	}
-// }

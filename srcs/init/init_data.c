@@ -6,21 +6,21 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 12:51:27 by tduprez           #+#    #+#             */
-/*   Updated: 2023/10/17 16:02:49 by hleung           ###   ########.fr       */
+/*   Updated: 2023/10/19 10:18:33 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
 static void	init_t_mlx(t_mlx *mlx);
-static void	init_player(t_player *player, t_coordinate *coordinate);
+static void	init_player(t_player *player, t_coor_f *coordinate);
 static void	init_player_position(t_data *data);
 
 void	init_data(t_data *data, t_config *config)
 {
 	static t_mlx		mlx;
 	static t_player		player;
-	static t_coordinate	coordinate;
+	static t_coor_f	coordinate;
 
 	get_mlx_address(&mlx); 
 	data->config = config;
@@ -39,7 +39,7 @@ void	init_data(t_data *data, t_config *config)
 static void	init_t_mlx(t_mlx *mlx)
 {
 	mlx->mlx = mlx_init();
-	mlx->mlx_win = mlx_new_window(mlx->mlx, 1900, 950, "Cub3D");
+	mlx->mlx_win = mlx_new_window(mlx->mlx, WIN_W, WIN_H, "Cub3D");
 	mlx->mini_map_img = NULL;
 	mlx->player_img = NULL;
 	mlx->world_img = NULL;
@@ -47,12 +47,12 @@ static void	init_t_mlx(t_mlx *mlx)
 	return ;
 }
 
-static void	init_player(t_player *player, t_coordinate *coordinate)
+static void	init_player(t_player *player, t_coor_f *coordinate)
 {
-	static t_coordinate	top_left;
-	static t_coordinate	top_right;
-	static t_coordinate	bottom_left;
-	static t_coordinate	bottom_right;
+	static t_coor_f	top_left;
+	static t_coor_f	top_right;
+	static t_coor_f	bottom_left;
+	static t_coor_f	bottom_right;
 
 	player->coordinate = coordinate;
 	player->t_left = &top_left;

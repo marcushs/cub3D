@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:22:33 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/18 10:27:17 by hleung           ###   ########.fr       */
+/*   Updated: 2023/10/19 10:56:02 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,20 @@
 # define XK_left 65361
 # define XK_right 65363
 # define PI 3.1415926535
+# define WIN_H 300
+# define WIN_W 300
 
-typedef struct s_coordinate
+typedef struct s_coor_i
+{
+	int		x;
+	int		y;
+}	t_coor_i;
+
+typedef struct s_coor_f
 {
 	float	x;
 	float	y;
-}	t_coordinate;
+}	t_coor_f;
 
 typedef struct s_ray
 {
@@ -72,11 +80,11 @@ typedef struct s_config
 
 typedef struct s_player
 {
-	t_coordinate	*coordinate;
-	t_coordinate	*t_left;
-	t_coordinate	*t_right;
-	t_coordinate	*b_left;
-	t_coordinate	*b_right;
+	t_coor_f	*coordinate;
+	t_coor_f	*t_left;
+	t_coor_f	*t_right;
+	t_coor_f	*b_left;
+	t_coor_f	*b_right;
 	float	angle;
 }	t_player;
 
@@ -133,7 +141,7 @@ int			check_walls(t_config *config);
 
 /* render.c */
 void		render(t_config *config);
-void 		render_minimap(t_data *data, t_mlx *mlx, t_config *config, t_coordinate* coordinate);
+void 		render_minimap(t_data *data, t_mlx *mlx, t_config *config, t_coor_f* coordinate);
 
 /* put_to_mlx.c */
 void		put_square(t_mlx *mlx, float x, float y, int player);
@@ -160,6 +168,7 @@ t_mlx		*get_mlx_address(t_mlx* mlx);
 t_config	*get_config_address(t_config* config);
 
 /* render_3d.c */
+void	draw_lines(t_data *data);
 void	draw_3d_walls(t_data *data);
 void	dda(t_data *data);
 

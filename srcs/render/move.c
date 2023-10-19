@@ -6,14 +6,14 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:48:27 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/16 09:17:29 by hleung           ###   ########.fr       */
+/*   Updated: 2023/10/19 10:19:39 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
 static bool check_hitbox(char **map, t_player *player, int direction);
-static void	change_hitbox_moves(t_coordinate *moves, t_player *player, int direction);
+static void	change_hitbox_moves(t_coor_f *moves, t_player *player, int direction);
 static void	move_player_angle(int keycode, t_data *data);
 static void	move_player_direction(int keycode, t_data *data);
 
@@ -41,7 +41,7 @@ void	move_player(int keycode, t_data *data)
 
 static bool check_hitbox(char **map, t_player *player, int direction)
 {
-	t_coordinate	moves;
+	t_coor_f	moves;
 
 	moves.x = 0.0;
 	moves.y = 0.0;
@@ -61,7 +61,7 @@ static bool check_hitbox(char **map, t_player *player, int direction)
 	return true;
 }
 
-static void	change_hitbox_moves(t_coordinate *moves, t_player *player, int direction)
+static void	change_hitbox_moves(t_coor_f *moves, t_player *player, int direction)
 {
 	if (direction == XK_w)
 	{

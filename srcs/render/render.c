@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 18:15:02 by tduprez           #+#    #+#             */
-/*   Updated: 2023/10/18 16:20:53 by hleung           ###   ########.fr       */
+/*   Updated: 2023/10/19 10:43:33 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,14 @@ void render(t_config *config)
 	return;
 }
 
-void render_minimap(t_data *data, t_mlx *mlx, t_config *config, t_coordinate* coordinate)
+void render_minimap(t_data *data, t_mlx *mlx, t_config *config, t_coor_f* coordinate)
 {
 	// int x;
 	// int y;
 	(void)coordinate;
 
 	config->map_row = map_longest_row(data);
-	mlx->mini_map_img = mlx_new_image(mlx->mlx, 1900, 950);
+	mlx->mini_map_img = mlx_new_image(mlx->mlx, WIN_W, WIN_H);
 	// mlx->mini_map_img = mlx_new_image(mlx->mlx, (config->map_row + 1) * 15, (config->map_size + 1) * 15);
 	mlx->addr = mlx_get_data_addr(mlx->mini_map_img, &mlx->bits_per_pixel, &mlx->line_length, &mlx->endian);
 	// y = 0;
@@ -53,6 +53,7 @@ void render_minimap(t_data *data, t_mlx *mlx, t_config *config, t_coordinate* co
 	// 	y++;
 	// }
 	dda(data);
+	// draw_lines(data);
 	// put_vectors(data);
 	// put_one_vector(data, data->player->angle, 0x00FF00);
 	// printf("player->coordinate->x %f\n", data->player->coordinate->x);
@@ -86,3 +87,5 @@ static int map_longest_row(t_data *data)
 	}
 	return (max);
 }
+
+
