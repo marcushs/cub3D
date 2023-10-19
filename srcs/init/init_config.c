@@ -6,11 +6,11 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 16:29:49 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/19 21:09:44 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/19 23:32:52 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3D.h"
+#include "../../includes/cub3D.h"
 
 static int	is_valid_file_extension(char *path);
 

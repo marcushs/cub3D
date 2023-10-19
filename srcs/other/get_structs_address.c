@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_structs_address.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:37:24 by tduprez           #+#    #+#             */
-/*   Updated: 2023/10/12 16:13:39 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/16 09:17:10 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3D.h"
+#include "../../includes/cub3D.h"
 
 t_data	*get_data_address(t_data *data)
 {

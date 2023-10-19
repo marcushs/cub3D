@@ -3,10 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+         #
+#    By: hleung <hleung@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:10:24 by hleung            #+#    #+#              #
+<<<<<<< HEAD
 #    Updated: 2023/10/19 21:33:15 by tduprez          ###   ########lyon.fr    #
+=======
+#    Updated: 2023/10/16 11:25:12 by hleung           ###   ########.fr        #
+>>>>>>> marcus_raycast
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,9 +36,14 @@ LIST_SRCS	=	main.c \
 				parsing/parse_config_double_map.c \
 				parsing/parse_config_utils.c \
 				render/render.c \
+<<<<<<< HEAD
 				render/render_utils.c \
+=======
+				render/render_3d.c \
+>>>>>>> marcus_raycast
 				render/event.c \
 				render/move.c \
+				render/dda.c \
 				render/put_to_mlx.c \
 				other/free.c \
 				other/get_structs_address.c

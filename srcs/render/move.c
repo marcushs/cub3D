@@ -6,11 +6,11 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:48:27 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/19 22:05:33 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/19 23:33:58 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3D.h"
+#include "../../includes/cub3D.h"
 
 static bool check_hitbox(char **map, t_player *player, int direction);
 static void	change_hitbox_moves(t_coordinate *moves, t_player *player, int direction);

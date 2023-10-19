@@ -6,11 +6,11 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 12:51:27 by tduprez           #+#    #+#             */
-/*   Updated: 2023/10/19 19:06:16 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/19 23:33:39 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3D.h"
+#include "../../includes/cub3D.h"
 
 static void	init_t_mlx(t_mlx *mlx);
 static void	init_player(t_player *player, t_coordinate *coordinate);
@@ -26,6 +26,9 @@ void	init_data(t_data *data, t_config *config)
 	data->config = config;
 	data->mlx = &mlx;
 	data->player = &player;
+	data->rays = NULL;
+	data->r_idx = 0;
+	data->r_count = 0;
 	init_t_mlx(&mlx);
 	init_player(&player, &coordinate);
 	init_player_position(data);
@@ -48,13 +51,10 @@ static void	init_t_mlx(t_mlx *mlx)
 	static t_image	player;
 	static t_image	window;
 	mlx->mlx = mlx_init();
-	mlx->mlx_win = mlx_new_window(mlx->mlx, 1920, 1080, "Cub3D");
-	mlx->mini_map = &mini_map;
-	mlx->player = &player;
-	mlx->window = &window;
-	init_img(mlx->mini_map, 0, 0);
-	init_img(mlx->player, PLAYER_WIDTH, PLAYER_HEIGHT);
-	init_img(mlx->window, WINDOW_WIDTH, WINDOW_HEIGHT);
+	mlx->mlx_win = mlx_new_window(mlx->mlx, 2500, 1500, "Cub3D");
+	mlx->mini_map_img = NULL;
+	mlx->player_img = NULL;
+	mlx->addr = NULL;
 	return ;
 }
 

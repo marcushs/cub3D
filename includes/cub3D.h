@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:22:33 by hleung            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/10/19 22:07:38 by tduprez          ###   ########lyon.fr   */
+=======
+/*   Updated: 2023/10/16 20:15:08 by hleung           ###   ########.fr       */
+>>>>>>> marcus_raycast
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +59,22 @@ typedef struct s_coordinate
 	float	y;
 }	t_coordinate;
 
+<<<<<<< HEAD
 typedef struct s_texture
+=======
+typedef struct s_ray
+{
+	t_coordinate	start;
+	t_coordinate	dir;
+	t_coordinate	unit_step;
+	t_coordinate	ray_len_1d;
+	int				step_x;
+	int				step_y;
+	float			ray_len;
+}	t_ray;
+
+typedef struct s_config
+>>>>>>> marcus_raycast
 {
 	char	*path_to_no;
 	char	*path_to_so;
@@ -111,6 +130,9 @@ typedef struct s_data
 	t_config	*config;
 	t_mlx		*mlx;
 	t_player	*player;
+	t_ray		*rays;
+	int			r_idx;
+	int			r_count;
 }	t_data;
 
 /* init_config.c */
@@ -157,8 +179,13 @@ void		init_image_data(t_mlx *mlx, t_config *config);
 /* put_to_mlx.c */
 void		put_square(t_mlx *mlx, float x, float y, int player);
 void		put_vectors(t_data *data);
+<<<<<<< HEAD
 void		ft_put_img_to_img(t_image *img1, t_image *img2, int x, int y);
 void		put_pixel(t_image *image, int x, int y, int color);
+=======
+void put_one_vector(t_data *data, float angle, int color);
+void		put_pixel(t_mlx *mlx, int x, int y, int color);
+>>>>>>> marcus_raycast
 
 /* move.c */
 void		move_player(int keycode, t_data *data);
@@ -177,5 +204,9 @@ void		free_config_exit_msg(t_config *config, int status, const char* msg);
 t_data		*get_data_address(t_data* data);
 t_mlx		*get_mlx_address(t_mlx* mlx);
 t_config	*get_config_address(t_config* config);
+
+/* render_3d.c */
+void	draw_3d_walls(t_data *data);
+void	dda(t_data *data);
 
 #endif

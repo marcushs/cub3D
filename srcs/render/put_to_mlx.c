@@ -6,13 +6,14 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 13:25:36 by tduprez           #+#    #+#             */
-/*   Updated: 2023/10/19 22:18:37 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/19 23:34:18 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3D.h"
+#include "../../includes/cub3D.h"
 
-static void put_one_vector(t_data *data, float angle, int color); 
+static void put_one_vector(t_data *data, float angle, int color);
+static void put_pixel(t_mlx *mlx, int x, int y, int color);
 
 void put_square(t_mlx *mlx, float x, float y, int player)
 {
@@ -48,6 +49,14 @@ void put_vectors(t_data *data)
 
 	range = (30.0 / 180.0) * PI;
 	i = -range;
+	data->r_count = 0;
+	while (i < range)
+	{
+		i += 0.05;
+		data->r_count++;
+	}
+	data->rays = (t_ray *)malloc(sizeof(t_ray) * data->r_count); //need protection
+	i = -range;
 	while (i < range)
 	{
 		put_one_vector(data, data->player->angle + i, 0x00FF0000);
@@ -57,7 +66,7 @@ void put_vectors(t_data *data)
 	return ;
 }
 
-static void put_one_vector(t_data *data, float angle, int color)
+void put_one_vector(t_data *data, float angle, int color)
 {
 	t_image	*mini_map;
 
@@ -75,35 +84,17 @@ static void put_one_vector(t_data *data, float angle, int color)
 		vector_y -= sin(angle) * step_size;
 		len += step_size;
 	}
+	// if (color == 0x00FF0000)
+	// 	set_rays_dist(data, vector_x, vector_y);
+	// float lineH = (15 * 15 * 950)/ray_dis; if (lineH > 950){lineH = 950;}
 	return;
 }
 
-void put_pixel(t_image *image, int x, int y, int color)
+static void put_pixel(t_mlx *mlx, int x, int y, int color)
 {
 	char *dst;
 
 	dst = image->img_addr + (y * image->line_len + x * (image->bpp / 8));
 	*(unsigned int *)dst = color;
 	return;
-}
-
-void	ft_put_img_to_img(t_image *img1, t_image *img2, int x, int y)
-{
-	int		*start;
-	int		i;
-	int		j;
-
-	i = 0;
-	while (i < img1->height - y && i < img2->height)
-	{
-		j = 0;
-		start = ((int *)img1->img_addr) + (img1->width * (y + i) + x);
-		while (j < (img1->width - x) && j < img2->width)
-		{
-			start[j] = ((int *)img2->img_addr)[i * img2->width + j];
-			j++;
-		}
-		i++;
-	}
-	return ;
 }
