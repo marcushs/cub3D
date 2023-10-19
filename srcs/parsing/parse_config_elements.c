@@ -6,7 +6,7 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 16:12:06 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/13 18:25:31 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/19 21:09:03 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,13 @@ static int	parse_texture_path(t_config *config, char ***strs)
 		return (free_2d_char(strs, count_strs(*strs)), \
 		ft_putstr(MALLOC_ERR), -1);
 	if (!ft_strcmp((*strs)[0], "NO"))
-		config->path_to_no = path;
+		config->textures->path_to_no = path;
 	else if (!ft_strcmp((*strs)[0], "SO"))
-		config->path_to_so = path;
+		config->textures->path_to_so = path;
 	else if (!ft_strcmp((*strs)[0], "WE"))
-		config->path_to_we = path;
+		config->textures->path_to_we = path;
 	else if (!ft_strcmp((*strs)[0], "EA"))
-		config->path_to_ea = path;
+		config->textures->path_to_ea = path;
 	return (0);
 }
 

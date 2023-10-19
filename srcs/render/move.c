@@ -6,7 +6,7 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:48:27 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/18 22:38:20 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/19 22:05:33 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ void	move_player(int keycode, t_data *data)
 		move_player_angle(XK_left, data);
 	else if (keycode == XK_right)
 		move_player_angle(XK_right, data);
-	render_player(data, data->mlx, data->config, data->player->coordinate);
+	put_window_image_to_window(data->mlx, data->player->coordinate->x, \
+	data->player->coordinate->y);
 	return ;
 }
 

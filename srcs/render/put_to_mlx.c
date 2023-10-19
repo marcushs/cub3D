@@ -6,14 +6,13 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 13:25:36 by tduprez           #+#    #+#             */
-/*   Updated: 2023/10/18 17:14:07 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/19 22:18:37 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-static void put_one_vector(t_data *data, float angle, int color);
-static void put_pixel(t_mlx *mlx, int x, int y, int color);
+static void put_one_vector(t_data *data, float angle, int color); 
 
 void put_square(t_mlx *mlx, float x, float y, int player)
 {
@@ -31,14 +30,15 @@ void put_square(t_mlx *mlx, float x, float y, int player)
 		while (start_x < end_x)
 		{
 			if (player)
-				put_pixel(mlx, start_x, start_y, 0x00FF0000);
+				put_pixel(mlx->mini_map, start_x, start_y, 0x00FF0000);
 			else
-				put_pixel(mlx, start_x, start_y, 0x00999999);
+				put_pixel(mlx->mini_map, start_x, start_y, 0x00999999);
 			start_x++;
 		}
 		start_x -= 14 - (player * 7);
 		start_y++;
 	}
+	return ;
 }
 
 void put_vectors(t_data *data)
@@ -54,18 +54,23 @@ void put_vectors(t_data *data)
 		i += 0.05;
 	}
 	put_one_vector(data, data->player->angle, 0x00FF00);
+	return ;
 }
 
 static void put_one_vector(t_data *data, float angle, int color)
 {
+	t_image	*mini_map;
+
+	mini_map = data->mlx->mini_map;
 	float vector_x = data->player->coordinate->x;
 	float vector_y = data->player->coordinate->y;
 	float step_size = 0.01;
 	float len = 0.00;
 
-	while (data->config->map[(int)vector_y] && data->config->map[(int)vector_y][(int)vector_x] != '1' && len < 8.0)
+	while (data->config->map[(int)vector_y] && \
+	data->config->map[(int)vector_y][(int)vector_x] != '1' && len < 8.0)
 	{
-		put_pixel(data->mlx, (vector_x + 1) * 15, (vector_y + 1) * 15, color);
+		put_pixel(mini_map, (vector_x + 1) * 15, (vector_y + 1) * 15, color);
 		vector_x += cos(angle) * step_size;
 		vector_y -= sin(angle) * step_size;
 		len += step_size;
@@ -73,12 +78,32 @@ static void put_one_vector(t_data *data, float angle, int color)
 	return;
 }
 
-static void put_pixel(t_mlx *mlx, int x, int y, int color)
+void put_pixel(t_image *image, int x, int y, int color)
 {
 	char *dst;
 
-	dst = mlx->mini_map_addr + (y * mlx->line_length + x * (mlx->bits_per_pixel / 8));
+	dst = image->img_addr + (y * image->line_len + x * (image->bpp / 8));
 	*(unsigned int *)dst = color;
 	return;
 }
 
+void	ft_put_img_to_img(t_image *img1, t_image *img2, int x, int y)
+{
+	int		*start;
+	int		i;
+	int		j;
+
+	i = 0;
+	while (i < img1->height - y && i < img2->height)
+	{
+		j = 0;
+		start = ((int *)img1->img_addr) + (img1->width * (y + i) + x);
+		while (j < (img1->width - x) && j < img2->width)
+		{
+			start[j] = ((int *)img2->img_addr)[i * img2->width + j];
+			j++;
+		}
+		i++;
+	}
+	return ;
+}

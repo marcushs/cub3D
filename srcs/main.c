@@ -6,7 +6,7 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 11:13:52 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/14 13:09:26 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/19 21:08:48 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ void	print_config(t_config *config)
 {
 	//t_list	*tmp;
 
-	printf("NO: %s\n", config->path_to_no);
-	printf("SO: %s\n", config->path_to_so);
-	printf("WE: %s\n", config->path_to_we);
-	printf("EA: %s\n", config->path_to_ea);
+	printf("NO: %s\n", config->textures->path_to_no);
+	printf("SO: %s\n", config->textures->path_to_so);
+	printf("WE: %s\n", config->textures->path_to_we);
+	printf("EA: %s\n", config->textures->path_to_ea);
 	printf("-------------------------\n");
 	printf("F: ");
 	for (int i = 0; i < 3; i++)

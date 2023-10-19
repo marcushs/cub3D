@@ -6,7 +6,7 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:22:33 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/18 23:05:57 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/19 22:07:38 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,12 @@
 # define XK_left 65361
 # define XK_right 65363
 # define PI 3.1415926535
-// # define M_PI	3.14159265358979323846
-// # define M_PI_2	1.57079632679489661923
+# define M_PI	3.14159265358979323846
+# define M_PI_2	1.57079632679489661923
+# define WINDOW_HEIGHT 1080
+# define WINDOW_WIDTH 1920
+# define PLAYER_HEIGHT 8
+# define PLAYER_WIDTH 8
 
 typedef struct s_coordinate
 {
@@ -51,20 +55,25 @@ typedef struct s_coordinate
 	float	y;
 }	t_coordinate;
 
-typedef struct s_config
+typedef struct s_texture
 {
-	int		fd;
 	char	*path_to_no;
 	char	*path_to_so;
 	char	*path_to_we;
 	char	*path_to_ea;
-	int		floor_rgb[3];
-	int		ceiling_rgb[3];
-	char	*map_tmp;
-	t_list	*map_list;
-	int		map_size;
-	int		map_row;
-	char	**map;
+}	t_texture;
+
+typedef struct s_config
+{
+	int			fd;
+	int			floor_rgb[3];
+	int			ceiling_rgb[3];
+	t_list		*map_list;
+	char		**map;
+	char		*map_tmp;
+	int			map_size;
+	int			map_row;
+	t_texture	*textures;
 }	t_config;
 
 typedef struct s_player
@@ -77,17 +86,24 @@ typedef struct s_player
 	float	angle;
 }	t_player;
 
+typedef struct s_image
+{
+	void		*img;
+	char		*img_addr;
+	int			bpp;
+	int			line_len;
+	int			endian;
+	int			width;
+	int			height;
+}	t_image;
+
 typedef struct s_mlx
 {
 	void		*mlx;
 	void		*mlx_win;
-	void		*mini_map_img;
-	char		*mini_map_addr;
-	void		*player_img;
-	char		*player_addr;
-	int			bits_per_pixel;
-	int			line_length;
-	int			endian;
+	t_image		*mini_map;
+	t_image		*player;
+	t_image		*window;
 }	t_mlx;
 
 typedef struct s_data
@@ -130,12 +146,19 @@ void		check_double_map(t_config *config);
 
 /* render.c */
 void		render(t_config *config);
-void		render_minimap(t_data *data, t_mlx *mlx, t_config *config);
-void		render_player(t_data *data, t_mlx *mlx, t_config *config, t_coordinate* c);
+void		render_minimap(t_data *data);
+void		render_player(t_image *player);
+void		put_window_image_to_window(t_mlx *mlx, float x, float y);
+
+/* render_utils.c */
+int			map_longest_row(t_config *config);
+void		init_image_data(t_mlx *mlx, t_config *config);
 
 /* put_to_mlx.c */
 void		put_square(t_mlx *mlx, float x, float y, int player);
 void		put_vectors(t_data *data);
+void		ft_put_img_to_img(t_image *img1, t_image *img2, int x, int y);
+void		put_pixel(t_image *image, int x, int y, int color);
 
 /* move.c */
 void		move_player(int keycode, t_data *data);

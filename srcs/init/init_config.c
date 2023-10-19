@@ -6,7 +6,7 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 16:29:49 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/14 13:16:19 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/19 21:09:44 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,14 @@ static int	is_valid_file_extension(char *path);
 
 void	init_config(t_config *config, char *map_path)
 {
+	static t_texture	textures;
+
+	config->textures = &textures;
 	config->fd = -1;
-	config->path_to_no = NULL;
-	config->path_to_so = NULL;
-	config->path_to_we = NULL;
-	config->path_to_ea = NULL;
+	config->textures->path_to_no = NULL;
+	config->textures->path_to_so = NULL;
+	config->textures->path_to_we = NULL;
+	config->textures->path_to_ea = NULL;
 	config->map_tmp = NULL;
 	config->map_list = NULL;
 	config->map_size = 0;

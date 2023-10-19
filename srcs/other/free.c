@@ -6,7 +6,7 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 11:42:48 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/13 17:09:48 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/19 21:09:22 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,14 @@ void	free_2d_char(char ***arr, int size)
 
 void	free_config(t_config *config)
 {
-	if (config->path_to_no)
-		free_set_null(&config->path_to_no);
-	if (config->path_to_so)
-		free_set_null(&config->path_to_so);
-	if (config->path_to_we)
-		free_set_null(&config->path_to_we);
-	if (config->path_to_ea)
-		free_set_null(&config->path_to_ea);
+	if (config->textures->path_to_no)
+		free_set_null(&config->textures->path_to_no);
+	if (config->textures->path_to_so)
+		free_set_null(&config->textures->path_to_so);
+	if (config->textures->path_to_we)
+		free_set_null(&config->textures->path_to_we);
+	if (config->textures->path_to_ea)
+		free_set_null(&config->textures->path_to_ea);
 	if (config->map_list)
 		ft_lstclear(&config->map_list, &free);
 	if (config->map)

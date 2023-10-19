@@ -6,7 +6,7 @@
 #    By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:10:24 by hleung            #+#    #+#              #
-#    Updated: 2023/10/18 14:15:46 by tduprez          ###   ########lyon.fr    #
+#    Updated: 2023/10/19 21:33:15 by tduprez          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ LIST_SRCS	=	main.c \
 				parsing/parse_config_double_map.c \
 				parsing/parse_config_utils.c \
 				render/render.c \
+				render/render_utils.c \
 				render/event.c \
 				render/move.c \
 				render/put_to_mlx.c \
