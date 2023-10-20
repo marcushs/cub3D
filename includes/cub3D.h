@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:22:33 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/19 10:56:02 by hleung           ###   ########.fr       */
+/*   Updated: 2023/10/20 11:00:00 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@
 # define XK_left 65361
 # define XK_right 65363
 # define PI 3.1415926535
-# define WIN_H 300
-# define WIN_W 300
+# define WIN_H 950
+# define WIN_W 1900
 
 typedef struct s_coor_i
 {
@@ -85,6 +85,8 @@ typedef struct s_player
 	t_coor_f	*t_right;
 	t_coor_f	*b_left;
 	t_coor_f	*b_right;
+	float		mv_speed;
+	float		rot_speed;
 	float	angle;
 }	t_player;
 

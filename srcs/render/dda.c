@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 10:20:45 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/19 14:44:47 by hleung           ###   ########.fr       */
+/*   Updated: 2023/10/20 09:56:19 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,19 @@ void	dda(t_data *data)
 	t_coor_f	dir;
 	t_coor_f	unit_step;
 	t_coor_f	ray_len_1d;
-	// t_coor_i	p1;
-	// t_coor_i	p2;
+	t_coor_i	p1;
+	t_coor_i	p2;
 	int				step_x;
 	int				step_y;
 	int				side;
 	float			perpWallDist;
 	int	map_x;
 	int	map_y;
-	int	ratio;
+	float	ratio;
 	int	pix;
-	int	half_win_w;
-	// int	half_win_h;
-	// int	wallcolor;
+	float	half_win_w;
+	float	half_win_h;
+	int	wallcolor;
 	
 	start.x = data->player->coordinate->x;
 	start.y = data->player->coordinate->y;
@@ -41,7 +41,7 @@ void	dda(t_data *data)
 	
 	pix = 0;
 	half_win_w = WIN_W * 0.5;
-	// half_win_h = WIN_H * 0.5;
+	half_win_h = WIN_H * 0.5;
 	while (pix < WIN_W)
 	{
 		ratio = (pix - half_win_w)/ half_win_w;
@@ -98,14 +98,14 @@ void	dda(t_data *data)
 			perpWallDist = (map_x - data->player->coordinate->x + (1 - step_x) / 2) / dir.x;
 		else
 			perpWallDist = (map_y - data->player->coordinate->y + (1 - step_y) / 2) / dir.y;
-		// wallcolor = (side == 0) ? 0x0000FFFF : 0x00DD88BB;
-		// p1.x = pix;
-		// p1.y = half_win_h - half_win_h * 0.5/perpWallDist;
-		// p2.x = pix;
-		// p2.y = half_win_h + half_win_h * 0.5/perpWallDist;
-		// draw_line_color(data, p1, p2, wallcolor);
-		printf("%f\n", perpWallDist);
+		wallcolor = (side == 0) ? 0x0000FFFF : 0x00DD88BB;
+		p1.x = pix;
+		p1.y = half_win_h - half_win_h * 0.5/perpWallDist;
+		p2.x = pix;
+		p2.y = half_win_h + half_win_h * 0.5/perpWallDist;
+		draw_line_color(data, p1, p2, wallcolor);
 		// printf("%d\n", pix);
+		printf("angle %f\n", data->player->angle);
 		pix++;
 	}
 	// plane.x = 0; // sin(data->player->angle);

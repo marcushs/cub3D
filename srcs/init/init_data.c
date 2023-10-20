@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 12:51:27 by tduprez           #+#    #+#             */
-/*   Updated: 2023/10/19 10:18:33 by hleung           ###   ########.fr       */
+/*   Updated: 2023/10/20 11:03:53 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ static void	init_player(t_player *player, t_coor_f *coordinate)
 	player->t_right = &top_right;
 	player->b_left = &bottom_left;
 	player->b_right = &bottom_right;
+	player->mv_speed = 0.1;
+	player->rot_speed = 0.05;
 	return ;
 }
 
@@ -84,7 +86,7 @@ static void	init_player_position(t_data *data)
 		x = 0;
 		y++;
 	}
-	data->player->angle = 2.5;
+	data->player->angle = 0;
 	return ;
 }
 

@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 13:25:36 by tduprez           #+#    #+#             */
-/*   Updated: 2023/10/19 10:10:15 by hleung           ###   ########.fr       */
+/*   Updated: 2023/10/20 11:02:55 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,22 +49,22 @@ void put_vectors(t_data *data)
 
 	range = (30.0 / 180.0) * PI;
 	i = -range;
-	data->r_count = 0;
-	data->r_idx = 0;
+	// data->r_count = 0;
+	// data->r_idx = 0;
+	// while (i < range)
+	// {
+	// 	i += 0.05;
+	// 	data->r_count++;
+	// }
+	// data->rays = (t_ray *)malloc(sizeof(t_ray) * data->r_count); //need protection
+	// i = -range;
 	while (i < range)
 	{
-		i += 0.05;
-		data->r_count++;
-	}
-	data->rays = (t_ray *)malloc(sizeof(t_ray) * data->r_count); //need protection
-	i = -range;
-	while (i < range)
-	{
-		// put_one_vector(data, data->player->angle + i, 0x00FF0000);
-		dda(data);
+		put_one_vector(data, data->player->angle + i, 0x00FF0000);
+		// dda(data);
 		i += 0.05;
 	}
-	data->r_idx = 0;
+	// data->r_idx = 0;
 	put_one_vector(data, data->player->angle, 0x00FF00);
 }
 
