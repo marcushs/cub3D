@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 10:20:45 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/20 09:56:19 by hleung           ###   ########.fr       */
+/*   Updated: 2023/10/20 11:30:53 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	dda(t_data *data)
 		p2.y = half_win_h + half_win_h * 0.5/perpWallDist;
 		draw_line_color(data, p1, p2, wallcolor);
 		// printf("%d\n", pix);
-		printf("angle %f\n", data->player->angle);
+		// printf("angle %f\n", data->player->angle);
 		pix++;
 	}
 	// plane.x = 0; // sin(data->player->angle);

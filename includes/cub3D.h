@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:22:33 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/20 11:00:00 by hleung           ###   ########.fr       */
+/*   Updated: 2023/10/20 11:30:32 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,8 @@
 # define XK_left 65361
 # define XK_right 65363
 # define PI 3.1415926535
-# define WIN_H 950
-# define WIN_W 1900
-
+# define WIN_H 300
+# define WIN_W 300
 typedef struct s_coor_i
 {
 	int		x;
