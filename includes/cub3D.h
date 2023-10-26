@@ -6,7 +6,7 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:22:33 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/19 23:36:24 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/26 20:55:29 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@
 # define WINDOW_WIDTH 1920
 # define PLAYER_HEIGHT 8
 # define PLAYER_WIDTH 8
+# define MAP_HEIGHT 200
+# define MAP_WIDTH 200
 
 typedef struct s_coordinate
 {
@@ -112,6 +114,7 @@ typedef struct s_mlx
 {
 	void		*mlx;
 	void		*mlx_win;
+	t_image		*mini_map_border;
 	t_image		*mini_map;
 	t_image		*player;
 	t_image		*window;

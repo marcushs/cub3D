@@ -6,7 +6,7 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 12:51:27 by tduprez           #+#    #+#             */
-/*   Updated: 2023/10/19 23:38:03 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/26 19:22:54 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,17 @@ static void	init_t_mlx(t_mlx *mlx)
 	static t_image	mini_map;
 	static t_image	player;
 	static t_image	window;
+	static t_image	mini_map_border;
 	mlx->mlx = mlx_init();
 	mlx->mlx_win = mlx_new_window(mlx->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "Cub3D");
 	mlx->mini_map = &mini_map;
 	mlx->player = &player;
 	mlx->window = &window;
+	mlx->mini_map_border = &mini_map_border;
 	init_img(mlx->mini_map, 0, 0);
 	init_img(mlx->player, PLAYER_WIDTH, PLAYER_HEIGHT);
 	init_img(mlx->window, WINDOW_WIDTH, WINDOW_HEIGHT);
+	init_img(mlx->mini_map_border, MAP_WIDTH, MAP_HEIGHT);
 	return ;
 }
 

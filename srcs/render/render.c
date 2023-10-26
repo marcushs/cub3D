@@ -6,7 +6,7 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 18:15:02 by tduprez           #+#    #+#             */
-/*   Updated: 2023/10/19 23:43:03 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/26 22:27:57 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,40 @@ void	render(t_config *config)
 	return;
 }
 
+void	render_border(t_data *data);
+
 void	put_window_image_to_window(t_mlx *m, float x, float y)
 {
-	ft_put_img_to_img(m->window, m->mini_map, 0, 0);
-	ft_put_img_to_img(m->window, m->player, (x + 1) * 15 - 4, (y + 1) * 15 - 4);
+	(void)y;
+	(void)x;
+	ft_put_img_to_img(m->mini_map_border, m->mini_map, 0, 0);
+	render_border(get_data_address(NULL));
+	ft_put_img_to_img(m->mini_map_border, m->player, 10, 10);
+	ft_put_img_to_img(m->window, m->mini_map_border, 30, 30);
 	mlx_put_image_to_window(m->mlx, m->mlx_win, m->window->img, 0, 0);
 	return ;
 }
+
+void	render_border(t_data *data)
+{
+	int x;
+	int y;
+
+	y = 0;
+	while (y < MAP_HEIGHT)
+	{
+		x = 0;
+		while (x < MAP_WIDTH)
+		{
+			if (x < 2 || y < 2 || y > MAP_HEIGHT - 2 || x > MAP_WIDTH - 2)
+				put_pixel(data->mlx->mini_map_border, x, y, 0x8395a7);
+			x++;
+		}
+		y++;
+	}
+	return ;
+}
+
 
 void render_minimap(t_data *data)
 {
@@ -55,6 +82,7 @@ void render_minimap(t_data *data)
 		}
 		y++;
 	}
+	render_border(data);
 	return;
 }
 

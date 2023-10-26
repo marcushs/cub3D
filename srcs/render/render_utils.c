@@ -6,7 +6,7 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 21:32:07 by tduprez           #+#    #+#             */
-/*   Updated: 2023/10/19 21:48:59 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/26 19:24:44 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,9 @@ void	init_image_data(t_mlx *mlx, t_config *config)
 	mlx->mini_map->width, mlx->mini_map->height);
 	mlx->mini_map->img_addr = mlx_get_data_addr(mlx->mini_map->img, \
 	&mlx->mini_map->bpp, &mlx->mini_map->line_len, &mlx->mini_map->endian);
+	mlx->mini_map_border->img = mlx_new_image(mlx->mlx,MAP_WIDTH, MAP_HEIGHT);
+	mlx->mini_map_border->img_addr = mlx_get_data_addr(mlx->mini_map_border->img, \
+	&mlx->mini_map_border->bpp, &mlx->mini_map_border->line_len, &mlx->mini_map_border->endian);
 	mlx->window->img = mlx_new_image(mlx->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	mlx->window->img_addr = mlx_get_data_addr(mlx->window->img, \
 	&mlx->window->bpp, &mlx->window->line_len, &mlx->window->endian);
