@@ -6,7 +6,7 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 12:51:27 by tduprez           #+#    #+#             */
-/*   Updated: 2023/10/26 19:22:54 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/27 11:49:31 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,16 +66,16 @@ static void	init_t_mlx(t_mlx *mlx)
 
 static void	init_player(t_player *player, t_coordinate *coordinate)
 {
-	static t_coordinate	top_left;
-	static t_coordinate	top_right;
-	static t_coordinate	bottom_left;
-	static t_coordinate	bottom_right;
+	// static t_coordinate	top_left;
+	// static t_coordinate	top_right;
+	// static t_coordinate	bottom_left;
+	// static t_coordinate	bottom_right;
 
 	player->coordinate = coordinate;
-	player->t_left = &top_left;
-	player->t_right = &top_right;
-	player->b_left = &bottom_left;
-	player->b_right = &bottom_right;
+	// player->t_left = &top_left;
+	// player->t_right = &top_right;
+	// player->b_left = &bottom_left;
+	// player->b_right = &bottom_right;
 	return ;
 }
 
@@ -115,13 +115,13 @@ static void	init_player_position(t_data *data)
 
 void	init_player_hitbox(t_player *player)
 {
-	player->t_left->x = player->coordinate->x - 0.15;
-	player->t_left->y = player->coordinate->y - 0.15;
-	player->t_right->x = player->coordinate->x + 0.15;
-	player->t_right->y = player->coordinate->y - 0.15;
-	player->b_left->x = player->coordinate->x - 0.15;
-	player->b_left->y = player->coordinate->y + 0.15;
-	player->b_right->x = player->coordinate->x + 0.15;
-	player->b_right->y = player->coordinate->y + 0.15;
+	player->t_left.x = player->coordinate->x - 0.15;
+	player->t_left.y = player->coordinate->y - 0.15;
+	player->t_right.x = player->coordinate->x + 0.15;
+	player->t_right.y = player->coordinate->y - 0.15;
+	player->b_left.x = player->coordinate->x - 0.15;
+	player->b_left.y = player->coordinate->y + 0.15;
+	player->b_right.x = player->coordinate->x + 0.15;
+	player->b_right.y = player->coordinate->y + 0.15;
 	return ;
 }

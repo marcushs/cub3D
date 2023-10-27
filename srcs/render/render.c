@@ -6,11 +6,13 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 18:15:02 by tduprez           #+#    #+#             */
-/*   Updated: 2023/10/26 22:27:57 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/27 13:30:16 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
+
+void	render_border(t_data *data);
 
 void	render(t_config *config)
 {
@@ -30,20 +32,38 @@ void	render(t_config *config)
 	return;
 }
 
-void	render_border(t_data *data);
+void	mlx_clear_image(t_mlx *mlx)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (y < MAP_HEIGHT)
+	{
+		x = 0;
+		while (x < MAP_WIDTH)
+		{
+			put_pixel(mlx->mini_map_border, x, y, 0x00000);
+			x++;
+		}
+		y++;
+	}
+	return ;
+}
 
 void	put_window_image_to_window(t_mlx *m, float x, float y)
 {
 	(void)y;
 	(void)x;
-	ft_put_img_to_img(m->mini_map_border, m->mini_map, 0, 0);
+	(void)m;
+	mlx_clear_image(m);
+	ft_put_img_to_img(m->mini_map_border, m->mini_map, 90 - x * 15 , 90 - y * 15);
 	render_border(get_data_address(NULL));
-	ft_put_img_to_img(m->mini_map_border, m->player, 10, 10);
+	ft_put_img_to_img(m->mini_map_border, m->player, 100, 100);
 	ft_put_img_to_img(m->window, m->mini_map_border, 30, 30);
 	mlx_put_image_to_window(m->mlx, m->mlx_win, m->window->img, 0, 0);
 	return ;
 }
-
 void	render_border(t_data *data)
 {
 	int x;
@@ -82,7 +102,6 @@ void render_minimap(t_data *data)
 		}
 		y++;
 	}
-	render_border(data);
 	return;
 }
 

@@ -6,7 +6,7 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:48:27 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/19 23:41:50 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/27 11:48:35 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,17 +48,17 @@ static bool check_hitbox(char **map, t_player *player, int direction)
 	moves.x = 0.0;
 	moves.y = 0.0;
 	change_hitbox_moves(&moves, player, direction);
-	if (map[(int)(player->t_left->y + moves.y)] \
-	[(int)(player->t_left->x + moves.x)] == '1')
+	if (map[(int)(player->t_left.y + moves.y)] \
+	[(int)(player->t_left.x + moves.x)] == '1')
 		return (false);
-	if (map[(int)(player->t_right->y + moves.y)] \
-	[(int)(player->t_right->x + moves.x)] == '1')
+	if (map[(int)(player->t_right.y + moves.y)] \
+	[(int)(player->t_right.x + moves.x)] == '1')
 		return (false);
-	if (map[(int)(player->b_left->y + moves.y)] \
-	[(int)(player->b_left->x + moves.x)] == '1')
+	if (map[(int)(player->b_left.y + moves.y)] \
+	[(int)(player->b_left.x + moves.x)] == '1')
 		return (false);
-	if (map[(int)(player->b_right->y + moves.y)] \
-	[(int)(player->b_right->x + moves.x)] == '1')
+	if (map[(int)(player->b_right.y + moves.y)] \
+	[(int)(player->b_right.x + moves.x)] == '1')
 		return (false);
 	return true;
 }

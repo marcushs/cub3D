@@ -6,7 +6,7 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:22:33 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/26 20:55:29 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/10/27 11:46:30 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,10 +92,10 @@ typedef struct s_config
 typedef struct s_player
 {
 	t_coordinate	*coordinate;
-	t_coordinate	*t_left;
-	t_coordinate	*t_right;
-	t_coordinate	*b_left;
-	t_coordinate	*b_right;
+	t_coordinate	t_left;
+	t_coordinate	t_right;
+	t_coordinate	b_left;
+	t_coordinate	b_right;
 	float	angle;
 }	t_player;
 
