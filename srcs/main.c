@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 11:13:52 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/26 20:47:56 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/11/03 08:30:20 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int argc, char **argv)
 		init_config(&config, argv[1]);
 		get_config_address(&config);
 		parse_config(&config);
-		render(&config);
+		// render(&config);
 		print_config(&config); //debug function
 		free_config(&config);
 	}
@@ -35,10 +35,10 @@ void	print_config(t_config *config)
 {
 	//t_list	*tmp;
 
-	printf("NO: %s\n", config->textures->path_to_no);
-	printf("SO: %s\n", config->textures->path_to_so);
-	printf("WE: %s\n", config->textures->path_to_we);
-	printf("EA: %s\n", config->textures->path_to_ea);
+	printf("NO: %s\n", config->text_paths[0]);
+	printf("SO: %s\n", config->text_paths[2]);
+	printf("WE: %s\n", config->text_paths[3]);
+	printf("EA: %s\n", config->text_paths[1]);
 	printf("-------------------------\n");
 	printf("F: ");
 	for (int i = 0; i < 3; i++)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_config.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 16:29:49 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/19 23:32:52 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/11/03 08:46:34 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,18 @@ static int	is_valid_file_extension(char *path);
 
 void	init_config(t_config *config, char *map_path)
 {
-	static t_texture	textures;
-
-	config->textures = &textures;
 	config->fd = -1;
-	config->textures->path_to_no = NULL;
-	config->textures->path_to_so = NULL;
-	config->textures->path_to_we = NULL;
-	config->textures->path_to_ea = NULL;
 	config->map_tmp = NULL;
 	config->map_list = NULL;
 	config->map_size = 0;
 	config->map_row = 0;
 	config->map = NULL;
+	config->text_paths = (char **)malloc(sizeof(char *) * 4);
+	if (!config->text_paths)
+	{
+		ft_putstr(MALLOC_ERR);
+		return ;
+	}
 	if (!is_valid_file_extension(map_path))
 	{
 		printf(INV_EXT);

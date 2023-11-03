@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_config_elements.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 16:12:06 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/19 21:09:03 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/11/03 08:32:29 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,13 @@ static int	parse_texture_path(t_config *config, char ***strs)
 		return (free_2d_char(strs, count_strs(*strs)), \
 		ft_putstr(MALLOC_ERR), -1);
 	if (!ft_strcmp((*strs)[0], "NO"))
-		config->textures->path_to_no = path;
+		config->text_paths[0] = path;
 	else if (!ft_strcmp((*strs)[0], "SO"))
-		config->textures->path_to_so = path;
+		config->text_paths[2]= path;
 	else if (!ft_strcmp((*strs)[0], "WE"))
-		config->textures->path_to_we = path;
+		config->text_paths[3] = path;
 	else if (!ft_strcmp((*strs)[0], "EA"))
-		config->textures->path_to_ea = path;
+		config->text_paths[1] = path;
 	return (0);
 }
 

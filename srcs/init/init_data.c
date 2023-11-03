@@ -3,32 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 12:51:27 by tduprez           #+#    #+#             */
-/*   Updated: 2023/10/27 11:49:31 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/11/03 08:33:16 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
 static void	init_t_mlx(t_mlx *mlx);
-static void	init_player(t_player *player, t_coordinate *coordinate);
+static void	init_player(t_player *player, t_coor_f *coordinate);
 static void	init_player_position(t_data *data);
 
 void	init_data(t_data *data, t_config *config)
 {
 	static t_mlx		mlx;
 	static t_player		player;
-	static t_coordinate	coordinate;
+	static t_coor_f		coordinate;
 
 	get_mlx_address(&mlx); 
 	data->config = config;
 	data->mlx = &mlx;
 	data->player = &player;
 	data->rays = NULL;
-	data->r_idx = 0;
-	data->r_count = 0;
 	init_t_mlx(&mlx);
 	init_player(&player, &coordinate);
 	init_player_position(data);
@@ -64,12 +62,12 @@ static void	init_t_mlx(t_mlx *mlx)
 	return ;
 }
 
-static void	init_player(t_player *player, t_coordinate *coordinate)
+static void	init_player(t_player *player, t_coor_f	 *coordinate)
 {
-	// static t_coordinate	top_left;
-	// static t_coordinate	top_right;
-	// static t_coordinate	bottom_left;
-	// static t_coordinate	bottom_right;
+	// static t_coor_f		top_left;
+	// static t_coor_f		top_right;
+	// static t_coor_f		bottom_left;
+	// static t_coor_f		bottom_right;
 
 	player->coordinate = coordinate;
 	// player->t_left = &top_left;
