@@ -2,8 +2,8 @@ NO assets/textures/eagle.xpm
 SO assets/textures/redbrick.xpm
 WE assets/textures/wood.xpm
 EA assets/textures/purplestone.xpm
-F 220,100,0
-C 225,30,0
+F 34,34,34
+C 170,170,255
 
 111111111111111111111111111
 100000000011110000000000001

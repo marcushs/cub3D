@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 12:51:27 by tduprez           #+#    #+#             */
-/*   Updated: 2023/11/08 15:19:35 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/08 15:35:30 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ void	init_data(t_data *data, char *map_path)
 	init_keyboard(data);
 	init_text(data);
 	init_image_data(&data->mlx, &data->config);
-	data->ceiling_color = 0x00AAAAFF;
-	data->floor_color = 0x00222222;
 	// init_keyboard(data);
 	// get_mlx_address(&mlx); 
 	// if (!data->config)

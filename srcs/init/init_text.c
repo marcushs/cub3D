@@ -6,13 +6,14 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 08:58:38 by hleung            #+#    #+#             */
-/*   Updated: 2023/11/08 13:16:43 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/08 15:33:08 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
 static int	get_texture(t_data *data, t_text *text, char *text_path);
+static int	rgb_to_int(int r, int g, int b);
 
 void	init_text(t_data *data)
 {
@@ -48,5 +49,14 @@ static int	get_texture(t_data *data, t_text *text, char *text_path)
 	text->text_adr = mlx_get_data_addr(text->text, &text->bits_per_pixel, &text->line_length, &text->endian);
 	if (!text->text_adr)
 		return (-1);
+	data->floor_color = rgb_to_int(data->config.floor_rgb[0], \
+	data->config.floor_rgb[1], data->config.floor_rgb[2]);
+	data->ceiling_color = rgb_to_int(data->config.ceiling_rgb[0], \
+	data->config.ceiling_rgb[1], data->config.ceiling_rgb[2]);
 	return (0);
+}
+
+static int	rgb_to_int(int r, int g, int b)
+{
+	return (r << 16 | g << 8 | b);
 }
