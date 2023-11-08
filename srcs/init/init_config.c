@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 16:29:49 by hleung            #+#    #+#             */
-/*   Updated: 2023/11/03 08:46:34 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/03 09:18:16 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,34 @@
 
 static int	is_valid_file_extension(char *path);
 
-void	init_config(t_config *config, char *map_path)
+void	*init_config(t_data *data, char *map_path)
 {
-	config->fd = -1;
-	config->map_tmp = NULL;
-	config->map_list = NULL;
-	config->map_size = 0;
-	config->map_row = 0;
-	config->map = NULL;
-	config->text_paths = (char **)malloc(sizeof(char *) * 4);
-	if (!config->text_paths)
+	t_config	config;
+	
+	config.fd = -1;
+	config.map_tmp = NULL;
+	config.map_list = NULL;
+	config.map_size = 0;
+	config.map_row = 0;
+	config.map = NULL;
+	config.text_paths = (char **)malloc(sizeof(char *) * 4);
+	if (!config.text_paths)
 	{
-		ft_putstr(MALLOC_ERR);
-		return ;
+		ft_putstr_fd(MALLOC_ERR, 2);
+		exit(EXIT_FAILURE);
 	}
 	if (!is_valid_file_extension(map_path))
 	{
-		printf(INV_EXT);
+		ft_putstr_fd(INV_EXT, 2);
 		exit(EXIT_FAILURE);
 	}
-	config->fd = open(map_path, O_RDONLY);
-	if (config->fd == -1)
+	config.fd = open(map_path, O_RDONLY);
+	if (config.fd == -1)
 	{
 		printf("%s file not found\n", map_path);
 		exit(EXIT_FAILURE);
 	}
+	data->config = &config;
 }
 
 int	is_valid_file_extension(char *path)

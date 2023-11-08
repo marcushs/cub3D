@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 11:13:52 by hleung            #+#    #+#             */
-/*   Updated: 2023/11/03 08:30:20 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/03 09:07:58 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,16 @@ void	print_config(t_config *config);
 
 int	main(int argc, char **argv)
 {
-	t_config	config;
+	t_data	data;
 
 	if (argc == 2)
 	{
-		init_config(&config, argv[1]);
-		get_config_address(&config);
-		parse_config(&config);
+		init_data(&data, argv[1]);
+		// get_config_address(&config);
+		// parse_config(&config);
 		// render(&config);
-		print_config(&config); //debug function
-		free_config(&config);
+		// print_config(&config); //debug function
+		// free_config(&config);
 	}
 	else
 		ft_putstr("Wrong number of arguments!\n");

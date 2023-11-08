@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 12:51:27 by tduprez           #+#    #+#             */
-/*   Updated: 2023/11/03 08:33:16 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/03 09:14:53 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,16 @@ static void	init_t_mlx(t_mlx *mlx);
 static void	init_player(t_player *player, t_coor_f *coordinate);
 static void	init_player_position(t_data *data);
 
-void	init_data(t_data *data, t_config *config)
+void	init_data(t_data *data, char *map_path)
 {
 	static t_mlx		mlx;
 	static t_player		player;
 	static t_coor_f		coordinate;
 
 	get_mlx_address(&mlx); 
-	data->config = config;
+	init_config(data, map_path);
+	if (!data->config)
+		return ;
 	data->mlx = &mlx;
 	data->player = &player;
 	data->rays = NULL;
