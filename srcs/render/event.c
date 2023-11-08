@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 18:08:44 by tduprez           #+#    #+#             */
-/*   Updated: 2023/11/08 13:37:29 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/08 15:21:01 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int	hooks_and_loops(t_data *data)
 int update(t_data *data)
 {
 	keyboard_input(data);
-	// floor_and_ceiling(data);
+	render_floor_ceiling(data);
 	// set_grid_cell(data, data->mouse_pos.x, data->mouse_pos.y);
 	// print_grid(data);
 	// t_coor_f hit = dda(data, data->rays);
@@ -107,6 +107,6 @@ int update(t_data *data)
 	// create_rays(data);
 	// calculate_collision(data);
 	// rays_render(data);
-	// mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);
+	mlx_put_image_to_window(data->mlx.mlx, data->mlx.mlx_win, data->mlx.window->img, 0, 0);
 	return (0);
 }

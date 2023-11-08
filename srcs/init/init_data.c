@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 12:51:27 by tduprez           #+#    #+#             */
-/*   Updated: 2023/11/08 13:12:11 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/08 15:19:35 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	init_data(t_data *data, char *map_path)
 	data->config = config;
 	init_t_mlx(&mlx);
 	data->mlx = mlx;
-	data->cell_size = 16;
+	data->cell_size = 15;
 	init_player(&player);
 	data->player = player;
 	init_player_position(data);
@@ -37,6 +37,9 @@ void	init_data(t_data *data, char *map_path)
 	init_vision(data);
 	init_keyboard(data);
 	init_text(data);
+	init_image_data(&data->mlx, &data->config);
+	data->ceiling_color = 0x00AAAAFF;
+	data->floor_color = 0x00222222;
 	// init_keyboard(data);
 	// get_mlx_address(&mlx); 
 	// if (!data->config)
@@ -70,8 +73,8 @@ static void	init_t_mlx(t_mlx *mlx)
 	mlx->mini_map_border = &mini_map_border;
 	init_img(mlx->mini_map, 0, 0);
 	init_img(mlx->player, PLAYER_W, PLAYER_H);
-	init_img(mlx->window, WIN_W, WIN_H);
 	init_img(mlx->mini_map_border, MAP_W, MAP_H);
+	init_img(mlx->window, WIN_W, WIN_H);
 	return ;
 }
 

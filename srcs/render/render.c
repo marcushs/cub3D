@@ -10,7 +10,7 @@
 // /*                                                                            */
 // /* ************************************************************************** */
 
-// #include "../../includes/cub3D.h"
+#include "../../includes/cub3D.h"
 
 // void	render_border(t_data *data);
 
@@ -121,3 +121,32 @@
 // 	}
 // 	return ;
 // }
+
+void	render_floor_ceiling(t_data *data)
+{
+	int		i;
+	int		floor_start;
+	int		size;
+	char	*dst;
+
+	i = 0;
+	floor_start = WIN_W * (WIN_H * 0.5);
+	size = data->mlx.window->bpp / 8;
+	dst = NULL;
+	while (i < WIN_H * WIN_W)
+	{ 
+		if (i >= 0 && i < floor_start)
+		{
+			dst = data->mlx.window->img_addr + i * size;
+			*(unsigned int *)dst = data->ceiling_color;
+		}
+		else if (i >= 0 && i > floor_start)
+		{
+			dst = data->mlx.window->img_addr + i * size;
+			*(unsigned int *)dst = data->floor_color;
+		}
+		i++;
+	}
+}
+
+

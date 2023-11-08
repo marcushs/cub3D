@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 08:03:25 by hleung            #+#    #+#             */
-/*   Updated: 2023/11/08 13:28:11 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/08 14:28:41 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,7 +170,7 @@ typedef struct s_data
     /* Keyboard */
     int		    keyboard[200];
 
-    /* Floor and ceiling */
+    /* Floor and ceiling color */
     int         floor_color;
 	int         ceiling_color;
 
