@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+         #
+#    By: hleung <hleung@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:10:24 by hleung            #+#    #+#              #
-#    Updated: 2023/11/03 08:35:01 by hleung           ###   ########.fr        #
+#    Updated: 2023/11/08 13:10:39 by hleung           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ DIR_SRCS	=	srcs/
 LIST_SRCS	=	main.c \
 				init/init_config.c \
 				init/init_data.c \
+				init/init_text.c \
 				parsing/parse_config.c \
 				parsing/parse_config_elements_utils.c \
 				parsing/parse_config_elements.c \

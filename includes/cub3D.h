@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:22:33 by hleung            #+#    #+#             */
-/*   Updated: 2023/11/08 11:00:37 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/08 13:10:14 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ void	    init_config(t_config *config, char *map_path);
 /* init_data.c */
 void		init_data(t_data *data, char *map_path);
 void		init_player_hitbox(t_player *player);
+
+/* init_text.c */
+void		init_text(t_data *data);
 
 /* parse_config.c */
 void		parse_config(t_config *config);

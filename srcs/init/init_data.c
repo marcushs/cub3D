@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 12:51:27 by tduprez           #+#    #+#             */
-/*   Updated: 2023/11/08 11:17:25 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/08 13:12:11 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	init_data(t_data *data, char *map_path)
 	data->rot_speed = 0.05;
 	init_vision(data);
 	init_keyboard(data);
+	init_text(data);
 	// init_keyboard(data);
 	// get_mlx_address(&mlx); 
 	// if (!data->config)
