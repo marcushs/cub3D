@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 11:13:52 by hleung            #+#    #+#             */
-/*   Updated: 2023/11/03 09:07:58 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/08 09:34:15 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ int	main(int argc, char **argv)
 		// get_config_address(&config);
 		// parse_config(&config);
 		// render(&config);
-		// print_config(&config); //debug function
-		// free_config(&config);
+		print_config(&data.config); //debug function
+		free_config(&data.config);
 	}
 	else
 		ft_putstr("Wrong number of arguments!\n");

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:22:33 by hleung            #+#    #+#             */
-/*   Updated: 2023/11/03 09:14:18 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/08 09:22:50 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 /* Prototypes */
 
 /* init_config.c */
-void	    *init_config(t_data *data, char *map_path);
+void	    init_config(t_config *config, char *map_path);
 
 /* init_data.c */
 void		init_data(t_data *data, char *map_path);

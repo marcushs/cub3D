@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs_and_macros.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 08:03:25 by hleung            #+#    #+#             */
-/*   Updated: 2023/11/03 08:29:01 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/08 09:16:21 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,14 +143,14 @@ typedef struct s_mlx
 typedef struct s_data
 {
     /* Config from .cub file */
-	t_config	*config;
+	t_config	config;
     
     /* Mlx */
-	t_mlx		*mlx;
+	t_mlx		mlx;
     int         cell_size;
 
     /* Player */
-	t_player	*player;
+	t_player	player;
     double      move_speed;
     double      rot_speed;
 
