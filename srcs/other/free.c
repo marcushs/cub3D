@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 11:42:48 by hleung            #+#    #+#             */
-/*   Updated: 2023/11/03 08:49:11 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/08 11:01:00 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,16 @@
 void	free_set_null(char **arr);
 void	free_2d_char(char ***arr, int size);
 void	free_config(t_config *config);
+void	free_data(t_data *data);
+
+void	free_data(t_data *data)
+{
+	free_config(&data->config);
+	if (data->rays)
+		free(data->rays);
+	if (data->textures)
+		free(data->textures);
+}
 
 void	free_set_null(char **arr)
 {

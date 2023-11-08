@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 08:03:25 by hleung            #+#    #+#             */
-/*   Updated: 2023/11/08 10:22:58 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/08 11:10:27 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@
 # define PI 3.1415926535
 # define M_PI	3.14159265358979323846
 # define M_PI_2	1.57079632679489661923
-# define WIN_H 1000
-# define WIN_W 700
+# define WIN_H 1080
+# define WIN_W 1920
 # define PLAYER_H 8
 # define PLAYER_W 8
 # define MAP_H 200
@@ -160,10 +160,10 @@ typedef struct s_data
     double      rot_speed;
 
     /* Vision */
-	t_ray		*rays;
     int         fov;
     int         view_dst;
     int         ray_nb;
+	t_ray		*rays;
 
     /* Keyboard */
     int		    keyboard[200];

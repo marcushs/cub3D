@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 12:51:27 by tduprez           #+#    #+#             */
-/*   Updated: 2023/11/08 10:33:21 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/08 11:17:25 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 static void	init_t_mlx(t_mlx *mlx);
 static void	init_player(t_player *player);
 static void	init_player_position(t_data *data);
+static void	init_vision(t_data *data);
+static void	init_keyboard(t_data *data);
 
 void	init_data(t_data *data, char *map_path)
 {
@@ -26,9 +28,15 @@ void	init_data(t_data *data, char *map_path)
 	data->config = config;
 	init_t_mlx(&mlx);
 	data->mlx = mlx;
+	data->cell_size = 16;
 	init_player(&player);
 	data->player = player;
 	init_player_position(data);
+	data->move_speed = 3;
+	data->rot_speed = 0.05;
+	init_vision(data);
+	init_keyboard(data);
+	// init_keyboard(data);
 	// get_mlx_address(&mlx); 
 	// if (!data->config)
 	// 	return ;
@@ -127,3 +135,22 @@ static void	init_player_position(t_data *data)
 // 	player->b_right.y = player->coordinate->y + 0.15;
 // 	return ;
 // }
+
+static void	init_vision(t_data *data)
+{
+	data->fov = 66;
+	data->view_dst = 800;
+	data->ray_nb = WIN_W * 0.5;
+	data->rays = (t_ray *)malloc(sizeof(t_ray) * data->ray_nb);
+	if (!data->rays)
+		free_config_exit_msg(&data->config, EXIT_FAILURE, MALLOC_ERR);
+}
+
+static void	init_keyboard(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (i++ < 200)
+		data->keyboard[i] = 0;
+}

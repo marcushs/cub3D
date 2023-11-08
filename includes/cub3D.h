@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:22:33 by hleung            #+#    #+#             */
-/*   Updated: 2023/11/08 09:22:50 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/08 11:00:37 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void		free_set_null(char **arr);
 void		free_config(t_config *config);
 void		free_2d_char(char ***arr, int size);
 void		free_config_exit_msg(t_config *config, int status, const char* msg);
+void		free_data(t_data *data);
 
 /* get_structs_address.c */
 t_data		*get_data_address(t_data* data);
