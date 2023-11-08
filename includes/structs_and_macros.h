@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 08:03:25 by hleung            #+#    #+#             */
-/*   Updated: 2023/11/08 09:16:21 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/08 10:22:58 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,16 @@
 # define PI 3.1415926535
 # define M_PI	3.14159265358979323846
 # define M_PI_2	1.57079632679489661923
-# define WINDOW_HEIGHT 1000
-# define WINDOW_WIDTH 700
-# define PLAYER_HEIGHT 8
-# define PLAYER_WIDTH 8
-# define MAP_HEIGHT 200
-# define MAP_WIDTH 200
+# define WIN_H 1000
+# define WIN_W 700
+# define PLAYER_H 8
+# define PLAYER_W 8
+# define MAP_H 200
+# define MAP_W 200
+# define N 78
+# define W 87
+# define S 83
+# define E 69
 
 typedef struct s_coor_i
 {
@@ -109,14 +113,15 @@ typedef struct s_config
 
 typedef struct s_player
 {
-	t_coor_f	*coordinate;
-	t_coor_f	t_left;
-	t_coor_f	t_right;
-	t_coor_f	b_left;
-	t_coor_f	b_right;
+	t_coor_f	coordinate;
+	// t_coor_f	t_left;
+	// t_coor_f	t_right;
+	// t_coor_f	b_left;
+	// t_coor_f	b_right;
 	t_coor_f	dir;
     t_coor_i	view_dst_pos;
-	float	angle;
+	float		angle;
+	int			ori;
 }	t_player;
 
 typedef struct s_image
