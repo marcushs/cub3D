@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:22:33 by hleung            #+#    #+#             */
-/*   Updated: 2023/11/08 13:10:14 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/08 13:35:56 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void		move_player(int keycode, t_data *data);
 /* event.c */
 int			event_move(int keycode, t_mlx* mlx);
 int			event_close(t_mlx *mlx);
+int			hooks_and_loops(t_data *data);
 
 /* free.c */
 void		free_set_null(char **arr);

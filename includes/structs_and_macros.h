@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 08:03:25 by hleung            #+#    #+#             */
-/*   Updated: 2023/11/08 13:01:52 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/08 13:28:11 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,13 @@
 # define TEXT_ERR "Error:\nCannot load texture %s\n!"
 
 /* Keycodes*/
-# define XK_w 119
-# define XK_d 100
-# define XK_s 115
-# define XK_a 97
-# define XK_left 65361
-# define XK_right 65363
+# define XK_w 119 % 200
+# define XK_d 100 % 200
+# define XK_s 115 % 200
+# define XK_a 97 % 200
+# define XK_left 65361 % 200
+# define XK_right 65363 % 200
+# define XK_esc 65307 % 200
 
 /* Values */
 # define PI 3.1415926535
