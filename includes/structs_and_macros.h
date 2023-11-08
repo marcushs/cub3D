@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs_and_macros.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 08:03:25 by hleung            #+#    #+#             */
-/*   Updated: 2023/11/08 14:28:41 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/08 19:30:30 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@
 # define PI 3.1415926535
 # define M_PI	3.14159265358979323846
 # define M_PI_2	1.57079632679489661923
-# define WIN_H 1080
-# define WIN_W 1920
+# define WIN_H 700
+# define WIN_W 1300
 # define PLAYER_H 8
 # define PLAYER_W 8
 # define MAP_H 200

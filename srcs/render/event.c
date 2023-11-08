@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 18:08:44 by tduprez           #+#    #+#             */
-/*   Updated: 2023/11/08 15:21:01 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/08 19:49:11 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,16 @@ int update(t_data *data);
 // 	return (1);
 // }
 
-// int	event_close(t_mlx *mlx)
-// {
-// 	(void)mlx;
-// 	mlx_destroy_image(mlx->mlx, mlx->mini_map->img);
-// 	mlx_destroy_window(mlx->mlx, mlx->mlx_win);
-// 	mlx_destroy_display(mlx->mlx);
-// 	free(mlx->mlx);
-// 	free_config_exit_msg(get_config_address(NULL),
-// 	EXIT_FAILURE, "Cub3D closed !\n");
-// 	return (EXIT_FAILURE);
-// }
+int	exit_prog(t_data *data)
+{
+	mlx_destroy_image(data->mlx.mlx, data->mlx.window->img);
+	mlx_destroy_window(data->mlx.mlx, data->mlx.mlx_win);
+	mlx_destroy_display(data->mlx.mlx);
+	free_data(data);
+	printf("Cub3D Closed!\n");
+	exit(EXIT_SUCCESS);
+	return (0);
+}
 void	keyboard_input(t_data *data)
 {
 	if (data->keyboard[XK_w])
@@ -63,8 +62,8 @@ void	keyboard_input(t_data *data)
 		// rotate_right(data);
 		printf("right pressed\n");
 	if (data->keyboard[XK_esc])
-		// exit_prog(data);
-		printf("esc pressed\n");
+		exit_prog(data);
+		// printf("esc pressed\n");
 	// data->player.view_dst_pos.x = data->player.dir.x * data->view_dst + data->player.coordinate.x;
 	// data->player.view_dst_pos.y = data->player.dir.y * data->view_dst + data->player.coordinate.y;
 }
@@ -89,6 +88,7 @@ int	hooks_and_loops(t_data *data)
 {
 	mlx_hook(data->mlx.mlx_win, 2, 1L << 0, key_press, data);
 	mlx_hook(data->mlx.mlx_win, 3, 1L << 1, key_release, data);
+	mlx_hook(data->mlx.mlx_win, 17, 0, exit_prog, data);
 	mlx_loop_hook(data->mlx.mlx, update, data);
 	mlx_loop(data->mlx.mlx);
 	return (0);

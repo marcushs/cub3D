@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 11:42:48 by hleung            #+#    #+#             */
-/*   Updated: 2023/11/08 13:18:13 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/08 19:36:49 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	free_data(t_data *data);
 void	free_data(t_data *data)
 {
 	free_config(&data->config);
+	free(data->mlx.mlx);
 	if (data->rays)
 		free(data->rays);
 	if (data->textures)

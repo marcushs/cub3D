@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hleung <hleung@student.42.fr>              +#+  +:+       +#+         #
+#    By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:10:24 by hleung            #+#    #+#              #
-#    Updated: 2023/11/08 13:10:39 by hleung           ###   ########.fr        #
+#    Updated: 2023/11/08 19:29:44 by hleung           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,12 +45,12 @@ LIST_OBJS	=	${LIST_SRCS:.c=.o}
 OBJS		=	${addprefix ${DIR_OBJS}, ${LIST_OBJS}}
 RM			=	rm -rf
 
-${DIR_OBJS}%.o:	${DIR_SRCS}%.c ${HEADERS}/cub3D.h
+${DIR_OBJS}%.o:	${DIR_SRCS}%.c ${HEADERS}/cub3D.h ${HEADERS}/structs_and_macros.h
 				@${CC} ${CFLAGS} -c $< -o $@ -I ${HEADERS}
 				
 all:		${NAME}
 
-${NAME}:	${DIR_OBJS} ${OBJS} ${LIBS} ${HEADERS}/cub3D.h
+${NAME}:	${DIR_OBJS} ${OBJS} ${LIBS} ${HEADERS}/cub3D.h ${HEADERS}/structs_and_macros.h
 			@echo "${GREEN}Compiled source files!${NC}"
 			${CC} ${CFLAGS} ${OBJS} ${LIBFLAGS} -o ${NAME}
 			@echo "${GREEN}Cub3D is ready!${NC}"
