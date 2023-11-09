@@ -6,16 +6,16 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 09:06:58 by hleung            #+#    #+#             */
-/*   Updated: 2023/11/09 14:33:46 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/09 16:23:50 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
 static t_coor_f	dda_loop(t_data *data, t_ray *ray, t_dda *dda);
-static void	increment_side(t_data *data, t_dda *dda);
-static void	hit_wall_ori(t_ray *ray, t_dda *dda);
-static t_coor_f make_coor_f(float x, float y);
+static void		increment_side(t_data *data, t_dda *dda);
+static void		hit_wall_ori(t_ray *ray, t_dda *dda);
+static t_coor_f	make_coor_f(float x, float y);
 
 t_coor_f	dda(t_data *data, t_ray *ray)
 {
@@ -39,7 +39,7 @@ static t_coor_f	dda_loop(t_data *data, t_ray *ray, t_dda *dda)
 	{
 		increment_side(data, dda);
 		if (!is_in_map(data, dda->map))
-			continue;
+			continue ;
 		if (data->config.map[dda->map.y / cs][dda->map.x / cs] == '1')
 		{
 			if (dda->side_hit.y == 0)
@@ -76,17 +76,17 @@ static void	increment_side(t_data *data, t_dda *dda)
 
 static void	hit_wall_ori(t_ray *ray, t_dda *dda)
 {
-	if (dda->side_hit.x == 1) 
-		ray->hit_side = 3; // west wall
+	if (dda->side_hit.x == 1)
+		ray->hit_side = 3;
 	else if (dda->side_hit.x == -1)
-		ray->hit_side = 1; // east wall
+		ray->hit_side = 1;
 	else if (dda->side_hit.y == 1)
-		ray->hit_side = 0; // north wall
+		ray->hit_side = 0;
 	else
-		ray->hit_side = 2; // south wall
+		ray->hit_side = 2;
 }
 
-static t_coor_f make_coor_f(float x, float y)
+static t_coor_f	make_coor_f(float x, float y)
 {
 	t_coor_f	coor;
 

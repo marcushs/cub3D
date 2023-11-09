@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_config_walls.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 14:36:21 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/18 14:13:49 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/11/09 16:38:51 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	check_line(t_config *config, char *line);
 void		ft_diffusion(t_config *c, char ***map, int y, int x);
-void	check_double_map(t_config *config);
+void		check_double_map(t_config *config);
 static void	check_open_walls(t_config *config, int x, int y);
 
 int	check_walls(t_config *config)
@@ -56,13 +56,17 @@ static void	check_line(t_config *config, char *line)
 
 static void	check_open_walls(t_config *config, int x, int y)
 {
-	if (config->map[y - 1][x] && (config->map[y - 1][x] == ' ' || config->map[y - 1][x] == '\n'))
+	if (config->map[y - 1][x] && (config->map[y - 1][x] == ' ' \
+	|| config->map[y - 1][x] == '\n'))
 		free_config_exit_msg(config, EXIT_FAILURE, WALL_ERR);
-	if (config->map[y + 1][x] && (config->map[y + 1][x] == ' ' || config->map[y + 1][x] == '\n'))
+	if (config->map[y + 1][x] && (config->map[y + 1][x] == ' ' \
+	|| config->map[y + 1][x] == '\n'))
 		free_config_exit_msg(config, EXIT_FAILURE, WALL_ERR);
-	if (config->map[y][x - 1] && (config->map[y][x - 1] == ' ' || config->map[y][x - 1] == '\n'))
+	if (config->map[y][x - 1] && (config->map[y][x - 1] == ' ' \
+	|| config->map[y][x - 1] == '\n'))
 		free_config_exit_msg(config, EXIT_FAILURE, WALL_ERR);
-	if (config->map[y][x + 1] && (config->map[y][x + 1] == ' ' || config->map[y][x + 1] == '\n'))
+	if (config->map[y][x + 1] && (config->map[y][x + 1] == ' ' \
+	|| config->map[y][x + 1] == '\n'))
 		free_config_exit_msg(config, EXIT_FAILURE, WALL_ERR);
 	return ;
 }

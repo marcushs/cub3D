@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 08:03:25 by hleung            #+#    #+#             */
-/*   Updated: 2023/11/09 13:47:32 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/09 16:55:23 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,13 @@
 # define TEXT_ERR "Error:\nCannot load texture %s\n!"
 
 /* Keycodes*/
-# define XK_w 119 % 200
-# define XK_d 100 % 200
-# define XK_s 115 % 200
-# define XK_a 97 % 200
-# define XK_left 65361 % 200
-# define XK_right 65363 % 200
-# define XK_esc 65307 % 200
+# define XK_W 119 % 200
+# define XK_D 100 % 200
+# define XK_S 115 % 200
+# define XK_A 97 % 200
+# define XK_LEFT 65361 % 200
+# define XK_RIGHT 65363 % 200
+# define XK_ESC 65307 % 200
 
 /* Values */
 # define PI 3.1415926535
@@ -71,7 +71,6 @@ typedef struct s_coor_i
 	int	y;
 }	t_coor_i;
 
-
 typedef struct s_coor_f
 {
 	float	x;
@@ -87,7 +86,6 @@ typedef struct s_dda
 	t_coor_i	side_hit;
 	float		ray_len;
 }	t_dda;
-
 
 typedef struct s_ray
 {
@@ -134,7 +132,7 @@ typedef struct s_config
 	char		*map_tmp;
 	int			map_size;
 	int			map_row;
-    char        **text_paths;
+	char		**text_paths;
 }	t_config;
 
 typedef struct s_player
@@ -145,7 +143,7 @@ typedef struct s_player
 	// t_coor_f	b_left;
 	// t_coor_f	b_right;
 	t_coor_f	dir;
-    t_coor_i	view_dst_pos;
+	t_coor_i	view_dst_pos;
 	double		angle;
 	int			ori;
 }	t_player;
@@ -165,7 +163,7 @@ typedef struct s_mlx
 {
 	void		*mlx;
 	void		*mlx_win;
-	t_image		*mini_map_border;
+	t_image		*mmb; //mini_map_border
 	t_image		*mini_map;
 	t_image		*player;
 	t_image		*window;
@@ -173,38 +171,35 @@ typedef struct s_mlx
 
 typedef struct s_data
 {
-    /* Config from .cub file */
+	/* Config from .cub file */
 	t_config	config;
 	int			w_size;
 	int			h_size;
-    
-    /* Mlx */
+
+	/* Mlx */
 	t_mlx		mlx;
-    int			cell_size;
+	int			cell_size;
 
-    /* Player */
+	/* Player */
 	t_player	player;
-    double		move_speed;
-    double		rot_speed;
+	double		move_speed;
+	double		rot_speed;
 
-    /* Vision */
-    int			fov;
-    int			view_dst;
-    int			ray_nb;
+	/* Vision */
+	int			fov;
+	int			view_dst;
+	int			ray_nb;
 	t_ray		*rays;
 
-    /* Keyboard */
-    int			keyboard[200];
+	/* Keyboard */
+	int			keyboard[200];
 
-    /* Floor and ceiling color */
-    int			floor_color;
+	/* Floor and ceiling color */
+	int			floor_color;
 	int			ceiling_color;
 
-    /* Textures */
-    t_text		*textures;
-	
+	/* Textures */
+	t_text		*textures;
 }	t_data;
-
-
 
 #endif

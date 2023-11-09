@@ -6,18 +6,15 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 12:51:27 by tduprez           #+#    #+#             */
-/*   Updated: 2023/11/09 15:49:40 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/09 16:34:15 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
 static void	init_t_mlx(t_mlx *mlx);
-static void	init_player(t_player *player);
-static void	init_player_position(t_data *data);
 static void	init_vision(t_data *data);
 static void	init_keyboard(t_data *data);
-void	init_player_dir(t_data *data);
 
 void	init_data(t_data *data, char *map_path)
 {
@@ -59,92 +56,19 @@ static void	init_t_mlx(t_mlx *mlx)
 	static t_image	mini_map;
 	static t_image	player;
 	static t_image	window;
-	static t_image	mini_map_border;
-	
+	static t_image	mmb;
+
 	mlx->mlx = mlx_init();
 	mlx->mlx_win = mlx_new_window(mlx->mlx, WIN_W, WIN_H, "Cub3D");
 	mlx->mini_map = &mini_map;
 	mlx->player = &player;
 	mlx->window = &window;
-	mlx->mini_map_border = &mini_map_border;
+	mlx->mmb = &mmb;
 	init_img(mlx->mini_map, 0, 0);
 	init_img(mlx->player, PLAYER_W, PLAYER_H);
-	init_img(mlx->mini_map_border, MAP_W, MAP_H);
+	init_img(mlx->mmb, MAP_W, MAP_H);
 	init_img(mlx->window, WIN_W, WIN_H);
 	return ;
-}
-
-static void	init_player(t_player *player)
-{
-	// static t_coor_f		top_left;
-	// static t_coor_f		top_right;
-	// static t_coor_f		bottom_left;
-	// static t_coor_f		bottom_right;
-
-	player->coor.x = 0;
-	player->coor.y = 0;
-	player->dir.x = 0;
-	player->dir.y = 0;
-	player->view_dst_pos.x = 0;
-	player->view_dst_pos.y = 0;
-	player->angle = 0;
-	player->ori = 0;
-	// player->t_left = &top_left;
-	// player->t_right = &top_right;
-	// player->b_left = &bottom_left;
-	// player->b_right = &bottom_right;
-	return ;
-}
-
-static void	init_player_position(t_data *data)
-{
-	int		x;
-	int		y;
-	char	**map;
-
-	x = 0;
-	y = 0;
-	map = data->config.map;
-	while (y < data->config.map_size && map[y])
-	{
-		while (x < (int)ft_strlen(map[y]) && map[y][x] && map[y][x] != '\n')
-		{
-			if (map[y][x] == N || map[y][x] == W || map[y][x] == S || map[y][x] == E)
-			{
-				data->player.ori = map[y][x];
-				data->player.coor.y = ((float)y + 0.5) * data->cell_size;
-				data->player.coor.x = ((float)x + 0.5) * data->cell_size;
-			}
-			x++;
-		}
-		x = 0;
-		y++;
-	}
-	return ;
-}
-
-void	init_player_dir(t_data *data)
-{
-	if (data->player.ori == N)
-	{
-		data->player.dir.x = 0;
-		data->player.dir.y = -1;
-	}
-	else if (data->player.ori == S)
-	{
-		data->player.dir.x = 0;
-		data->player.dir.y = 1;
-	}
-	else if (data->player.ori == E)
-	{
-		data->player.dir.x = 1;
-		data->player.dir.y = 0;
-	}
-	else if (data->player.ori == W)
-	{
-		data->player.dir.x = -1;
-		data->player.dir.y = 0;
-	}
 }
 
 // void	init_player_hitbox(t_player *player)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_config_double_map.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 14:15:21 by tduprez           #+#    #+#             */
-/*   Updated: 2023/10/18 14:15:29 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/11/09 16:41:44 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ static bool	check_for_diffusion(t_config *config, char **map, int y, int x)
 		return (true);
 	return (false);
 }
-
 
 static bool	check_map(t_config *config, char **map)
 {

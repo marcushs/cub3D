@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 21:32:07 by tduprez           #+#    #+#             */
-/*   Updated: 2023/11/08 15:20:21 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/09 16:34:27 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	map_longest_row(t_config *config)
 {
-	int max;
-	int len;
-	int y;
+	int	max;
+	int	len;
+	int	y;
 
 	max = 0;
 	y = -1;
@@ -40,9 +40,9 @@ void	init_image_data(t_mlx *mlx, t_config *config)
 	mlx->mini_map->width, mlx->mini_map->height);
 	mlx->mini_map->img_addr = mlx_get_data_addr(mlx->mini_map->img, \
 	&mlx->mini_map->bpp, &mlx->mini_map->line_len, &mlx->mini_map->endian);
-	mlx->mini_map_border->img = mlx_new_image(mlx->mlx,MAP_W, MAP_H);
-	mlx->mini_map_border->img_addr = mlx_get_data_addr(mlx->mini_map_border->img, \
-	&mlx->mini_map_border->bpp, &mlx->mini_map_border->line_len, &mlx->mini_map_border->endian);
+	mlx->mmb->img = mlx_new_image(mlx->mlx, MAP_W, MAP_H);
+	mlx->mmb->img_addr = mlx_get_data_addr(mlx->mmb->img, \
+	&mlx->mmb->bpp, &mlx->mmb->line_len, &mlx->mmb->endian);
 	mlx->window->img = mlx_new_image(mlx->mlx, WIN_W, WIN_H);
 	mlx->window->img_addr = mlx_get_data_addr(mlx->window->img, \
 	&mlx->window->bpp, &mlx->window->line_len, &mlx->window->endian);

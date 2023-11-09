@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_config_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 17:58:01 by tduprez           #+#    #+#             */
-/*   Updated: 2023/10/13 18:17:05 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/11/09 16:40:18 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ int	is_empty_line(char *line)
 	return (0);
 }
 
-void set_map_null(t_config *config)
+void	set_map_null(t_config *config)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < config->map_size)
 		config->map[i++] = NULL;
-	return;
+	return ;
 }
 
 int	trim_empty_lines_after_map(t_config *config)
@@ -58,12 +58,12 @@ int	trim_empty_lines_after_map(t_config *config)
 	return (0);
 }
 
-void trim_map_first_spaces(t_config *config)
+void	trim_map_first_spaces(t_config *config)
 {
-	int x;
-	int y;
-	int nb_spaces;
-	char *tmp;
+	int		x;
+	int		y;
+	int		nb_spaces;
+	char	*tmp;
 
 	nb_spaces = INT_MAX;
 	y = -1;
@@ -84,15 +84,15 @@ void trim_map_first_spaces(t_config *config)
 		free(config->map[y]);
 		config->map[y++] = tmp;
 	}
-	return;
+	return ;
 }
 
-void trim_map_back_spaces(t_config *config)
+void	trim_map_back_spaces(t_config *config)
 {
-	int x;
-	int y;
-	char *trim_copy;
-	char *tmp;
+	int		x;
+	int		y;
+	char	*trim_copy;
+	char	*tmp;
 
 	y = -1;
 	while (++y < config->map_size)
@@ -113,5 +113,5 @@ void trim_map_back_spaces(t_config *config)
 			config->map[y] = trim_copy;
 		}
 	}
-	return;
+	return ;
 }

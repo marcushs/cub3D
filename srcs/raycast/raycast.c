@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 07:29:11 by hleung            #+#    #+#             */
-/*   Updated: 2023/11/09 10:56:12 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/09 16:22:00 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	calculate_collision(t_data *data)
 			data->rays[i].length = get_coor_f_length(data->player.coor, hit);
 		}
 		else
-			data->rays[i].perp_wall_dist = -1; // if no collision, directly put perp_wall_dist to -1
+			data->rays[i].perp_wall_dist = -1;
 		i++;
 	}
 }

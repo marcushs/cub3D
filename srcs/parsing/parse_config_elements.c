@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_config_elements.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 16:12:06 by hleung            #+#    #+#             */
-/*   Updated: 2023/11/03 08:32:29 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/09 16:42:01 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static int	parse_texture_path(t_config *config, char ***strs)
 	if (!ft_strcmp((*strs)[0], "NO"))
 		config->text_paths[0] = path;
 	else if (!ft_strcmp((*strs)[0], "SO"))
-		config->text_paths[2]= path;
+		config->text_paths[2] = path;
 	else if (!ft_strcmp((*strs)[0], "WE"))
 		config->text_paths[3] = path;
 	else if (!ft_strcmp((*strs)[0], "EA"))

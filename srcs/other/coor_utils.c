@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 07:40:28 by hleung            #+#    #+#             */
-/*   Updated: 2023/11/09 08:09:25 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/09 16:01:00 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,24 +30,21 @@ t_coor_f	coor_i_to_f(t_coor_i coor_i)
 	return (coor_f);
 }
 
-/*	The 2 functions below allow us to get coordinates from the origin (player's position), in int or in float
-	It gives us a direction (in radian) and a fixed length (in pixels) */
-
-t_coor_i	get_coor_i_from_origin(t_coor_i origin, double radian, double length)
+t_coor_i	get_coor_i_from_origin(t_coor_i origin, double rad, double len)
 {
 	t_coor_i	coor;
 
-	coor.x = cos(-radian) * length + origin.x;
-	coor.y = sin(-radian) * length + origin.y;
+	coor.x = cos(-rad) * len + origin.x;
+	coor.y = sin(-rad) * len + origin.y;
 	return (coor);
 }
 
-t_coor_f	get_coor_f_from_origin(t_coor_f origin, double radian, double length)
+t_coor_f	get_coor_f_from_origin(t_coor_f origin, double rad, double len)
 {
 	t_coor_f	coor;
 
-	coor.x = cos(-radian) * length + origin.x;
-	coor.y = sin(-radian) * length + origin.y;
+	coor.x = cos(-rad) * len + origin.x;
+	coor.y = sin(-rad) * len + origin.y;
 	return (coor);
 }
 

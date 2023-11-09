@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:22:33 by hleung            #+#    #+#             */
-/*   Updated: 2023/11/09 14:38:30 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/09 16:48:05 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,16 @@
 /* Prototypes */
 
 /* init_config.c */
-void	    init_config(t_config *config, char *map_path);
+void		init_config(t_config *config, char *map_path);
 
 /* init_data.c */
 void		init_data(t_data *data, char *map_path);
 void		init_player_hitbox(t_player *player);
+
+/* init_player.c */
+void		init_player(t_player *player);
+void		init_player_position(t_data *data);
+void		init_player_dir(t_data *data);
 
 /* init_text.c */
 void		init_text(t_data *data);
@@ -87,22 +92,25 @@ void		rotate_left(t_data *data);
 void		rotate_right(t_data *data);
 
 /* event.c */
-int			event_move(int keycode, t_mlx* mlx);
-int			event_close(t_mlx *mlx);
+int			update(t_data *data);
+int			exit_prog(t_data *data);
+void		keyboard_input(t_data *data);
+
+/* hooks.c */
 int			hooks_and_loops(t_data *data);
 
 /* free.c */
 void		free_set_null(char **arr);
 void		free_config(t_config *config);
 void		free_2d_char(char ***arr, int size);
-void		free_config_exit_msg(t_config *config, int status, const char* msg);
+void		free_config_exit_msg(t_config *config, int status, const char *msg);
 void		free_data(t_data *data);
 
 /* coor_utils.c */
 t_coor_i	coor_f_to_i(t_coor_f coor_f);
 t_coor_f	coor_i_to_f(t_coor_i coor_i);
-t_coor_i	get_coor_i_from_origin(t_coor_i origin, double radian, double length);
-t_coor_f	get_coor_f_from_origin(t_coor_f origin, double radian, double length);
+t_coor_i	get_coor_i_from_origin(t_coor_i origin, double rad, double len);
+t_coor_f	get_coor_f_from_origin(t_coor_f origin, double rad, double len);
 t_coor_f	coor_f_interpolation(t_coor_f start, t_coor_f end, float ratio);
 
 /* math_utils.c */
@@ -114,10 +122,5 @@ double		get_coor_f_length(t_coor_f start, t_coor_f end);
 
 /* math_utils_2.c */
 double		get_coor_i_sq_len(t_coor_i start, t_coor_i end);
-
-/* get_structs_address.c */
-t_data		*get_data_address(t_data* data);
-t_mlx		*get_mlx_address(t_mlx* mlx);
-t_config	*get_config_address(t_config* config);
 
 #endif

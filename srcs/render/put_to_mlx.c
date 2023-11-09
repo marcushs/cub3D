@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 13:25:36 by tduprez           #+#    #+#             */
-/*   Updated: 2023/11/09 13:48:04 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/09 16:31:21 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,12 +118,11 @@
 //     }
 // }
 
-
-void put_pixel(t_image *image, int x, int y, int color)
+void	put_pixel(t_image *image, int x, int y, int color)
 {
-	char *dst;
+	char	*dst;
 
 	dst = image->img_addr + (y * image->line_len + x * (image->bpp / 8));
 	*(unsigned int *)dst = color;
-	return;
+	return ;
 }

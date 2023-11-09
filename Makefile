@@ -6,7 +6,7 @@
 #    By: hleung <hleung@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:10:24 by hleung            #+#    #+#              #
-#    Updated: 2023/11/09 12:40:29 by hleung           ###   ########.fr        #
+#    Updated: 2023/11/09 16:50:40 by hleung           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ LIST_SRCS	=	main.c \
 				init/init_config.c \
 				init/init_data.c \
 				init/init_text.c \
+				init/init_player.c \
 				parsing/parse_config.c \
 				parsing/parse_config_elements_utils.c \
 				parsing/parse_config_elements.c \
@@ -35,16 +36,18 @@ LIST_SRCS	=	main.c \
 				raycast/dda.c \
 				raycast/dda_utils.c \
 				raycast/raycast.c \
-				render/render.c \
-				render/render_utils.c \
 				render/event.c \
+				render/hooks.c \
 				render/move.c \
 				render/put_to_mlx.c \
+				render/render_rays.c \
+				render/render_utils.c \
+				render/render.c \
+				render/rotate.c \
 				other/free.c \
 				other/coor_utils.c \
 				other/math_utils.c \
-				other/math_utils_2.c \
-				other/get_structs_address.c
+				other/math_utils_2.c
 SRCS		=	${addprefix ${DIR_SRCS}, ${LIST_SRCS}}
 DIR_OBJS	=	.objs/
 LIST_OBJS	=	${LIST_SRCS:.c=.o}
