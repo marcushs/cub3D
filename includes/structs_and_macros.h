@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 08:03:25 by hleung            #+#    #+#             */
-/*   Updated: 2023/11/09 12:37:32 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/09 13:47:32 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ typedef struct s_dda
 	float		ray_len;
 }	t_dda;
 
+
 typedef struct s_ray
 {
 	t_coor_f		hitpoint;
@@ -109,6 +110,19 @@ typedef struct s_text
 	int		line_length;
 	int		endian;
 }	t_text;
+
+typedef struct s_slice
+{
+	int			i;
+	t_ray		*ray;
+	t_text		*text;
+	t_coor_i	tl;
+	t_coor_i	br;
+	int			tex_x;
+	double		tex_y;
+	float		slice_h;
+	int			slice_w;
+}	t_slice;
 
 typedef struct s_config
 {
@@ -166,28 +180,28 @@ typedef struct s_data
     
     /* Mlx */
 	t_mlx		mlx;
-    int         cell_size;
+    int			cell_size;
 
     /* Player */
 	t_player	player;
-    double      move_speed;
-    double      rot_speed;
+    double		move_speed;
+    double		rot_speed;
 
     /* Vision */
-    int         fov;
-    int         view_dst;
-    int         ray_nb;
+    int			fov;
+    int			view_dst;
+    int			ray_nb;
 	t_ray		*rays;
 
     /* Keyboard */
-    int		    keyboard[200];
+    int			keyboard[200];
 
     /* Floor and ceiling color */
-    int         floor_color;
-	int         ceiling_color;
+    int			floor_color;
+	int			ceiling_color;
 
     /* Textures */
-    t_text      *textures;
+    t_text		*textures;
 	
 }	t_data;
 

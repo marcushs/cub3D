@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 11:00:10 by hleung            #+#    #+#             */
-/*   Updated: 2023/11/09 12:39:50 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/09 14:24:09 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	set_dda_values(t_data *data, t_ray *ray, t_dda *dda)
 
 int is_in_map(t_data *data, t_coor_i pos)
 {
+	printf("data->w_size %d\n", data->w_size);
+	printf("data->h_size %d\n", data->h_size);
 	if (pos.x < 0 || pos.x > data->w_size - 1)
 		return (0);
 	if (pos.y < 0 || pos.y > data->h_size - 1)

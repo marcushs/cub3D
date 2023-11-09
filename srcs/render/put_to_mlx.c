@@ -1,16 +1,16 @@
-// /* ************************************************************************** */
-// /*                                                                            */
-// /*                                                        :::      ::::::::   */
-// /*   put_to_mlx.c                                       :+:      :+:    :+:   */
-// /*                                                    +:+ +:+         +:+     */
-// /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
-// /*                                                +#+#+#+#+#+   +#+           */
-// /*   Created: 2023/10/14 13:25:36 by tduprez           #+#    #+#             */
-// /*   Updated: 2023/10/27 11:21:03 by tduprez          ###   ########lyon.fr   */
-// /*                                                                            */
-// /* ************************************************************************** */
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   put_to_mlx.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/14 13:25:36 by tduprez           #+#    #+#             */
+/*   Updated: 2023/11/09 13:48:04 by hleung           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-// #include "../../includes/cub3D.h"
+#include "../../includes/cub3D.h"
 
 // static void put_one_vector(t_data *data, float angle, int color);
 
@@ -119,11 +119,11 @@
 // }
 
 
-// void put_pixel(t_image *image, int x, int y, int color)
-// {
-// 	char *dst;
+void put_pixel(t_image *image, int x, int y, int color)
+{
+	char *dst;
 
-// 	dst = image->img_addr + (y * image->line_len + x * (image->bpp / 8));
-// 	*(unsigned int *)dst = color;
-// 	return;
-// }
+	dst = image->img_addr + (y * image->line_len + x * (image->bpp / 8));
+	*(unsigned int *)dst = color;
+	return;
+}

@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 18:08:44 by tduprez           #+#    #+#             */
-/*   Updated: 2023/11/09 10:29:27 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/09 14:19:47 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,9 +98,9 @@ int update(t_data *data)
 	keyboard_input(data);
 	render_floor_ceiling(data);
 	raycast(data);
-	// create_rays(data);
-	// calculate_collision(data);
-	// rays_render(data);
+	// for (int i = 0; i < data->ray_nb; i++)
+	// 	printf("data->ray[%d]->perp_wall_dist = %f\n", i, data->rays[i].perp_wall_dist);
+	// render_rays(data);
 	mlx_put_image_to_window(data->mlx.mlx, data->mlx.mlx_win, data->mlx.window->img, 0, 0);
 	return (0);
 }

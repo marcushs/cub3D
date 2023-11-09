@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:22:33 by hleung            #+#    #+#             */
-/*   Updated: 2023/11/09 12:34:31 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/09 12:46:24 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void		render_minimap(t_data *data);
 void		render_player(t_image *player);
 void		put_window_image_to_window(t_mlx *mlx, float x, float y);
 void		render_floor_ceiling(t_data *data);
-void		floor_and_ceiling(t_data *data);
+void		render_rays(t_data *data);
 
 /* render_utils.c */
 int			map_longest_row(t_config *config);

@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 12:51:27 by tduprez           #+#    #+#             */
-/*   Updated: 2023/11/09 12:39:02 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/09 13:59:59 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static void	init_player(t_player *player);
 static void	init_player_position(t_data *data);
 static void	init_vision(t_data *data);
 static void	init_keyboard(t_data *data);
+void	init_player_dir(t_data *data);
 
 void	init_data(t_data *data, char *map_path)
 {
@@ -34,12 +35,14 @@ void	init_data(t_data *data, char *map_path)
 	init_player(&player);
 	data->player = player;
 	init_player_position(data);
+	init_player_dir(data);
 	data->move_speed = 3;
 	data->rot_speed = 0.05;
 	init_vision(data);
 	init_keyboard(data);
 	init_text(data);
 	init_image_data(&data->mlx, &data->config);
+
 	return ;
 }
 
@@ -96,8 +99,8 @@ static void	init_player(t_player *player)
 
 static void	init_player_position(t_data *data)
 {
-	int	x;
-	int	y;
+	int		x;
+	int		y;
 	char	**map;
 
 	x = 0;
@@ -119,6 +122,30 @@ static void	init_player_position(t_data *data)
 		y++;
 	}
 	return ;
+}
+
+void	init_player_dir(t_data *data)
+{
+	if (data->player.ori == N)
+	{
+		data->player.dir.x = 0;
+		data->player.dir.y = -1;
+	}
+	else if (data->player.ori == S)
+	{
+		data->player.dir.x = 0;
+		data->player.dir.y = 1;
+	}
+	else if (data->player.ori == E)
+	{
+		data->player.dir.x = 1;
+		data->player.dir.y = 0;
+	}
+	else if (data->player.ori == W)
+	{
+		data->player.dir.x = -1;
+		data->player.dir.y = 0;
+	}
 }
 
 // void	init_player_hitbox(t_player *player)

@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 09:06:58 by hleung            #+#    #+#             */
-/*   Updated: 2023/11/09 12:33:26 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/09 14:24:09 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,10 @@ static t_coor_f	dda_loop(t_data *data, t_ray *ray, t_dda *dda)
 		increment_side(data, dda);
 		if (!is_in_map(data, dda->map))
 			continue;
+		printf("data->config.map[dda->map.y / cs][dda->map.x / cs] %c\n", data->config.map[dda->map.y / cs][dda->map.x / cs]);
 		if (data->config.map[dda->map.y / cs][dda->map.x / cs] == '1')
 		{
+			printf("here\n");
 			if (dda->side_hit.y == 0)
 				ray->perp_wall_dist = (dda->axis_len.x - dda->unit_step.x) * cs;
 			else
