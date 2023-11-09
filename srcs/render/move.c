@@ -37,8 +37,8 @@ int		is_walkable(t_data *data, float x, float y);
 // 	else if (keycode == XK_right)
 // 		move_player_angle(XK_right, data);
 // 	dda(data);
-// 	put_window_image_to_window(data->mlx, data->player->coordinate->x, 
-// 	data->player->coordinate->y);
+// 	put_window_image_to_window(data->mlx, data->player->coor->x, 
+// 	data->player->coor->y);
 // 	return ;
 // }
 
@@ -94,26 +94,26 @@ int		is_walkable(t_data *data, float x, float y);
 // {
 // 	if (keycode == XK_w)
 // 	{
-// 		data->player->coordinate->y += sin(data->player->angle) * 0.25;
-// 		data->player->coordinate->x -= cos(data->player->angle) * 0.25;
+// 		data->player->coor->y += sin(data->player->angle) * 0.25;
+// 		data->player->coor->x -= cos(data->player->angle) * 0.25;
 // 		init_player_hitbox(data->player);
 // 	}
 // 	else if (keycode == XK_s)
 // 	{
-// 		data->player->coordinate->y -= sin(data->player->angle) * 0.25;
-// 		data->player->coordinate->x += cos(data->player->angle) * 0.25;
+// 		data->player->coor->y -= sin(data->player->angle) * 0.25;
+// 		data->player->coor->x += cos(data->player->angle) * 0.25;
 // 		init_player_hitbox(data->player);
 // 	}
 // 	else if (keycode == XK_a)
 // 	{
-// 		data->player->coordinate->y -= cos(data->player->angle) * 0.25;
-// 		data->player->coordinate->x += sin(data->player->angle) * 0.25;
+// 		data->player->coor->y -= cos(data->player->angle) * 0.25;
+// 		data->player->coor->x += sin(data->player->angle) * 0.25;
 // 		init_player_hitbox(data->player);
 // 	}
 // 	else if (keycode == XK_d)
 // 	{
-// 		data->player->coordinate->y += cos(data->player->angle) * 0.25;
-// 		data->player->coordinate->x -= sin(data->player->angle) * 0.25;
+// 		data->player->coor->y += cos(data->player->angle) * 0.25;
+// 		data->player->coor->x -= sin(data->player->angle) * 0.25;
 // 		init_player_hitbox(data->player);
 // 	}
 // 	return ;
@@ -133,7 +133,7 @@ void	move_forward(t_data *data)
 	t_coor_f	tmp_coor;
 	t_coor_f	*p_pos;
 	
-	p_pos = &data->player.coordinate;
+	p_pos = &data->player.coor;
 	tmp_coor.x = p_pos->x + data->player.dir.x * data->move_speed;
 	tmp_coor.y = p_pos->y + data->player.dir.y * data->move_speed;
 
@@ -148,7 +148,7 @@ void	move_backward(t_data *data)
 	t_coor_f	tmp_coor;
 	t_coor_f	*p_pos;
 	
-	p_pos = &data->player.coordinate;
+	p_pos = &data->player.coor;
 	tmp_coor.x = p_pos->x - data->player.dir.x * data->move_speed;
 	tmp_coor.y = p_pos->y - data->player.dir.y * data->move_speed;
 
@@ -164,7 +164,7 @@ void	move_left(t_data *data)
 	t_coor_f	new_dir;
 	t_coor_f	*p_pos;
 
-	p_pos = &data->player.coordinate;
+	p_pos = &data->player.coor;
 	new_dir.x = data->player.dir.x * cos(-PI / 2) - data->player.dir.y * sin(-PI / 2);
 	new_dir.y = data->player.dir.x * sin(-PI / 2) + data->player.dir.y * cos(-PI / 2);
 	tmp_coor.x = new_dir.x * data->move_speed + p_pos->x;
@@ -181,7 +181,7 @@ void	move_right(t_data *data)
 	t_coor_f	new_dir;
 	t_coor_f	*p_pos;
 
-	p_pos = &data->player.coordinate;
+	p_pos = &data->player.coor;
 	new_dir.x = data->player.dir.x * cos(PI / 2) - data->player.dir.y * sin(PI / 2);
 	new_dir.y = data->player.dir.x * sin(PI / 2) + data->player.dir.y * cos(PI / 2);
 	tmp_coor.x = new_dir.x * data->move_speed + p_pos->x;

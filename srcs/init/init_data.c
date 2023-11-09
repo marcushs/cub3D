@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 12:51:27 by tduprez           #+#    #+#             */
-/*   Updated: 2023/11/08 15:35:30 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/09 12:39:02 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,11 @@ void	init_data(t_data *data, char *map_path)
 
 	init_config(&config, map_path);
 	data->config = config;
+	data->cell_size = 15;
+	data->w_size = data->cell_size * data->config.map_row;
+	data->h_size = data->cell_size * data->config.map_size;
 	init_t_mlx(&mlx);
 	data->mlx = mlx;
-	data->cell_size = 15;
 	init_player(&player);
 	data->player = player;
 	init_player_position(data);
@@ -38,12 +40,6 @@ void	init_data(t_data *data, char *map_path)
 	init_keyboard(data);
 	init_text(data);
 	init_image_data(&data->mlx, &data->config);
-	// init_keyboard(data);
-	// get_mlx_address(&mlx); 
-	// if (!data->config)
-	// 	return ;
-	// data->rays = NULL;
-	// init_player_hitbox(&player);
 	return ;
 }
 
@@ -83,8 +79,8 @@ static void	init_player(t_player *player)
 	// static t_coor_f		bottom_left;
 	// static t_coor_f		bottom_right;
 
-	player->coordinate.x = 0;
-	player->coordinate.y = 0;
+	player->coor.x = 0;
+	player->coor.y = 0;
 	player->dir.x = 0;
 	player->dir.y = 0;
 	player->view_dst_pos.x = 0;
@@ -114,8 +110,8 @@ static void	init_player_position(t_data *data)
 			if (map[y][x] == N || map[y][x] == W || map[y][x] == S || map[y][x] == E)
 			{
 				data->player.ori = map[y][x];
-				data->player.coordinate.y = (float)y + 0.5;
-				data->player.coordinate.x = (float)x + 0.5;
+				data->player.coor.y = ((float)y + 0.5) * data->cell_size;
+				data->player.coor.x = ((float)x + 0.5) * data->cell_size;
 			}
 			x++;
 		}
@@ -127,14 +123,14 @@ static void	init_player_position(t_data *data)
 
 // void	init_player_hitbox(t_player *player)
 // {
-// 	player->t_left.x = player->coordinate->x - 0.15;
-// 	player->t_left.y = player->coordinate->y - 0.15;
-// 	player->t_right.x = player->coordinate->x + 0.15;
-// 	player->t_right.y = player->coordinate->y - 0.15;
-// 	player->b_left.x = player->coordinate->x - 0.15;
-// 	player->b_left.y = player->coordinate->y + 0.15;
-// 	player->b_right.x = player->coordinate->x + 0.15;
-// 	player->b_right.y = player->coordinate->y + 0.15;
+// 	player->t_left.x = player->coor->x - 0.15;
+// 	player->t_left.y = player->coor->y - 0.15;
+// 	player->t_right.x = player->coor->x + 0.15;
+// 	player->t_right.y = player->coor->y - 0.15;
+// 	player->b_left.x = player->coor->x - 0.15;
+// 	player->b_left.y = player->coor->y + 0.15;
+// 	player->b_right.x = player->coor->x + 0.15;
+// 	player->b_right.y = player->coor->y + 0.15;
 // 	return ;
 // }
 

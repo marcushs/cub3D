@@ -70,8 +70,8 @@
 // 	t_image	*mini_map;
 
 // 	mini_map = data->mlx->mini_map;
-// 	float vector_x = data->player->coordinate->x;
-// 	float vector_y = data->player->coordinate->y;
+// 	float vector_x = data->player->coor->x;
+// 	float vector_y = data->player->coor->y;
 // 	float step_size = 0.01;
 // 	float len = 0.00;
 

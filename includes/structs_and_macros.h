@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs_and_macros.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 08:03:25 by hleung            #+#    #+#             */
-/*   Updated: 2023/11/08 19:30:30 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/09 12:37:32 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@
 # define PI 3.1415926535
 # define M_PI	3.14159265358979323846
 # define M_PI_2	1.57079632679489661923
-# define WIN_H 700
-# define WIN_W 1300
+# define WIN_H 1080
+# define WIN_W 1920
 # define PLAYER_H 8
 # define PLAYER_W 8
 # define MAP_H 200
@@ -78,9 +78,19 @@ typedef struct s_coor_f
 	float	y;
 }	t_coor_f;
 
+typedef struct s_dda
+{
+	t_coor_i	map;
+	t_coor_f	axis_len;
+	t_coor_f	unit_step;
+	t_coor_i	step;
+	t_coor_i	side_hit;
+	float		ray_len;
+}	t_dda;
+
 typedef struct s_ray
 {
-	t_coor_f		hit_point;
+	t_coor_f		hitpoint;
 	t_coor_i		cell;
 	double			length;
 	double			perp_wall_dist;
@@ -115,14 +125,14 @@ typedef struct s_config
 
 typedef struct s_player
 {
-	t_coor_f	coordinate;
+	t_coor_f	coor;
 	// t_coor_f	t_left;
 	// t_coor_f	t_right;
 	// t_coor_f	b_left;
 	// t_coor_f	b_right;
 	t_coor_f	dir;
     t_coor_i	view_dst_pos;
-	float		angle;
+	double		angle;
 	int			ori;
 }	t_player;
 
@@ -151,6 +161,8 @@ typedef struct s_data
 {
     /* Config from .cub file */
 	t_config	config;
+	int			w_size;
+	int			h_size;
     
     /* Mlx */
 	t_mlx		mlx;

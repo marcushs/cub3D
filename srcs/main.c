@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 11:13:52 by hleung            #+#    #+#             */
-/*   Updated: 2023/11/08 13:37:03 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/09 10:28:44 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int argc, char **argv)
 		// parse_config(&config);
 		// render(&config);
 		// print_config(&data.config); //debug function
-		// printf("player x %f, player y %f, player ori %c\n", data.player.coordinate.x, data.player.coordinate.y, data.player.ori);
+		// printf("player x %f, player y %f, player ori %c\n", data.player.coor.x, data.player.coor.y, data.player.ori);
 		hooks_and_loops(&data);
 		free_data(&data);
 	}

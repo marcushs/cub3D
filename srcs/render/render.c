@@ -26,8 +26,8 @@
 // 	render_minimap(&data);
 // 	render_player(data.mlx->player);
 // 	dda(&data);
-// 	put_window_image_to_window(data.mlx, data.player->coordinate->x, 
-// 	data.player->coordinate->y);
+// 	put_window_image_to_window(data.mlx, data.player->coor->x, 
+// 	data.player->coor->y);
 // 	mlx_loop(data.mlx->mlx);
 // 	return;
 // }

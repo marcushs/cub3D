@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+         #
+#    By: hleung <hleung@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 14:10:24 by hleung            #+#    #+#              #
-#    Updated: 2023/11/08 19:29:44 by hleung           ###   ########.fr        #
+#    Updated: 2023/11/09 12:40:29 by hleung           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,12 +32,18 @@ LIST_SRCS	=	main.c \
 				parsing/parse_config_walls.c \
 				parsing/parse_config_double_map.c \
 				parsing/parse_config_utils.c \
+				raycast/dda.c \
+				raycast/dda_utils.c \
+				raycast/raycast.c \
 				render/render.c \
 				render/render_utils.c \
 				render/event.c \
 				render/move.c \
 				render/put_to_mlx.c \
 				other/free.c \
+				other/coor_utils.c \
+				other/math_utils.c \
+				other/math_utils_2.c \
 				other/get_structs_address.c
 SRCS		=	${addprefix ${DIR_SRCS}, ${LIST_SRCS}}
 DIR_OBJS	=	.objs/
@@ -59,6 +65,7 @@ ${DIR_OBJS}:
 			@mkdir -p ${DIR_OBJS}
 			@mkdir -p ${DIR_OBJS}/init
 			@mkdir -p ${DIR_OBJS}/parsing
+			@mkdir -p ${DIR_OBJS}/raycast
 			@mkdir -p ${DIR_OBJS}/render
 			@mkdir -p ${DIR_OBJS}/other
 

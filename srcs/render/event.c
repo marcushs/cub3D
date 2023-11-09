@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 18:08:44 by tduprez           #+#    #+#             */
-/*   Updated: 2023/11/08 19:49:11 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/09 10:29:27 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,8 @@ void	keyboard_input(t_data *data)
 		printf("right pressed\n");
 	if (data->keyboard[XK_esc])
 		exit_prog(data);
-		// printf("esc pressed\n");
-	// data->player.view_dst_pos.x = data->player.dir.x * data->view_dst + data->player.coordinate.x;
-	// data->player.view_dst_pos.y = data->player.dir.y * data->view_dst + data->player.coordinate.y;
+	data->player.view_dst_pos.x = data->player.dir.x * data->view_dst + data->player.coor.x;
+	data->player.view_dst_pos.y = data->player.dir.y * data->view_dst + data->player.coor.y;
 }
 
 int	key_press(int keycode, t_data *data)
@@ -98,12 +97,7 @@ int update(t_data *data)
 {
 	keyboard_input(data);
 	render_floor_ceiling(data);
-	// set_grid_cell(data, data->mouse_pos.x, data->mouse_pos.y);
-	// print_grid(data);
-	// t_coor_f hit = dda(data, data->rays);
-	// bresenham(data, coor_f_to_i(data->player.coordinate), coor_f_to_i(hit), WHITE);
-	// bresenham(data, coor_f_to_i(data->player.coordinate), data->player.view_dst_pos, WHITE);
-	// draw_circle_color(data, coor_f_to_i(hit), GREEN);
+	raycast(data);
 	// create_rays(data);
 	// calculate_collision(data);
 	// rays_render(data);

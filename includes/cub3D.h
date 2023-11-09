@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:22:33 by hleung            #+#    #+#             */
-/*   Updated: 2023/11/08 14:47:56 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/09 12:34:31 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,16 @@ int			check_walls(t_config *config);
 /* parse_config_double_map.c */
 void		check_double_map(t_config *config);
 
+/* raycast.c */
+void		raycast(t_data *data);
+
+/* dda.c */
+t_coor_f	dda(t_data *data, t_ray *ray);
+
+/* dda_utils.c */
+void		set_dda_values(t_data *data, t_ray *ray, t_dda *dda);
+int			is_in_map(t_data *data, t_coor_i pos);
+
 /* render.c */
 void		render(t_config *config);
 void		render_minimap(t_data *data);
@@ -83,13 +93,26 @@ void		free_2d_char(char ***arr, int size);
 void		free_config_exit_msg(t_config *config, int status, const char* msg);
 void		free_data(t_data *data);
 
+/* coor_utils.c */
+t_coor_i	coor_f_to_i(t_coor_f coor_f);
+t_coor_f	coor_i_to_f(t_coor_i coor_i);
+t_coor_i	get_coor_i_from_origin(t_coor_i origin, double radian, double length);
+t_coor_f	get_coor_f_from_origin(t_coor_f origin, double radian, double length);
+t_coor_f	coor_f_interpolation(t_coor_f start, t_coor_f end, float ratio);
+
+/* math_utils.c */
+double		radian_to_degree(double radian);
+double		degree_to_radian(double degree);
+double		get_angle(t_coor_i start, t_coor_i end);
+double		get_angle_f(t_coor_f start, t_coor_f end);
+double		get_coor_f_length(t_coor_f start, t_coor_f end);
+
+/* math_utils_2.c */
+double		get_coor_i_sq_len(t_coor_i start, t_coor_i end);
+
 /* get_structs_address.c */
 t_data		*get_data_address(t_data* data);
 t_mlx		*get_mlx_address(t_mlx* mlx);
 t_config	*get_config_address(t_config* config);
-
-/* render_3d.c */
-void	draw_3d_walls(t_data *data);
-void	dda(t_data *data);
 
 #endif
