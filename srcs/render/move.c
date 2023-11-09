@@ -192,20 +192,20 @@ void	move_right(t_data *data)
 		p_pos->y = tmp_coor.y;
 }
 
-void rotate_right(t_data *data)
+void	rotate_right(t_data *data)
 {
   double old_dir_x = data->player.dir.x;
   data->player.dir.x = data->player.dir.x * cos(data->rot_speed) - data->player.dir.y * sin(data->rot_speed);
   data->player.dir.y = old_dir_x * sin(data->rot_speed) + data->player.dir.y * cos(data->rot_speed);
 }
-void rotate_left(t_data *data)
+void	rotate_left(t_data *data)
 {
 	double old_dir_x = data->player.dir.x;
 	data->player.dir.x = data->player.dir.x * cos(-data->rot_speed) - data->player.dir.y * sin(-data->rot_speed);
 	data->player.dir.y = old_dir_x * sin(-data->rot_speed) + data->player.dir.y * cos(-data->rot_speed);
 }
 
-int		is_walkable(t_data *data, float x, float y)
+int	is_walkable(t_data *data, float x, float y)
 {
 	t_coor_i	cell;
 

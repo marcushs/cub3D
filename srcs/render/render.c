@@ -163,7 +163,6 @@ void	render_rays(t_data *data)
 	{
 		slice.ray = &data->rays[slice.i];
 		slice.text = &data->textures[slice.ray->hit_side];
-		printf("%f\n", slice.ray->perp_wall_dist);
 		if (slice.ray->perp_wall_dist == -1)
 			continue;
 		display_slice(data, &slice);
@@ -173,7 +172,6 @@ void	render_rays(t_data *data)
 
 void	display_slice(t_data *data, t_slice *slice)
 {
-	printf("here\n");
 	slice->slice_h = (float)WIN_H / (float)slice->ray->perp_wall_dist;
 	slice->tl.x = slice->i * slice->slice_w;
 	slice->tl.y = (WIN_H / 2) - slice->slice_h / 2;

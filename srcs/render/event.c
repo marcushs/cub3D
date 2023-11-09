@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 18:08:44 by tduprez           #+#    #+#             */
-/*   Updated: 2023/11/09 14:19:47 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/09 14:39:38 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,23 +44,17 @@ int	exit_prog(t_data *data)
 void	keyboard_input(t_data *data)
 {
 	if (data->keyboard[XK_w])
-		// move_forward(data);
-		printf("w pressed\n");
+		move_forward(data);
 	if (data->keyboard[XK_s])
-		// move_backward(data);
-		printf("s pressed\n");
+		move_backward(data);
 	if (data->keyboard[XK_a])
-		// move_left(data);
-		printf("a pressed\n");
+		move_left(data);
 	if (data->keyboard[XK_d])
-		// move_right(data);
-		printf("d pressed\n");
+		move_right(data);
 	if (data->keyboard[XK_left])
-		// rotate_left(data);
-		printf("left pressed\n");
+		rotate_left(data);
 	if (data->keyboard[XK_right])
-		// rotate_right(data);
-		printf("right pressed\n");
+		rotate_right(data);
 	if (data->keyboard[XK_esc])
 		exit_prog(data);
 	data->player.view_dst_pos.x = data->player.dir.x * data->view_dst + data->player.coor.x;
@@ -100,7 +94,7 @@ int update(t_data *data)
 	raycast(data);
 	// for (int i = 0; i < data->ray_nb; i++)
 	// 	printf("data->ray[%d]->perp_wall_dist = %f\n", i, data->rays[i].perp_wall_dist);
-	// render_rays(data);
+	render_rays(data);
 	mlx_put_image_to_window(data->mlx.mlx, data->mlx.mlx_win, data->mlx.window->img, 0, 0);
 	return (0);
 }

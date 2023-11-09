@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:22:33 by hleung            #+#    #+#             */
-/*   Updated: 2023/11/09 12:46:24 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/09 14:38:30 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,12 @@ void		ft_put_img_to_img(t_image *img1, t_image *img2, int x, int y);
 void		put_pixel(t_image *image, int x, int y, int color);
 
 /* move.c */
-void		move_player(int keycode, t_data *data);
+void		move_forward(t_data *data);
+void		move_backward(t_data *data);
+void		move_left(t_data *data);
+void		move_right(t_data *data);
+void		rotate_left(t_data *data);
+void		rotate_right(t_data *data);
 
 /* event.c */
 int			event_move(int keycode, t_mlx* mlx);
