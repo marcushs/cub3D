@@ -136,7 +136,6 @@ void	move_forward(t_data *data)
 	p_pos = &data->player.coor;
 	tmp_coor.x = p_pos->x + data->player.dir.x * data->move_speed;
 	tmp_coor.y = p_pos->y + data->player.dir.y * data->move_speed;
-
 	if (is_walkable(data, tmp_coor.x, p_pos->y))
 		p_pos->x = tmp_coor.x;
 	if (is_walkable(data, p_pos->x, tmp_coor.y))
@@ -151,7 +150,6 @@ void	move_backward(t_data *data)
 	p_pos = &data->player.coor;
 	tmp_coor.x = p_pos->x - data->player.dir.x * data->move_speed;
 	tmp_coor.y = p_pos->y - data->player.dir.y * data->move_speed;
-
 	if (is_walkable(data, tmp_coor.x, p_pos->y))
 		p_pos->x = tmp_coor.x;
 	if (is_walkable(data, p_pos->x, tmp_coor.y))
@@ -194,13 +192,17 @@ void	move_right(t_data *data)
 
 void	rotate_right(t_data *data)
 {
-  double old_dir_x = data->player.dir.x;
-  data->player.dir.x = data->player.dir.x * cos(data->rot_speed) - data->player.dir.y * sin(data->rot_speed);
-  data->player.dir.y = old_dir_x * sin(data->rot_speed) + data->player.dir.y * cos(data->rot_speed);
+	double old_dir_x;
+	
+	old_dir_x = data->player.dir.x;
+	data->player.dir.x = data->player.dir.x * cos(data->rot_speed) - data->player.dir.y * sin(data->rot_speed);
+	data->player.dir.y = old_dir_x * sin(data->rot_speed) + data->player.dir.y * cos(data->rot_speed);
 }
 void	rotate_left(t_data *data)
 {
-	double old_dir_x = data->player.dir.x;
+	double old_dir_x;
+	
+	old_dir_x = data->player.dir.x;
 	data->player.dir.x = data->player.dir.x * cos(-data->rot_speed) - data->player.dir.y * sin(-data->rot_speed);
 	data->player.dir.y = old_dir_x * sin(-data->rot_speed) + data->player.dir.y * cos(-data->rot_speed);
 }
@@ -215,7 +217,7 @@ int	is_walkable(t_data *data, float x, float y)
 		return (0);
 	if (cell.y < 0 || cell.y > data->config.map_size - 1)
 		return (0);
-	if (data->config.map[cell.y][cell.x] == '0')
+	if (data->config.map[cell.y][cell.x] != '1')
 		return (1);
 	return (0);
 }

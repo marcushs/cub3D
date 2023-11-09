@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 11:00:10 by hleung            #+#    #+#             */
-/*   Updated: 2023/11/09 14:34:30 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/09 14:43:02 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	set_dda_values(t_data *data, t_ray *ray, t_dda *dda)
 	dda->ray_len = get_coor_i_sq_len(dda->map, dda->map);
 }
 
-int is_in_map(t_data *data, t_coor_i pos)
+int	is_in_map(t_data *data, t_coor_i pos)
 {
 	if (pos.x < 0 || pos.x > data->w_size - 1)
 		return (0);

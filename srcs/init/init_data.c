@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 12:51:27 by tduprez           #+#    #+#             */
-/*   Updated: 2023/11/09 14:34:07 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/09 15:49:40 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	init_data(t_data *data, char *map_path)
 
 	init_config(&config, map_path);
 	data->config = config;
-	data->cell_size = 15;
+	data->cell_size = 40;
 	data->h_size = data->cell_size * data->config.map_size;
 	init_t_mlx(&mlx);
 	data->mlx = mlx;
