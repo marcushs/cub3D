@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 18:15:02 by tduprez           #+#    #+#             */
-/*   Updated: 2023/11/11 09:15:11 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/11 14:46:22 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	put_window_image_to_window(t_data *data, float x, float y)
 
 	m = &data->mlx;
 	mlx_clear_image(m);
-	ft_put_img_to_img(m->mmb, m->mini_map, 90 - x * 15 , 90 - y * 15);
+	ft_put_img_to_img(m->mmb, m->mini_map, 90 - x , 90 - y);
 	render_border(data);
 	ft_put_img_to_img(m->mmb, m->player, 100, 100);
 	ft_put_img_to_img(m->window, m->mmb, 30, 30);
