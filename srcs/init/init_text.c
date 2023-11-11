@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_text.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 08:58:38 by hleung            #+#    #+#             */
-/*   Updated: 2023/11/09 16:03:26 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/11 17:31:54 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	init_text(t_data *data)
 	if (!data->textures)
 	{
 		ft_putstr(MALLOC_ERR);
+		mlx_destroy_window(data->mlx.mlx, data->mlx.mlx_win);
+		mlx_destroy_display(data->mlx.mlx);
 		free_data(data);
 		exit(EXIT_FAILURE);
 	}
@@ -32,6 +34,8 @@ void	init_text(t_data *data)
 		if (get_texture(data, &data->textures[i], \
 		data->config.text_paths[i]) == -1)
 		{
+			mlx_destroy_window(data->mlx.mlx, data->mlx.mlx_win);
+			mlx_destroy_display(data->mlx.mlx);
 			free_data(data);
 			exit(EXIT_FAILURE);
 		}

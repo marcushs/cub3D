@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 08:03:25 by hleung            #+#    #+#             */
-/*   Updated: 2023/11/11 16:45:54 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/11 17:17:32 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@
 # define M_PI_2	1.57079632679489661923
 # define WIN_H 1080
 # define WIN_W 1920
-# define PLAYER_H 8
-# define PLAYER_W 8
+# define PLAYER_H 2
+# define PLAYER_W 2
 # define MAP_H 200
 # define MAP_W 200
 # define N 78
@@ -138,10 +138,6 @@ typedef struct s_config
 typedef struct s_player
 {
 	t_coor_f	coor;
-	t_coor_f	t_left;
-	t_coor_f	t_right;
-	t_coor_f	b_left;
-	t_coor_f	b_right;
 	t_coor_f	dir;
 	t_coor_i	view_dst_pos;
 	double		angle;
@@ -163,7 +159,7 @@ typedef struct s_mlx
 {
 	void		*mlx;
 	void		*mlx_win;
-	t_image		*mmb; //mini_map_border
+	t_image		*mmb;
 	t_image		*mini_map;
 	t_image		*player;
 	t_image		*window;
@@ -171,34 +167,27 @@ typedef struct s_mlx
 
 typedef struct s_data
 {
-	/* Config from .cub file */
 	t_config	config;
 	int			w_size;
 	int			h_size;
 
-	/* Mlx */
 	t_mlx		mlx;
 	int			cell_size;
 
-	/* Player */
 	t_player	player;
 	double		move_speed;
 	double		rot_speed;
 
-	/* Vision */
 	int			fov;
 	int			view_dst;
 	int			ray_nb;
 	t_ray		*rays;
 
-	/* Keyboard */
 	int			keyboard[200];
 
-	/* Floor and ceiling color */
 	int			floor_color;
 	int			ceiling_color;
 
-	/* Textures */
 	t_text		*textures;
 }	t_data;
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 21:32:07 by tduprez           #+#    #+#             */
-/*   Updated: 2023/11/09 16:34:27 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/11 17:14:29 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,24 @@ void	init_image_data(t_mlx *mlx, t_config *config)
 	mlx->player->img = mlx_new_image(mlx->mlx, PLAYER_W, PLAYER_H);
 	mlx->player->img_addr = mlx_get_data_addr(mlx->player->img, \
 	&mlx->player->bpp, &mlx->player->line_len, &mlx->player->endian);
+	return ;
+}
+
+void	mlx_clear_image(t_mlx *mlx)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (y < MAP_H)
+	{
+		x = 0;
+		while (x < MAP_W)
+		{
+			put_pixel(mlx->mmb, x, y, 0x00000);
+			x++;
+		}
+		y++;
+	}
 	return ;
 }

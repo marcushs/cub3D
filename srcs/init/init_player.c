@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:04:56 by hleung            #+#    #+#             */
-/*   Updated: 2023/11/09 16:10:51 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/11 17:17:25 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,6 @@
 
 void	init_player(t_player *player)
 {
-	// static t_coor_f		top_left;
-	// static t_coor_f		top_right;
-	// static t_coor_f		bottom_left;
-	// static t_coor_f		bottom_right;
-
 	player->coor.x = 0;
 	player->coor.y = 0;
 	player->dir.x = 0;
@@ -27,11 +22,6 @@ void	init_player(t_player *player)
 	player->view_dst_pos.y = 0;
 	player->angle = 0;
 	player->ori = 0;
-	// player->t_left = &top_left;
-	// player->t_right = &top_right;
-	// player->b_left = &bottom_left;
-	// player->b_right = &bottom_right;
-	return ;
 }
 
 void	init_player_position(t_data *data)

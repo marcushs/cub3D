@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:22:33 by hleung            #+#    #+#             */
-/*   Updated: 2023/11/11 09:03:40 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/11 17:14:49 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void		render_rays(t_data *data);
 /* render_utils.c */
 int			map_longest_row(t_config *config);
 void		init_image_data(t_mlx *mlx, t_config *config);
+void		mlx_clear_image(t_mlx *mlx);
 
 /* put_to_mlx.c */
 void		put_square(t_mlx *mlx, float x, float y, int player);

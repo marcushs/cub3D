@@ -6,18 +6,18 @@
 /*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 13:25:36 by tduprez           #+#    #+#             */
-/*   Updated: 2023/11/11 09:18:10 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/11 17:16:47 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
-void put_square(t_mlx *mlx, float x, float y, int player)
+void	put_square(t_mlx *mlx, float x, float y, int player)
 {
-	float start_x;
-	float start_y;
-	float end_x;
-	float end_y;
+	float	start_x;
+	float	start_y;
+	float	end_x;
+	float	end_y;
 
 	start_x = (x + 1) * 15 + ((player * -0.20) * 15);
 	start_y = (y + 1) * 15 + ((player * -0.20) * 15);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 18:15:02 by tduprez           #+#    #+#             */
-/*   Updated: 2023/11/11 14:46:22 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/11/11 17:15:10 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,42 +14,24 @@
 
 void	render_border(t_data *data);
 
-void	mlx_clear_image(t_mlx *mlx)
-{
-	int	x;
-	int	y;
-
-	y = 0;
-	while (y < MAP_H)
-	{
-		x = 0;
-		while (x < MAP_W)
-		{
-			put_pixel(mlx->mmb, x, y, 0x00000);
-			x++;
-		}
-		y++;
-	}
-	return ;
-}
-
 void	put_window_image_to_window(t_data *data, float x, float y)
 {
 	t_mlx	*m;
 
 	m = &data->mlx;
 	mlx_clear_image(m);
-	ft_put_img_to_img(m->mmb, m->mini_map, 90 - x , 90 - y);
+	ft_put_img_to_img(m->mmb, m->mini_map, 90 - x, 90 - y);
 	render_border(data);
-	ft_put_img_to_img(m->mmb, m->player, 100, 100);
+	ft_put_img_to_img(m->mmb, m->player, 104, 104);
 	ft_put_img_to_img(m->window, m->mmb, 30, 30);
 	mlx_put_image_to_window(m->mlx, m->mlx_win, m->window->img, 0, 0);
 	return ;
 }
+
 void	render_border(t_data *data)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	y = 0;
 	while (y < MAP_H)
@@ -66,10 +48,10 @@ void	render_border(t_data *data)
 	return ;
 }
 
-void render_minimap(t_data *data)
+void	render_minimap(t_data *data)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	y = 0;
 	while (y < data->config.map_size)
@@ -83,24 +65,21 @@ void render_minimap(t_data *data)
 		}
 		y++;
 	}
-	return;
 }
 
-void render_player(t_image *player)
+void	render_player(t_image *player)
 {
 	int	x;
 	int	y;
 
 	y = 0;
-
-	while (y < 8)
+	while (y < PLAYER_H)
 	{
 		x = 0;
-		while (x < 8)
+		while (x < PLAYER_W)
 			put_pixel(player, x++, y, 0x00FF0000);
 		y++;
 	}
-	return ;
 }
 
 void	render_floor_ceiling(t_data *data)

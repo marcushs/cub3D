@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 18:08:44 by tduprez           #+#    #+#             */
-/*   Updated: 2023/11/11 09:16:51 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/11 17:38:51 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,21 @@ int	update(t_data *data)
 	render_player(data->mlx.player);
 	raycast(data);
 	render_rays(data);
-	put_window_image_to_window(data, data->player.coor.x * 0.375, data->player.coor.y * 0.375);
-	// mlx_put_image_to_window(data->mlx.mlx, data->mlx.mlx_win, 
-	// data->mlx.window->img, 0, 0);
+	put_window_image_to_window(data, data->player.coor.x * 0.375, \
+	data->player.coor.y * 0.375);
 	return (0);
 }
 
 int	exit_prog(t_data *data)
 {
+	int	i;
+
+	i = -1;
+	while (++i < 4)
+		mlx_destroy_image(data->mlx.mlx, data->textures[i].text);
+	mlx_destroy_image(data->mlx.mlx, data->mlx.mmb->img);
+	mlx_destroy_image(data->mlx.mlx, data->mlx.mini_map->img);
+	mlx_destroy_image(data->mlx.mlx, data->mlx.player->img);
 	mlx_destroy_image(data->mlx.mlx, data->mlx.window->img);
 	mlx_destroy_window(data->mlx.mlx, data->mlx.mlx_win);
 	mlx_destroy_display(data->mlx.mlx);
