@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 08:03:25 by hleung            #+#    #+#             */
-/*   Updated: 2023/11/11 08:05:37 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/11 16:45:54 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 # define POV_ERR "Error:\nNeed one and only one player in map!\n"
 # define WALL_ERR "Error:\nMap not enclosed by wall!\n"
 # define MALLOC_ERR "Malloc error!\n"
-# define TEXT_ERR "Error:\nCannot load texture %s\n!"
+# define TEXT_ERR "Error:\nCannot load texture %s!\n"
 
 /* Keycodes*/
 # define XK_W 119

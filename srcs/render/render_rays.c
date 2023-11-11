@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:14:10 by hleung            #+#    #+#             */
-/*   Updated: 2023/11/11 07:58:50 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/11 16:45:04 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,10 @@ void	render_rays(t_data *data)
 		slice.ray = &data->rays[slice.i];
 		slice.text = &data->textures[slice.ray->hit_side];
 		if (slice.ray->perp_wall_dist == -1)
+		{
+			slice.i++;
 			continue ;
+		}
 		display_slice(data, &slice);
 		slice.i++;
 	}
