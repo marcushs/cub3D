@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:22:33 by hleung            #+#    #+#             */
-/*   Updated: 2023/11/09 16:48:05 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/11 09:03:40 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,10 @@ void		set_dda_values(t_data *data, t_ray *ray, t_dda *dda);
 int			is_in_map(t_data *data, t_coor_i pos);
 
 /* render.c */
-void		render(t_config *config);
+// void		render(t_config *config);
 void		render_minimap(t_data *data);
 void		render_player(t_image *player);
-void		put_window_image_to_window(t_mlx *mlx, float x, float y);
+void		put_window_image_to_window(t_data *data, float x, float y);
 void		render_floor_ceiling(t_data *data);
 void		render_rays(t_data *data);
 

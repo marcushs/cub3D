@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_rays.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:14:10 by hleung            #+#    #+#             */
-/*   Updated: 2023/11/09 16:15:29 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/11 07:58:50 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	display_slice(t_data *data, t_slice *slice);
 static void	display_loops(t_data *data, t_slice *slice);
-static void	get_tex_x(t_data *d, t_slice *s);
+static void	get_text_x(t_data *d, t_slice *s);
 static int	get_text_pix(t_text *text, int x, int y);
 
 void	render_rays(t_data *data)
@@ -41,8 +41,8 @@ static void	display_slice(t_data *data, t_slice *slice)
 	slice->tl.y = (WIN_H / 2) - slice->slice_h / 2;
 	slice->br.x = slice->i * slice->slice_w + slice->slice_w;
 	slice->br.y = (WIN_H / 2) + slice->slice_h / 2;
-	slice->tex_y = 0;
-	get_tex_x(data, slice);
+	slice->text_y = 0;
+	get_text_x(data, slice);
 	display_loops(data, slice);
 }
 
@@ -59,23 +59,23 @@ static void	display_loops(t_data *data, t_slice *slice)
 	{
 		if (y < 0)
 		{
-			slice->tex_y += -y * step;
+			slice->text_y += -y * step;
 			y = 0;
 		}
 		if (y >= WIN_H)
 			break ;
 		if (y >= 0 && y < WIN_H)
 		{
-			color = get_text_pix(slice->text, slice->tex_x, slice->tex_y);
+			color = get_text_pix(slice->text, slice->text_x, slice->text_y);
 			x = slice->tl.x - 1;
 			while (++x < slice->br.x)
 				put_pixel(data->mlx.window, x, y, color);
 		}
-		slice->tex_y += step;
+		slice->text_y += step;
 	}
 }
 
-static void	get_tex_x(t_data *d, t_slice *s)
+static void	get_text_x(t_data *d, t_slice *s)
 {
 	double		perp_angle;
 	double		hit_length;
@@ -94,7 +94,7 @@ static void	get_tex_x(t_data *d, t_slice *s)
 		cell_pos = cell_pos / d->cell_size;
 	else
 		cell_pos = 1.0 - cell_pos / d->cell_size;
-	s->tex_x = cell_pos * s->text->text_w;
+	s->text_x = cell_pos * s->text->text_w;
 }
 
 static int	get_text_pix(t_text *text, int x, int y)

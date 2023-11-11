@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs_and_macros.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 08:03:25 by hleung            #+#    #+#             */
-/*   Updated: 2023/11/09 16:55:23 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/11 08:05:37 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,13 @@
 # define TEXT_ERR "Error:\nCannot load texture %s\n!"
 
 /* Keycodes*/
-# define XK_W 119 % 200
-# define XK_D 100 % 200
-# define XK_S 115 % 200
-# define XK_A 97 % 200
-# define XK_LEFT 65361 % 200
-# define XK_RIGHT 65363 % 200
-# define XK_ESC 65307 % 200
+# define XK_W 119
+# define XK_D 100
+# define XK_S 115
+# define XK_A 97
+# define XK_LEFT 65361
+# define XK_RIGHT 65363
+# define XK_ESC 65307
 
 /* Values */
 # define PI 3.1415926535
@@ -89,13 +89,13 @@ typedef struct s_dda
 
 typedef struct s_ray
 {
-	t_coor_f		hitpoint;
-	t_coor_i		cell;
-	double			length;
-	double			perp_wall_dist;
-	int				hit_side;
-	double			angle;
-	t_coor_f		ray_dir;
+	t_coor_f	hitpoint;
+	t_coor_i	cell;
+	double		length;
+	double		perp_wall_dist;
+	int			hit_side;
+	double		angle;
+	t_coor_f	ray_dir;
 }	t_ray;
 
 typedef struct s_text
@@ -116,8 +116,8 @@ typedef struct s_slice
 	t_text		*text;
 	t_coor_i	tl;
 	t_coor_i	br;
-	int			tex_x;
-	double		tex_y;
+	int			text_x;
+	double		text_y;
 	float		slice_h;
 	int			slice_w;
 }	t_slice;
@@ -138,10 +138,10 @@ typedef struct s_config
 typedef struct s_player
 {
 	t_coor_f	coor;
-	// t_coor_f	t_left;
-	// t_coor_f	t_right;
-	// t_coor_f	b_left;
-	// t_coor_f	b_right;
+	t_coor_f	t_left;
+	t_coor_f	t_right;
+	t_coor_f	b_left;
+	t_coor_f	b_right;
 	t_coor_f	dir;
 	t_coor_i	view_dst_pos;
 	double		angle;
