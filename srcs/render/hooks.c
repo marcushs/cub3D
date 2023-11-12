@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:26:40 by hleung            #+#    #+#             */
-/*   Updated: 2023/11/11 07:59:21 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/12 07:06:59 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,39 @@ int	hooks_and_loops(t_data *data)
 }
 
 static int	key_press(int keycode, t_data *data)
-{
-	keycode = keycode % 200;
-	if (keycode < 200)
-		data->keyboard[keycode] = 1;
+{	
+	if (keycode == XK_ESC)
+		exit_prog(data);
+	if (keycode == XK_W)
+		data->keyboard[FOR] = 1;
+	if (keycode == XK_A)
+		data->keyboard[LEFT] = 1;
+	if (keycode == XK_S)
+		data->keyboard[BACK] = 1;
+	if (keycode == XK_D)
+		data->keyboard[RIGHT] = 1;
+	if (keycode == XK_LEFT)
+		data->keyboard[A_CLOCK] = 1;
+	if (keycode == XK_RIGHT)
+		data->keyboard[CLOCK] = 1;
 	return (0);
 }
 
 static int	key_release(int keycode, t_data *data)
 {
-	keycode = keycode % 200;
-	if (keycode < 200)
-		data->keyboard[keycode] = 0;
+	if (keycode == XK_ESC)
+		exit_prog(data);
+	if (keycode == XK_W)
+		data->keyboard[FOR] = 0;
+	if (keycode == XK_A)
+		data->keyboard[LEFT] = 0;
+	if (keycode == XK_S)
+		data->keyboard[BACK] = 0;
+	if (keycode == XK_D)
+		data->keyboard[RIGHT] = 0;
+	if (keycode == XK_LEFT)
+		data->keyboard[A_CLOCK] = 0;
+	if (keycode == XK_RIGHT)
+		data->keyboard[CLOCK] = 0;
 	return (0);
 }

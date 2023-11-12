@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 08:03:25 by hleung            #+#    #+#             */
-/*   Updated: 2023/11/11 17:17:32 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/12 07:06:34 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,17 @@
 
 /* Keycodes*/
 # define XK_W 119
-# define XK_D 100
-# define XK_S 115
+# define FOR 0
 # define XK_A 97
+# define LEFT 2
+# define XK_S 115
+# define BACK 1
+# define XK_D 100
+# define RIGHT 3
 # define XK_LEFT 65361
+# define A_CLOCK 4
 # define XK_RIGHT 65363
+# define CLOCK 5
 # define XK_ESC 65307
 
 /* Values */
@@ -183,7 +189,7 @@ typedef struct s_data
 	int			ray_nb;
 	t_ray		*rays;
 
-	int			keyboard[200];
+	int			keyboard[6];
 
 	int			floor_color;
 	int			ceiling_color;

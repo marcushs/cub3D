@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 12:51:27 by tduprez           #+#    #+#             */
-/*   Updated: 2023/11/11 17:33:16 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/12 06:59:30 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,6 @@ static void	init_keyboard(t_data *data)
 	int	i;
 
 	i = 0;
-	while (i++ < 200)
-		data->keyboard[i] = 0;
+	while (i < 6)
+		data->keyboard[i++] = 0;
 }

@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 18:08:44 by tduprez           #+#    #+#             */
-/*   Updated: 2023/11/11 17:38:51 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/12 07:08:24 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,20 +46,18 @@ int	exit_prog(t_data *data)
 
 void	keyboard_input(t_data *data)
 {
-	if (data->keyboard[XK_W % 200])
+	if (data->keyboard[FOR])
 		move_forward(data);
-	if (data->keyboard[XK_S % 200])
+	if (data->keyboard[BACK])
 		move_backward(data);
-	if (data->keyboard[XK_A % 200])
+	if (data->keyboard[LEFT])
 		move_left(data);
-	if (data->keyboard[XK_D % 200])
+	if (data->keyboard[RIGHT])
 		move_right(data);
-	if (data->keyboard[XK_LEFT % 200])
+	if (data->keyboard[A_CLOCK])
 		rotate_left(data);
-	if (data->keyboard[XK_RIGHT % 200])
+	if (data->keyboard[CLOCK])
 		rotate_right(data);
-	if (data->keyboard[XK_ESC % 200])
-		exit_prog(data);
 	data->player.view_dst_pos.x = data->player.dir.x * \
 	data->view_dst + data->player.coor.x;
 	data->player.view_dst_pos.y = data->player.dir.y * \
