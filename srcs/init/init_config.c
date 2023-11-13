@@ -6,13 +6,14 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 16:29:49 by hleung            #+#    #+#             */
-/*   Updated: 2023/11/08 09:28:38 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/13 12:55:17 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
 static int	is_valid_file_extension(char *path);
+static void	fill_text_paths(t_config *config);
 
 void	init_config(t_config *config, char *map_path)
 {
@@ -28,6 +29,7 @@ void	init_config(t_config *config, char *map_path)
 		ft_putstr_fd(MALLOC_ERR, 2);
 		exit(EXIT_FAILURE);
 	}
+	fill_text_paths(config);
 	if (!is_valid_file_extension(map_path))
 	{
 		ft_putstr_fd(INV_EXT, 2);
@@ -42,7 +44,7 @@ void	init_config(t_config *config, char *map_path)
 	parse_config(config);
 }
 
-int	is_valid_file_extension(char *path)
+static int	is_valid_file_extension(char *path)
 {
 	path = ft_strchr(path, '.');
 	if (!path)
@@ -50,4 +52,13 @@ int	is_valid_file_extension(char *path)
 	if (!ft_strcmp(path, ".cub"))
 		return (1);
 	return (0);
+}
+
+static void	fill_text_paths(t_config *config)
+{
+	int	i;
+
+	i = 0;
+	while (i < 4)
+		config->text_paths[i++] = NULL;
 }

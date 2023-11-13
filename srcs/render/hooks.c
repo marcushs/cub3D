@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:26:40 by hleung            #+#    #+#             */
-/*   Updated: 2023/11/12 07:06:59 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/13 12:58:41 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	hooks_and_loops(t_data *data)
 }
 
 static int	key_press(int keycode, t_data *data)
-{	
+{
 	if (keycode == XK_ESC)
 		exit_prog(data);
 	if (keycode == XK_W)

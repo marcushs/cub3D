@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 12:51:27 by tduprez           #+#    #+#             */
-/*   Updated: 2023/11/12 06:59:30 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/13 12:57:09 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static void	init_t_mlx(t_mlx *mlx)
 
 static void	init_vision(t_data *data)
 {
-	data->fov = 80;
+	data->fov = 100;
 	data->view_dst = 800;
 	data->ray_nb = WIN_W * 0.5;
 	data->rays = (t_ray *)malloc(sizeof(t_ray) * data->ray_nb);
