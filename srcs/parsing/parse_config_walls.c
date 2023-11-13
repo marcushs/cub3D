@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_config_walls.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 14:36:21 by hleung            #+#    #+#             */
-/*   Updated: 2023/11/09 16:38:51 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/13 11:29:47 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	check_walls(t_config *config)
 	y = 1;
 	check_line(config, config->map[0]);
 	check_line(config, config->map[config->map_size - 1]);
-	while (y < config->map_size - 2)
+	while (y < config->map_size - 1)
 	{
 		x = 0;
 		while (config->map[y][x])
