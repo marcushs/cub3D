@@ -6,7 +6,7 @@
 /*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:22:33 by hleung            #+#    #+#             */
-/*   Updated: 2023/11/14 12:27:17 by tduprez          ###   ########lyon.fr   */
+/*   Updated: 2023/11/14 14:07:14 by tduprez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void		render_rays(t_data *data);
 
 /* render_utils.c */
 int			map_longest_row(t_config *config);
-void	init_image_data(t_mlx *mlx, t_config *config, t_data *data);
+void		init_image_data(t_mlx *mlx, t_config *config, t_data *data);
 void		mlx_clear_image(t_mlx *mlx);
 
 /* put_to_mlx.c */
