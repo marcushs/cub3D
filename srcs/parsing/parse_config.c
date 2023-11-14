@@ -3,43 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   parse_config.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 14:36:21 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/05 09:51:34 by hleung           ###   ########.fr       */
+/*   Updated: 2023/10/18 22:55:11 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3D.h"
+#include "../../includes/cub3D.h"
 
-void			parse_config(t_config *config, char *path);
-static int		map_loop(t_config *config, int fd);
 static int		elements_loop(t_config *config, int fd);
-static int		is_val_file_ext(char *path);
-static int		map_list_to_arr(t_config *config);
+static int		map_loop(t_config *config, int fd);
+static int		convert_map_list_to_array(t_config *config);
+static int		check_map_chars(t_config *config);
 
-void	parse_config(t_config *config, char *path)
+void	parse_config(t_config *config)
 {
-	if (!is_val_file_ext(path))
-	{
-		printf(INV_EXT);
-		exit(EXIT_FAILURE);
-	}
-	config->fd = open(path, O_RDONLY);
-	if (config->fd == -1)
-	{
-		printf("%s file not found\n", path);
-		exit(EXIT_FAILURE);
-	}
 	if (elements_loop(config, config->fd) == -1)
 		free_config_exit_msg(config, EXIT_FAILURE, NULL);
 	if (map_loop(config, config->fd) == -1)
 		free_config_exit_msg(config, EXIT_FAILURE, NULL);
-	if (map_list_to_arr(config) == -1)
+	if (convert_map_list_to_array(config) == -1)
 		free_config_exit_msg(config, EXIT_FAILURE, NULL);
 	if (check_map_chars(config) == -1)
 		free_config_exit_msg(config, EXIT_FAILURE, NULL);
-	check_map_walls(config);
+	trim_map_first_spaces(config);
+	trim_map_back_spaces(config);
+	check_walls(config);
 }
 
 static int	elements_loop(t_config *config, int fd)
@@ -96,17 +86,7 @@ static int	map_loop(t_config *config, int fd)
 	return (0);
 }
 
-static int	is_val_file_ext(char *path)
-{
-	path = ft_strchr(path, '.');
-	if (!path)
-		return (0);
-	if (!ft_strcmp(path, ".cub"))
-		return (1);
-	return (0);
-}
-
-static int	map_list_to_arr(t_config *config)
+static int	convert_map_list_to_array(t_config *config)
 {
 	int		i;
 	t_list	*tmp;
@@ -117,6 +97,7 @@ static int	map_list_to_arr(t_config *config)
 	config->map = (char **)malloc(sizeof(char *) * config->map_size);
 	if (!config->map)
 		return (ft_putstr(MALLOC_ERR), -1);
+	set_map_null(config);
 	tmp = config->map_list;
 	i = 0;
 	while (i < config->map_size)
@@ -131,5 +112,31 @@ static int	map_list_to_arr(t_config *config)
 	config->map_list = NULL;
 	if (trim_empty_lines_after_map(config) == -1)
 		return (-1);
+	return (0);
+}
+
+static int	check_map_chars(t_config *config)
+{
+	int	i;
+	int	j;
+	int	chars[256];
+
+	i = -1;
+	while (++i < 256)
+		chars[i] = 0;
+	i = -1;
+	while (++i < config->map_size)
+	{
+		j = -1;
+		while (config->map[i][++j])
+			chars[(int)config->map[i][j]]++;
+	}
+	if (chars[69] + chars[78] + chars[83] + chars[87] != 1)
+		return (ft_putstr(POV_ERR), -1);
+	i = -1;
+	while (++i < 256)
+		if ((i != 10 && i != 32 && i != 48 && i != 49 && i != 69 && \
+			i != 78 && i != 83 && i != 87) && chars[i])
+			return (ft_putstr(INV_CHAR), -1);
 	return (0);
 }

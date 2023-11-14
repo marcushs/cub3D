@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_elements.c                                   :+:      :+:    :+:   */
+/*   parse_config_elements.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 16:12:06 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/02 15:29:39 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/13 13:58:25 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3D.h"
+#include "../../includes/cub3D.h"
 
-int			parse_element(t_config *config, char *line);
 static int	elements_conditions(t_config *config, char ***strs);
-static int	parse_texture_path(t_config *config, char ***strs);
+static int	parse_texture_path(t_config *config, char ***strs, char **path);
 static int	parse_rgb(t_config *config, char ***strs);
 static int	str_to_rgb_values(t_config *config, char ***values, char *c);
 
@@ -35,15 +34,17 @@ int	parse_element(t_config *config, char *line)
 	return (0);
 }
 
-int	elements_conditions(t_config *config, char ***strs)
+static int	elements_conditions(t_config *config, char ***strs)
 {
 	char	*id;
+	char	*path;
 
+	path = NULL;
 	id = (*strs)[0];
 	if (!ft_strcmp(id, "NO") || !ft_strcmp(id, "SO") || \
 	!ft_strcmp(id, "WE") || !ft_strcmp(id, "EA"))
 	{
-		if (parse_texture_path(config, strs) == -1)
+		if (parse_texture_path(config, strs, &path) == -1)
 			return (-1);
 	}
 	else if (!ft_strcmp(id, "F") || !ft_strcmp(id, "C"))
@@ -56,32 +57,31 @@ int	elements_conditions(t_config *config, char ***strs)
 	return (0);
 }
 
-static int	parse_texture_path(t_config *config, char ***strs)
+static int	parse_texture_path(t_config *config, char ***strs, char **path)
 {
-	char	*path;
 	int		i;
 
-	path = NULL;
+	i = 1;
 	if (count_strs(*strs) > 2)
-	{
-		i = 1;
 		while ((*strs)[++i])
 			if (!is_empty_line((*strs)[i]))
 				return (free_2d_char(strs, count_strs(*strs)), \
 				ft_putstr(MUL_PATH), -1);
-	}
-	path = ft_substr((*strs)[1], 0, ft_strlen((*strs)[1]) - 1);
+	if ((*strs)[1][ft_strlen((*strs)[1]) - 1] == '\n')
+		*path = ft_substr((*strs)[1], 0, ft_strlen((*strs)[1]) - 1);
+	else
+		*path = ft_substr((*strs)[1], 0, ft_strlen((*strs)[1]));
 	if (!path)
 		return (free_2d_char(strs, count_strs(*strs)), \
 		ft_putstr(MALLOC_ERR), -1);
 	if (!ft_strcmp((*strs)[0], "NO"))
-		config->path_to_no = path;
+		config->text_paths[0] = *path;
 	else if (!ft_strcmp((*strs)[0], "SO"))
-		config->path_to_so = path;
+		config->text_paths[2] = *path;
 	else if (!ft_strcmp((*strs)[0], "WE"))
-		config->path_to_we = path;
+		config->text_paths[3] = *path;
 	else if (!ft_strcmp((*strs)[0], "EA"))
-		config->path_to_ea = path;
+		config->text_paths[1] = *path;
 	return (0);
 }
 

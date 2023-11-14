@@ -3,80 +3,125 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: tduprez <tduprez@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 14:22:33 by hleung            #+#    #+#             */
-/*   Updated: 2023/10/03 10:54:37 by hleung           ###   ########.fr       */
+/*   Updated: 2023/11/14 12:27:17 by tduprez          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdbool.h>
-# include <math.h>
-# include <fcntl.h>
-# include "../libft/libft.h"
-# include "../minilibx-linux/mlx.h"
-# define INV_ID "Error:\nInvalid identifier!\n"
-# define INV_EXT "Error:\nInvalid file extension (expected `.cub')!\n"
-# define MAP_LAST "Error:\nMap content misplaced or missing element!\n"
-# define NO_PATH "Error:\nNo path or value specified!\n"
-# define MUL_PATH "Error:\nMore than one path specified!\n"
-# define NB_VALUE "Error:\nWrong number of RGB values!\n"
-# define NON_NUM "Error:\nOnly numerical values allowed!\n"
-# define OUT_RANGE "Error:\nValue out of range!\n"
-# define NO_MAP "Error:\nNo map given!\n"
-# define MAP_EMPTY "Error:\nEmpty line in map content!\n"
-# define INV_CHAR "Error:\nInvalid character in map!\n"
-# define POV_ERR "Error:\nNeed one and only one player in map!\n"
-# define WALL_ERR "Error:\nMap not enclosed by wall!\n"
-# define MALLOC_ERR "Malloc error!\n"
+# include "structs_and_macros.h"
 
-typedef struct s_config
-{
-	int		fd;
-	char	*path_to_no;
-	char	*path_to_so;
-	char	*path_to_we;
-	char	*path_to_ea;
-	int		floor_rgb[3];
-	int		ceiling_rgb[3];
-	char	*map_tmp;
-	t_list	*map_list;
-	int		map_size;
-	char	**map;
-}	t_config;
+/* Prototypes */
 
-/* init.c */
-void	config_init(t_config *config);
+/* init_config.c */
+void		init_config(t_config *config, char *map_path);
+
+/* init_data.c */
+void		init_data(t_data *data, char *map_path);
+void		init_player_hitbox(t_player *player);
+
+/* init_player.c */
+void		init_player(t_player *player);
+void		init_player_position(t_data *data);
+void		init_player_dir(t_data *data);
+
+/* init_text.c */
+void		init_text(t_data *data);
 
 /* parse_config.c */
-void	parse_config(t_config *config, char *path);
+void		parse_config(t_config *config);
 
-/* parse_elements.c */
-int		parse_element(t_config *config, char *line);
+/* parse_config_utils.c */
+int			is_empty_line(char *line);
+void		set_map_null(t_config *config);
+int			trim_empty_lines_after_map(t_config *config);
+void		trim_map_first_spaces(t_config *config);
+void		trim_map_back_spaces(t_config *config);
 
-/* parse_map.c */
-void	parse_map(t_config *config);
+/* parse_config_elements.c */
+int			parse_element(t_config *config, char *line);
 
-/* parse_utils.c*/
-int		is_empty_line(char *line);
-int		is_map_content(char *str);
-int		count_strs(char **strs);
-int		join_strs(char ***strs, char **tmp);
+/* parse_config_elements_utils.c*/
+int			is_map_content(char *str);
+int			count_strs(char **strs);
+int			join_strs(char ***strs, char **tmp);
 
-/* check_map.c */
-int		trim_empty_lines_after_map(t_config *config);
-int		check_map_chars(t_config *config);
-void	check_map_walls(t_config *config);
+/* parse_config_walls */
+int			check_walls(t_config *config);
+
+/* parse_config_double_map.c */
+void		check_double_map(t_config *config);
+
+/* raycast.c */
+void		raycast(t_data *data);
+
+/* dda.c */
+t_coor_f	dda(t_data *data, t_ray *ray);
+
+/* dda_utils.c */
+void		set_dda_values(t_data *data, t_ray *ray, t_dda *dda);
+int			is_in_map(t_data *data, t_coor_i pos);
+
+/* render.c */
+// void		render(t_config *config);
+void		render_minimap(t_data *data);
+void		render_player(t_image *player);
+void		put_window_image_to_window(t_data *data, float x, float y);
+void		render_floor_ceiling(t_data *data);
+void		render_rays(t_data *data);
+
+/* render_utils.c */
+int			map_longest_row(t_config *config);
+void	init_image_data(t_mlx *mlx, t_config *config, t_data *data);
+void		mlx_clear_image(t_mlx *mlx);
+
+/* put_to_mlx.c */
+void		put_square(t_mlx *mlx, float x, float y, int player);
+void		put_vectors(t_data *data);
+void		ft_put_img_to_img(t_image *img1, t_image *img2, int x, int y);
+void		put_pixel(t_image *image, int x, int y, int color);
+
+/* move.c */
+void		move_forward(t_data *data);
+void		move_backward(t_data *data);
+void		move_left(t_data *data);
+void		move_right(t_data *data);
+void		rotate_left(t_data *data);
+void		rotate_right(t_data *data);
+
+/* event.c */
+int			update(t_data *data);
+int			exit_prog(t_data *data);
+void		keyboard_input(t_data *data);
+
+/* hooks.c */
+int			hooks_and_loops(t_data *data);
 
 /* free.c */
-void	free_set_null(char **arr);
-void	free_config(t_config *config);
-void	free_2d_char(char ***arr, int size);
-void	free_config_exit_msg(t_config *config, int status, const char* msg);
+void		free_set_null(char **arr);
+void		free_config(t_config *config);
+void		free_2d_char(char ***arr, int size);
+void		free_config_exit_msg(t_config *config, int status, const char *msg);
+void		free_data(t_data *data);
+
+/* coor_utils.c */
+t_coor_i	coor_f_to_i(t_coor_f coor_f);
+t_coor_f	coor_i_to_f(t_coor_i coor_i);
+t_coor_i	get_coor_i_from_origin(t_coor_i origin, double rad, double len);
+t_coor_f	get_coor_f_from_origin(t_coor_f origin, double rad, double len);
+t_coor_f	coor_f_interpolation(t_coor_f start, t_coor_f end, float ratio);
+
+/* math_utils.c */
+double		radian_to_degree(double radian);
+double		degree_to_radian(double degree);
+double		get_angle(t_coor_i start, t_coor_i end);
+double		get_angle_f(t_coor_f start, t_coor_f end);
+double		get_coor_f_length(t_coor_f start, t_coor_f end);
+
+/* math_utils_2.c */
+double		get_coor_i_sq_len(t_coor_i start, t_coor_i end);
 
 #endif
